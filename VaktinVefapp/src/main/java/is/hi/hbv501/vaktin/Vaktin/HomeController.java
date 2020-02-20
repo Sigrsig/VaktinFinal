@@ -3,13 +3,18 @@ package is.hi.hbv501.vaktin.Vaktin;
 
 import is.hi.hbv501.vaktin.Vaktin.Entities.*;
 import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.LoginResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.MakeDataResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,7 +36,7 @@ import java.util.Random;
  * Needs an instance of CommentService and WorkstationService for rendering
  *
  */
-@Controller
+@RestController
 public class HomeController {
 
     private CommentService commentService;
@@ -50,17 +55,6 @@ public class HomeController {
         this.footerService = footerService;
     }
 
-   /* @RequestMapping("/")
-    public String Home(Model model, Comment comment) {
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employees", employeeService.findAll());
-        model.addAttribute("footerValues", footerService.findByDate(LocalDate.now()));
-        return "redirect:/login";
-    }
-
-    @RequestMapping("adalsida")
-    public String Keyra() { return "Velkominn"; }*/
 
    public boolean loggedIn(HttpSession session) {
         User sessionUser = (User)session.getAttribute("loggedInUser");
@@ -72,75 +66,62 @@ public class HomeController {
         return false;
    }
 
+   // Þarf að vera HttpSession session ??? fyrir login
     @RequestMapping("/")
-    public String Home(Model model, HttpSession session) {
+    public ResponseEntity<HomeActivityResponse> Home(HttpSession session) {
         boolean isLoggedIn = loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            return new ResponseEntity<>(new HomeActivityResponse("Need to be logged in", null), HttpStatus.FORBIDDEN);
         }
 
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        model.addAttribute("footerValues", footerService.findByDate(LocalDate.now()));
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("today", LocalDate.now());
-        return "Velkominn";
+        HomeActivityResponse constrRes = new HomeActivityResponse(
+                commentService.findAll(),
+                workstationService.findAll(),
+                employeeService.findAll(),
+                employeeService.findAllSortedToday(),
+                footerService.findByDate(LocalDate.now()),
+                LocalDate.now()
+        );
+
+        return new ResponseEntity<>(constrRes, HttpStatus.OK);
     }
 
     /*
-    @RequestMapping("/")
-    public String Keyra() { return "redirect:/login"; }
-    */
-
+    VEIT EKKI HVORT VIÐ ÞURFUM LOGOUT Á REST. KANNSKI ER HTTPSESSION LOKAÐ ANNARS STAÐAR
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
+    */
 
 
+    // TIL HVERS ÞURFUM VIÐ RESULT.GETFIELDERRORS() ??
+    // Á að stilla session hér??
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String loginPost(@Valid User user, BindingResult result, Model model, HttpSession session) {
+    public ResponseEntity<LoginResponse> loginPost(@Valid @RequestBody User user, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
-            return "LoginPage";
+            return new ResponseEntity<>(new LoginResponse("Invalid user", result.getFieldErrors(), user), HttpStatus.BAD_REQUEST);
         }
 
         User exists = userService.login(user);
         if (exists != null) {
             session.setAttribute("loggedInUser", user);
-            return "redirect:/";
+            return new ResponseEntity<>(new LoginResponse(user), HttpStatus.OK);
         }
-        return "LoginPage";
+        return new ResponseEntity<>(new LoginResponse("Login unsuccessful", null, user), HttpStatus.BAD_REQUEST);
+
     }
 
 
-
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String LoginPage(User user) { return "LoginPage"; }
-
-
-    @RequestMapping("edit")
-    public String EditPage(Model model, Employee employee, Workstation workstation, Comment comment, Footer footer, HttpSession session) {
-        boolean isLoggedIn = loggedIn(session);
-
-        if (!isLoggedIn) {
-            return "redirect:/login";
-        }
-
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employees", employeeService.findAll());
-        model.addAttribute("footerValues", footerService.findByDate(LocalDate.now()));
-        return "Edit";
-    }
-
+    // Veit ekki með þetta noContent.build(). Er það 204 No content?
     @RequestMapping("clearworkstations")
-    public String ClearWorkstations(Model model, HttpSession session) {
+    public ResponseEntity<?> ClearWorkstations(HttpSession session) {
         boolean isLoggedIn = loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         List<Employee> tempEmp = employeeService.findAll();
@@ -148,23 +129,29 @@ public class HomeController {
             tempEmp.get(i).setWorkstation(null);
             employeeService.save(tempEmp.get(i));
         }
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("employees", employeeService.findAll());
-        return Home(model, session);
+
+        return ResponseEntity.noContent().build();
 
     }
 
 
+    // Er throw new ResponseStatusException sambærilegt return response?
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String DeleteWorkstation(@PathVariable("id") long id, Model model, HttpSession session) {
+    public ResponseEntity<?> DeleteWorkstation(@PathVariable("id") long id, HttpSession session) {
         boolean isLoggedIn = loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
+        // Virkar þetta throw?
         Workstation workstation = workstationService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+
+        // Gá hvort id fannst
+        if (workstation == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
+        }
+
         List<Employee> tempEmp = employeeService.findAll();
         for (int i = 0; i < tempEmp.size(); i++) {
             if (tempEmp.get(i).getWorkstation() == workstation) {
@@ -173,8 +160,8 @@ public class HomeController {
             employeeService.save(tempEmp.get(i));
         }
         workstationService.delete(workstation);
-        model.addAttribute("workstations", workstationService.findAll());
-        return Home(model, session);
+
+        return ResponseEntity.noContent().build();
     }
 
     private Workstation makeWorkstation(String name) {
@@ -207,11 +194,10 @@ public class HomeController {
     /***
      * Make dummy data for employees and workstations
      * Data is made for surrounding days
-     * @param model
      * @return
      */
     @RequestMapping("makedata")
-    public String makeData(Model model, HttpSession session){
+    public ResponseEntity<MakeDataResponse> makeData(){
         User tempUser = new User("user", "123");
         userService.save(tempUser);
 
@@ -282,18 +268,13 @@ public class HomeController {
         newEmployee2.setWorkstation(tempWork);
         employeeService.save(newEmployee2);
 
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        return Home(model, session);
+        MakeDataResponse constrRes = new MakeDataResponse(null, null, workstationService.findAll(), employeeService.findAll());
+        return new ResponseEntity<>(constrRes, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signUpGET(User user){
-        return "signup";
-    }
 
+    // Viljum við hafa signup eða eigum við bara að bæta nýjum notendum í sql skjali?
+    /*
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUpPOST(@Valid User user, BindingResult result, Model model){
         if(result.hasErrors()){
@@ -315,54 +296,8 @@ public class HomeController {
         model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
         return "Velkominn";
     }
+    */
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String usersGET(Model model, HttpSession session){
-        boolean isLoggedIn = loggedIn(session);
 
-        if (!isLoggedIn) {
-            return "redirect:/login";
-        }
-        model.addAttribute("users", userService.findAll());
-        return "users";
-    }
 
-    /*
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(User user){
-        return "LoginPage";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(@Valid User user, BindingResult result, Model model, HttpSession session){
-        if(result.hasErrors()){
-            return "LoginPage";
-        }
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        User exists = userService.login(user);
-        if(exists != null){
-            session.setAttribute("LoggedInUser", user);
-            return "redirect:/";
-        }
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
-    public String loggedinGET(HttpSession session, Model model){
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if(sessionUser  != null){
-            model.addAttribute("loggedinuser", sessionUser);
-            return "loggedInUser";
-        }
-        return "redirect:/";
-    }
-
-     */
 }

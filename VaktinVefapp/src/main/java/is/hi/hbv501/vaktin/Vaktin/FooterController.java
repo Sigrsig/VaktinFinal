@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/*
 @Controller
 public class FooterController {
 
@@ -50,7 +51,7 @@ public class FooterController {
             return homeController.EditPage(model, null, null, null, null);
         }
         */
-
+/*
         System.out.println("footer.getHeadDoctorNumber() " + footer.getHeadDoctorNumber());
 
         boolean correctNumbers = footerService.validate(footer);
@@ -66,3 +67,4 @@ public class FooterController {
     }
 
 }
+*/

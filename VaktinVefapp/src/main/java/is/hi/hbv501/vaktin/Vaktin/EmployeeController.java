@@ -1,3 +1,5 @@
+
+
 package is.hi.hbv501.vaktin.Vaktin;
 
 import com.fasterxml.jackson.databind.deser.DataFormatReaders;
@@ -23,10 +25,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 /***
  * Controller for Employee
  * Has only one route for /addemployee
  */
+/*
 @Controller
 public class EmployeeController {
 
@@ -42,7 +46,7 @@ public class EmployeeController {
         this.workstationService = workstationService;
         this.homeController = homeController;
     }
-
+*/
     /***
      * Runs with the path /addemployee
      * Adds an Employee entity and renders Edit.html
@@ -54,6 +58,7 @@ public class EmployeeController {
      * @param model Model
      * @return Edit.html
      */
+    /*
     @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
     public String addEmployee(@Valid Employee employee, Workstation workstation, Comment comment, Footer footer, BindingResult result, Model model, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
@@ -65,6 +70,7 @@ public class EmployeeController {
         /***
          * Ef villur í formi
          */
+    /*
         if (result.hasErrors()) {
             return homeController.EditPage(model, null, null, null, null, session);
         }
@@ -72,6 +78,7 @@ public class EmployeeController {
         /***
          * Kannar hvort að tímar séu á réttu formi og birtir villu
          */
+    /*
         boolean correctDate = employeeService.validateDate(employee.getDateString());
         boolean boolTimeFrom = employeeService.validateTimeFrom(employee.gettFromString());
         boolean boolTimeTo = employeeService.validateTimeTo(employee.gettToString());
@@ -100,6 +107,7 @@ public class EmployeeController {
         /***
          * Breytir inntaki notanda úr streng í LocalDateTime
          */
+    /*
         employeeService.parseToLocalDateTimeWithDate(employee);
 
         return homeController.EditPage(model, null, null, null, null, session);
@@ -108,3 +116,4 @@ public class EmployeeController {
     }
 
 }
+*/
