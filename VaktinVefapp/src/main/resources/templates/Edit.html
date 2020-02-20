@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Breytingar</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+
+</head>
+
+<body>
+
+<div class="header">
+    <nav class="navigation-bar">
+        <a href="/"><img src="https://res.cloudinary.com/dcjov3oxg/image/upload/v1573576115/shift-planner/image_from_iosminni_i0r6ch.jpg" alt class="logo" id="logos"></a>
+        <a>
+            <button class="button2" onclick="location.href='/logout'">Skrá út</button>
+            <button class="button2" onclick="location.href='/'">Upphafssíða</button>
+            <button class="button2" onclick="location.href='/workstations'">Bæta við</button>
+        </a>
+    </nav>
+</div>
+
+</div>
+<main>
+    <!-- FORM FOR ADDING EMPLOYEE ON THIS DAY -->
+    <div id="editForm">
+        <fieldset id="edit">
+            <legend>Bæta við starfsmanni</legend>
+            <form action="#" th:action="@{/addemployee}" th:object="${employee}" method="get">
+                <label for="employeename">Nafn</label>
+                <input type="text" th:field="*{name}" id="employeename" placeholder="Nafn...">
+                <label for="tFrom">Mætir</label>
+                <input type="text" th:field="*{tFromString}" id="tFrom" placeholder="08:00">
+                <label for="tTo">Klárar</label>
+                <input type="text" th:field="*{tToString}" id="tTo" placeholder="16:00">
+                <label for="dateString">Dagsetning</label>
+                <input type="text" th:field="*{dateString}" id="dateString" placeholder="24/12">
+                <label >Starfsheiti</label>
+                <select name="role" th:field="*{role}">
+                    <option th:value="H" th:text="Hjúkrunarfræðingur"></option>
+                    <option th:value="L" th:text="Læknir"></option>
+                    <option th:value="S" th:text="Sjúkraliði"></option>
+                </select>
+                <input type="submit" value="Skrá">
+            </form>
+            <div class="add-employee-error" th:each="error : ${errors}">
+                <p th:text="${error}"></p>
+            </div>
+        </fieldset>
+
+        <!-- FORM FOR WORKSTATION -->
+        <fieldset id="edit">
+            <legend>Bæta við vinnustöð</legend>
+            <form action="#" th:action="@{/addworkstation}" th:object="${workstation}" method="post">
+                <label for="name">Nafn</label>
+                <input type="text" th:field="*{workstationName}" id="name" placeholder="Nafn...">
+                <span th:if="${#fields.hasErrors('workstationName')}" th:errors="*{workstationName}"></span>
+                <input type="submit" value="Skrá">
+            </form>
+        </fieldset>
+
+        <!-- FORM FOR COMMENT -->
+        <fieldset id="edit">
+            <legend>Bæta við athugasemd</legend>
+            <form action="#" th:action="@{/addcomment}" th:object="${comment}" method="post">
+                <label for="description">Þín athugasemd</label>
+                <textarea type="text" th:field="*{description}" id="description" placeholder="Athugasemd..."></textarea>
+                <span th:if="${#fields.hasAnyErrors()}" th:errors="*{description}"></span>
+                <input type="submit" value="Skrá">
+            </form>
+        </fieldset>
+
+        <fieldset id="edit">
+            <legend>Breyta Footer</legend>
+            <form action="#" th:action="@{/setfooter}" th:object="${footer}" method="post">
+                <label for="shiftManager">Vaktstjóri</label>
+                <input type="text" th:field="*{shiftManager}" id="shiftManager">
+                <label for="shiftManagerNumber">Sími</label>
+                <input type="text" th:field="*{shiftManagerNumber}" id="shiftManagerNumber" placeholder="" value="">
+                <label for="headDoctor">Yfirlæknir</label>
+                <input type="text" th:field="*{headDoctor}" id="headDoctor">
+                <label for="headDoctorNumber">Sími</label>
+                <input type="text" th:field="*{headDoctorNumber}" id="headDoctorNumber" placeholder="" value="">
+                <input type="submit" value="Skrá">
+            </form>
+            <div class="add-employee-error" th:each="error : ${footerErrors}">
+                <p th:text="${error}"></p>
+            </div>
+        </fieldset>
+    </div>
+
+
+    <!-- FORM FOR CLEARING WORKSTATIONS -->
+    <form action="#" th:action="@{/clearworkstations}" th:object="${workstation}" method="post">
+        <input type="submit" value="Hreinsa vinnustöðvar" onclick="confirmation()">
+    </form>
+
+
+
+<br><br><br><br><br>
+</main>
+<footer>
+    <div class="footer" th:with="footerValues=${footerValues}">
+        <p>
+            <em th:if="${footerValues != null}" th:text="${footerValues.shiftManager} + ' s: ' + ${footerValues.shiftManagerNumber}"></em>
+            <em th:if="${footerValues != null}" th:text="${footerValues.headDoctor} + ' s: ' + ${footerValues.headDoctorNumber}"></em>
+        </p>
+
+    </div>
+</footer>
+
+    <script>
+        function confirmation() {
+            var result = confirm("Ertu viss um að þú viljir hreinsa allar vinnustöðvar?", "");
+            if (result == true) {
+                window.location.replace("/adalsida");
+            }
+        }
+    </script>
+
+</body>
+</html>

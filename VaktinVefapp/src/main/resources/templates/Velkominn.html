@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Velkomin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <nav class="navigation-bar">
+        <a href="/"><img src="https://res.cloudinary.com/dcjov3oxg/image/upload/v1573576115/shift-planner/image_from_iosminni_i0r6ch.jpg" alt class="logo" id="logos"></a>
+        <a>
+            <button class="button2" onclick="location.href='/logout'">Skrá út</button>
+            <button class="button2" onclick="location.href='/edit'">Breyta</button>
+            <button class="button2" onclick="location.href='/workstations'">Bæta við</button>
+        </a>
+    </nav>
+</div>
+
+
+<!-- ITERATES THROUGH workstations ATTRIBUTE AND RENDERS NAME OF EACH -->
+<div th:switch="${workstations}">
+    <p th:case="null" style="visibility: hidden"></p>
+    <div th:case="*">
+        <section class="row">
+            <div class="Shifts">
+                <div class="shift">
+                    <label for="Morgunvakt">Morgunvakt</label>
+                    <fieldset id="Morgunvakt">
+                        <table>
+                            <div th:each="workstation : ${workstations}">
+                                <tr class="tr-title">
+                                    <th th:class="workstation-name" th:text="${workstation.workstationName}"></th>
+                                    <th><a th:href="@{/delete/{id}(id=${workstation.id})}">-</a></th>
+                                    <th><a th:href="@{/workstations}">+</a></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Nafn</th>
+                                                <th>Mætir</th>
+                                                <th>Klárar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <div th:each="employee : ${employeesToday}">
+                                                <tr th:if="${employee.getWorkstation() != null && employee.getWorkstation().getWorkstationName().equals(workstation.workstationName) && employee.getHour() >= 8 && employee.getHour() < 16}">
+                                                    <td th:text="${employee.name}"></td>
+                                                    <td th:text="${employee.toStringTimeFromParsed}"></td>
+                                                    <td th:text="${employee.toStringTimeToParsed}"></td>
+                                                    <td><a class="remButton" th:href="@{/clearworkstation/{id}(id=${employee.id})}">Taka úr</a></td>
+                                                </tr>
+                                            </div>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </div>
+
+
+
+
+                        </table>
+
+
+                    </fieldset>
+                </div>
+
+                <div class="shift">
+                    <label for="Kvöldvakt">Kvöldvakt</label>
+                    <fieldset id="Kvöldvakt">
+                        <table>
+                            <div th:each="workstation : ${workstations}">
+                                <tr class="tr-title">
+                                    <th th:class="workstation-name" th:text="${workstation.workstationName}"></th>
+                                    <th><a th:href="@{/delete/{id}(id=${workstation.id})}">-</a></th>
+                                    <th><a th:href="@{/workstations}">+</a></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Nafn</th>
+                                                <th>Mætir</th>
+                                                <th>Klárar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <div th:each="employee : ${employeesToday}">
+                                                <tr th:if="${employee.getWorkstation() != null && employee.getWorkstation().getWorkstationName().equals(workstation.workstationName) && employee.getHour() >= 16}">
+                                                    <td th:text="${employee.name}"></td>
+                                                    <td th:text="${employee.toStringTimeFromParsed}"></td>
+                                                    <td th:text="${employee.toStringTimeToParsed}"></td>
+                                                    <td><a class="remButton" th:href="@{/clearworkstation/{id}(id=${employee.id})}">Taka úr</a>
+                                                    </td>
+                                                </tr>
+                                            </div>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </div>
+                        </table>
+                    </fieldset>
+                </div>
+
+                <div class="shift">
+                    <label for="Næturvakt">Næturvakt</label>
+                    <fieldset id="Næturvakt">
+                        <table>
+                            <div th:each="workstation : ${workstations}">
+                                <tr class="tr-title">
+                                    <th th:class="workstation-name" th:text="${workstation.workstationName}"></th>
+                                    <th><a th:href="@{/delete/{id}(id=${workstation.id})}">-</a></th>
+                                    <th><a th:href="@{/workstations}">+</a></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Nafn</th>
+                                                <th>Mætir</th>
+                                                <th>Klárar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                            <div th:each="employee : ${employeesTomorrow}">
+                                                <tr th:if="${
+                                            employee.getWorkstation() != null &&
+                                            employee.getWorkstation().getWorkstationName().equals(workstation.workstationName) &&
+                                            employee.getHourTo() <= 8
+                                        }">
+                                                    <!--<div th:if="${employee.getWorkstation() != null &&
+                                                    employee.getWorkstation().getName().equals(workstation.name) &&
+                                                    (workstation.getDate().getDayOfWeek().getValue() != 7 && workstation.getDate().getDayOfWeek().getValue() == employee.gettTo().getDayOfWeek().getValue() - 1) ||
+                                                    (workstation.getDate().getDayOfWeek().getValue() == 7 && employee.gettTo().getDayOfWeek().getValue() == 1) && employee.getToHour() <= 8}">-->
+                                                    <td th:text="${employee.name}"></td>
+                                                    <td th:text="${employee.toStringTimeFromParsed}"></td>
+                                                    <td th:text="${employee.toStringTimeToParsed}"></td>
+                                                    <td><a class="remButton" th:href="@{/clearworkstation/{id}(id=${employee.id})}">Taka úr</a>
+                                                    </td>
+                                                </tr>
+                                            </div>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </div>
+                        </table>
+
+                    </fieldset>
+                </div>
+               <!-- <form action="/Athugasemdir" method="post">
+                    <fieldset>-->
+                         <div class="comment">
+                           <!--  <label for="comment">Athugasemdir:</label> -->
+                            <!-- ITERATES THROUGH comments ATTRIBUTE AND RENDERS EACH comment.description -->
+                            <div th:switch="${comments}">
+                                <p th:case="null" style="visibility: hidden"></p>
+                                <div th:case="*">
+                                    <h2>Athugasemdir</h2>
+                                    <table>
+                                        <tr th:each="comment : ${comments}">
+                                            <td><a th:href="@{/removecomment/{id}(id=${comment.id})}">-</a></td>
+                                            <td><a th:href="@{/edit}">+</a></td>
+                                            <td th:text="${comment.description}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+</section>
+
+
+<footer>
+    <div class="footer" th:with="footerValues=${footerValues}">
+        <p>
+            <em th:if="${footerValues != null}" th:text="${footerValues.shiftManager} + ' s: ' + ${footerValues.shiftManagerNumber}"></em>
+            <em th:if="${footerValues != null}" th:text="${footerValues.headDoctor} + ' s: ' + ${footerValues.headDoctorNumber}"></em>
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

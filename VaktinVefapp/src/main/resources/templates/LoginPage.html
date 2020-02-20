@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaktin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+
+
+<body>
+<div id="loginPage">
+    <div>
+        <img alt="logo" id="logo_l" src="https://res.cloudinary.com/dcjov3oxg/image/upload/v1573576115/shift-planner/image_from_iosminni_i0r6ch.jpg">
+    </div>
+    <div id = "login" class="row">
+        <div class="login-form">
+            <form action="#" id= "form" method="post" th:action="@{/login}"  th:object="${user}"><br>
+                <input id="username" name="username" placeholder="Sláðu inn nafn" th:field="*{uName}" title="Notandi" type="text"/><br>
+
+                <input id="password" name="password" placeholder="Sláðu inn lykliorð" th:value="*{password}" title="Lykilorð" type="text"/><br>
+                <br>
+                <input type="submit" value="Skrá" id="button_login" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <button class="button_login" onclick="location.href='/loginn'">Login</button> -->
+
+</body>
+</html>
