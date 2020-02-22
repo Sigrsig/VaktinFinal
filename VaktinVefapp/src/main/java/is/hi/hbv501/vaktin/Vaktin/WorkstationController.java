@@ -7,13 +7,20 @@ import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
 import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
 import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddWorkstationResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.WorkstationActivityResponse;
+import org.apache.coyote.Response;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -28,7 +35,7 @@ import java.time.LocalDateTime;
  *
  * Needs WorkstationService and CommentService for rendering
  */
-@Controller
+@RestController
 public class WorkstationController {
 
     private WorkstationService workstationService;
@@ -48,45 +55,45 @@ public class WorkstationController {
     }
 
     @RequestMapping("workstations")
-    public String Workstation(Model model, HttpSession session) {
+    public ResponseEntity<WorkstationActivityResponse> Workstation(Model model, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            return new ResponseEntity<>(new WorkstationActivityResponse("Need to be logged in", null, null, null, null), HttpStatus.FORBIDDEN);
         }
 
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("footerValues", footerService.findByDate(LocalDate.now()));
-        model.addAttribute("employees", employeeService.findAllTodayAndTomorrow());
-        return "Workstations";
+        WorkstationActivityResponse constrRes = new WorkstationActivityResponse(
+                workstationService.findAll(),
+                employeeService.findAllTodayAndTomorrow(),
+                footerService.findByDate(LocalDate.now())
+        );
+
+        return new ResponseEntity<>(constrRes, HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "/clearworkstation/{id}", method = RequestMethod.GET)
-    public String ClearFromWorkstation(@PathVariable("id") long id, Model model, HttpSession session) {
+    public ResponseEntity<?> ClearFromWorkstation(@PathVariable("id") long id, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         Employee tempEmp = employeeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
         tempEmp.setWorkstation(null);
         employeeService.save(tempEmp);
 
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        return "Velkominn";
+        return ResponseEntity.noContent().build();
     }
 
+    // Er betra að nota isPresent() eða virkar þetta?
     @RequestMapping(value = "addtoworkstation/{eid}/{wid}", method = RequestMethod.GET)
-    public String AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid, Model model, HttpSession session) {
+    public ResponseEntity<?> AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         Employee tempEmp = employeeService.findById(eid).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
@@ -94,23 +101,24 @@ public class WorkstationController {
         tempEmp.setWorkstation(tempWorkstation);
         employeeService.save(tempEmp);
 
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employees", employeeService.findAllTodayAndTomorrow());
+        if (tempEmp == null || tempWorkstation == null) {
+            return new ResponseEntity<GenericResponse>(new GenericResponse("Invalid employee or workstation", null), HttpStatus.BAD_REQUEST);
+        }
 
-        return "Workstations";
+        return new ResponseEntity<Employee>(tempEmp, HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "addworkstation", method = RequestMethod.POST)
-    public String AddWorkstation(@Valid Workstation workstation, Comment comment, BindingResult result, Model model, HttpSession session) {
+    public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, Comment comment, BindingResult result, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         if (result.hasErrors()) {
-            return "Velkominn";
+            return new ResponseEntity<>(new AddWorkstationResponse("Invalid workstation", result.getFieldErrors(), workstation), HttpStatus.BAD_REQUEST);
         }
 
         //workstation.setShift(1);
@@ -127,11 +135,8 @@ public class WorkstationController {
         workstationService.save(workstation);
          */
 
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        return "Velkominn";
+
+        return new ResponseEntity<>(new AddWorkstationResponse(workstation), HttpStatus.OK);
     }
 
 

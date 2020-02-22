@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Vaktin/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/VaktinVefapp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/Entities/Workstation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/Entities/Workstation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/FooterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/FooterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/EmployeeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,6 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectId" id="1YB6CCjAh32I3SL2Gldp645jGNH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -39,6 +33,8 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -102,7 +98,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582213451478</updated>
-      <workItem from="1582213683097" duration="8398000" />
+      <workItem from="1582213683097" duration="9136000" />
+      <workItem from="1582403514853" duration="2340000" />
     </task>
     <servers />
   </component>

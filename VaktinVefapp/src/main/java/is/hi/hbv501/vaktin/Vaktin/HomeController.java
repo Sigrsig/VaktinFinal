@@ -87,14 +87,14 @@ public class HomeController {
         return new ResponseEntity<>(constrRes, HttpStatus.OK);
     }
 
-    /*
-    VEIT EKKI HVORT VIÐ ÞURFUM LOGOUT Á REST. KANNSKI ER HTTPSESSION LOKAÐ ANNARS STAÐAR
+
+   //VEIT EKKI HVORT VIÐ ÞURFUM LOGOUT Á REST. KANNSKI ER HTTPSESSION LOKAÐ ANNARS STAÐAR
     @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public String logout(HttpSession session) {
+    public ResponseEntity<?> logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/login";
+        return ResponseEntity.noContent().build();
     }
-    */
+
 
 
     // TIL HVERS ÞURFUM VIÐ RESULT.GETFIELDERRORS() ??
