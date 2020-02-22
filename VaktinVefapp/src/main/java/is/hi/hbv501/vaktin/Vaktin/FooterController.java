@@ -6,13 +6,15 @@ import is.hi.hbv501.vaktin.Vaktin.Entities.Footer;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
 import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.SetFooterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,8 +22,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
-/*
-@Controller
+
+@RestController
 public class FooterController {
 
     FooterService footerService;
@@ -36,11 +38,11 @@ public class FooterController {
     }
 
     @RequestMapping(value = "/setfooter", method = RequestMethod.POST)
-    public String setFooter(@ModelAttribute Footer footer, BindingResult result, Model model, Employee employee, Comment comment, Workstation workstation, HttpSession session) {
+    public ResponseEntity<SetFooterResponse> setFooter(@Valid @RequestBody Footer footer, BindingResult result, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         /*
@@ -51,20 +53,17 @@ public class FooterController {
             return homeController.EditPage(model, null, null, null, null);
         }
         */
-/*
-        System.out.println("footer.getHeadDoctorNumber() " + footer.getHeadDoctorNumber());
+
+        //System.out.println("footer.getHeadDoctorNumber() " + footer.getHeadDoctorNumber());
 
         boolean correctNumbers = footerService.validate(footer);
         ArrayList<String> errors = new ArrayList<>();
         if (!correctNumbers) {
             errors.add("Röng símanúmer");
-            model.addAttribute("footerErrors", errors);
-            return homeController.EditPage(model, null, null, null, null, session);
+            return new ResponseEntity<>(new SetFooterResponse("Invalid number", errors, footer), HttpStatus.BAD_REQUEST);
         }
 
-
-        return homeController.Home(model, session);
+        return new ResponseEntity<>(new SetFooterResponse(footer), HttpStatus.OK);
     }
 
 }
-*/
