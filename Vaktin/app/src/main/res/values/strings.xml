@@ -2,4 +2,7 @@
     <string name="app_name">Vaktin</string>
     <string name="login_button">Login</string>
     <string name="logo_img">logo.jpg</string>
+    <string name="loginNav">Navigate to Login</string>
+
+
 </resources>

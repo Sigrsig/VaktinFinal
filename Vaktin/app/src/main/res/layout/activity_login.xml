@@ -8,9 +8,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/vaktinColor"
         android:gravity="center"
-        android:orientation="vertical"
-        android:background="@color/vaktinColor">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -21,29 +21,30 @@
         <EditText
             android:id="@+id/uName"
             android:layout_width="match_parent"
-            android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            />
+            android:text="Name" />
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="password"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
+            android:text="password"
 
             />
+
         <Button
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_button"/>
+            android:text="@string/login_button" />
     </LinearLayout>
 
 </LinearLayout>
