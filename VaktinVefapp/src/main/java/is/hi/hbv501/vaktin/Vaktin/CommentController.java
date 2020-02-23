@@ -6,13 +6,15 @@ import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
 import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
 import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddCommentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -25,7 +27,7 @@ import java.time.LocalDate;
  *
  * Needs an instance of CommentService and WorkstationService for rendering
  */
-@Controller
+@RestController
 public class CommentController {
 
     private CommentService commentService;
@@ -44,45 +46,44 @@ public class CommentController {
         this.homeController = homeController;
     }
 
+    // Aftur, virkar þetta throw í REST
     @RequestMapping(value = "removecomment/{id}", method = RequestMethod.GET)
-    public String removeComment(@PathVariable("id") long id, Model model) {
-        Comment comment = commentService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+    public ResponseEntity<?> removeComment(@PathVariable("id") long id, Model model) {
+        Comment comment = commentService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid comment ID"));
+
+        if (comment == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Comment not found");
+        }
+
         commentService.delete(comment);
 
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        model.addAttribute("footerValues", footerService.findByDate(LocalDate.now()));
-        return "Velkominn";
+        return ResponseEntity.noContent().build();
     }
 
     /***
      * Route fyrir '/addcomment'
      * Adds comment and redirects to front page
      * @param comment Comment
-     * @param workstation Workstation
+     * 
      * @param result BindingResult
-     * @param model Model
+     *
      * @return
      */
     @RequestMapping(value = "addcomment", method = RequestMethod.POST)
-    public String addComment(@Valid Comment comment, Workstation workstation, BindingResult result, Model model, HttpSession session) {
+    public ResponseEntity<AddCommentResponse> addComment(@Valid @RequestBody Comment comment, BindingResult result, HttpSession session) {
         boolean isLoggedIn = homeController.loggedIn(session);
 
         if (!isLoggedIn) {
-            return "redirect:/login";
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
         }
 
         if (result.hasErrors()) {
-            return "Velkominn";
+            return new ResponseEntity<>(new AddCommentResponse("Invalid comment", result.getFieldErrors(), comment), HttpStatus.BAD_REQUEST);
         }
+
         commentService.save(comment);
-        model.addAttribute("comments", commentService.findAll());
-        model.addAttribute("workstations", workstationService.findAll());
-        model.addAttribute("employeesToday", employeeService.findAllSortedToday());
-        model.addAttribute("employeesTomorrow", employeeService.findAllSortedTomorrow());
-        return "Velkominn";
+
+        return new ResponseEntity<>(new AddCommentResponse(comment), HttpStatus.OK);
 
     }
 }
