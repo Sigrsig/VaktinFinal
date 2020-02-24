@@ -25,7 +25,7 @@ import is.hi.hbv601.vaktin.fragments.Kvoldvakt;
 import is.hi.hbv601.vaktin.fragments.Morgunvakt;
 import is.hi.hbv601.vaktin.fragments.Naeturvakt;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     Button mloginNavButton;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
@@ -34,16 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //mloginNavButton = (Button) findViewById(R.id.loginNav);
-        /*mloginNavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, R.string.loginNav, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
-        //mloginNavButton.setOnClickListener(this);
 
         // Current date added
         Calendar calendar = Calendar.getInstance();
@@ -63,16 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-
-            case R.id.loginNav:
-
-            startActivity(new Intent(this, LoginActivity.class));
-            break;
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,10 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.login_Button:
-                Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LoginActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
