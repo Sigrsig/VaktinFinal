@@ -35,6 +35,14 @@ public class LoginActivity extends AppCompatActivity{
                 Toast.makeText(LoginActivity.this, "velkomin á Vaktina", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
+
+                /*Hér þarf að ná í notendaupplýsingar og athuga hvort gilt password/uName
+                * Nota einhverjar if lykkjur
+                *
+                * */
+                String userName = muName.getText().toString();
+                String password = mPassword.getText().toString();
+
             }
         });
     }

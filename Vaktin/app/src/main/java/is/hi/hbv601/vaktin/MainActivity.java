@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.edit:
                 Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, EditActivity.class));
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
