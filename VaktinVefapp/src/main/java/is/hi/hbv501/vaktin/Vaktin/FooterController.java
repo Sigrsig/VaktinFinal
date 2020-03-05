@@ -38,12 +38,7 @@ public class FooterController {
     }
 
     @RequestMapping(value = "/setfooter", method = RequestMethod.POST)
-    public ResponseEntity<SetFooterResponse> setFooter(@Valid @RequestBody Footer footer, BindingResult result, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
-
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
+    public ResponseEntity<SetFooterResponse> setFooter(@Valid @RequestBody Footer footer, BindingResult result) {
 
         /*
         if (result.hasErrors()) {

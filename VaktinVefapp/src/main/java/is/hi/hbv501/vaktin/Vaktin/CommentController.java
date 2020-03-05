@@ -64,18 +64,14 @@ public class CommentController {
      * Route fyrir '/addcomment'
      * Adds comment and redirects to front page
      * @param comment Comment
-     * 
+     *
      * @param result BindingResult
      *
      * @return
      */
     @RequestMapping(value = "addcomment", method = RequestMethod.POST)
-    public ResponseEntity<AddCommentResponse> addComment(@Valid @RequestBody Comment comment, BindingResult result, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<AddCommentResponse> addComment(@Valid @RequestBody Comment comment, BindingResult result) {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         if (result.hasErrors()) {
             return new ResponseEntity<>(new AddCommentResponse("Invalid comment", result.getFieldErrors(), comment), HttpStatus.BAD_REQUEST);

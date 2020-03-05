@@ -12,3 +12,6 @@ INSERT INTO billionaires (first_name, last_name, career) VALUES
     ('Bill', 'Gates', 'Billionaire Tech Entrepreneur'),
     ('Folrunsho', 'Alakija', 'Billionaire Oil Magnate');
 
+
+INSERT INTO user (u_name, password) VALUES
+    ('user', '123');

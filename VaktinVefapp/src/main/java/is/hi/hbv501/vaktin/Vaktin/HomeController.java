@@ -7,6 +7,8 @@ import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.LoginResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.MakeDataResponse;
+import org.springframework.security.core.Authentication;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,24 +58,14 @@ public class HomeController {
     }
 
 
-   public boolean loggedIn(HttpSession session) {
-        User sessionUser = (User)session.getAttribute("loggedInUser");
-
-        if (sessionUser != null) {
-            return true;
-        }
-
-        return false;
-   }
-
+    @RequestMapping(value="/loggedIn", method=RequestMethod.GET)
+    public User loggedIn(Authentication authentication) {
+        return userService.findByUName(authentication.getName());
+    }
    // Þarf að vera HttpSession session ??? fyrir login
     @RequestMapping("/")
     public ResponseEntity<HomeActivityResponse> Home(HttpSession session) {
-        boolean isLoggedIn = loggedIn(session);
 
-        if (!isLoggedIn) {
-            return new ResponseEntity<>(new HomeActivityResponse("Need to be logged in", null), HttpStatus.FORBIDDEN);
-        }
 
         HomeActivityResponse constrRes = new HomeActivityResponse(
                 commentService.findAll(),
@@ -88,26 +80,19 @@ public class HomeController {
     }
 
 
-   //VEIT EKKI HVORT VIÐ ÞURFUM LOGOUT Á REST. KANNSKI ER HTTPSESSION LOKAÐ ANNARS STAÐAR
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public ResponseEntity<?> logout(HttpSession session) {
-        session.invalidate();
-        return ResponseEntity.noContent().build();
-    }
-
-
 
     // TIL HVERS ÞURFUM VIÐ RESULT.GETFIELDERRORS() ??
+    // þarf að laga
     // Á að stilla session hér??
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity<LoginResponse> loginPost(@Valid @RequestBody User user, BindingResult result, HttpSession session) {
+    public ResponseEntity<LoginResponse> loginPost(@Valid @RequestBody User user, BindingResult result) {
         if (result.hasErrors()) {
             return new ResponseEntity<>(new LoginResponse("Invalid user", result.getFieldErrors(), user), HttpStatus.BAD_REQUEST);
         }
 
         User exists = userService.login(user);
         if (exists != null) {
-            session.setAttribute("loggedInUser", user);
+
             return new ResponseEntity<>(new LoginResponse(user), HttpStatus.OK);
         }
         return new ResponseEntity<>(new LoginResponse("Login unsuccessful", null, user), HttpStatus.BAD_REQUEST);
@@ -117,12 +102,8 @@ public class HomeController {
 
     // Veit ekki með þetta noContent.build(). Er það 204 No content?
     @RequestMapping("clearworkstations")
-    public ResponseEntity<?> ClearWorkstations(HttpSession session) {
-        boolean isLoggedIn = loggedIn(session);
+    public ResponseEntity<?> ClearWorkstations() {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         List<Employee> tempEmp = employeeService.findAll();
         for (int i = 0; i < tempEmp.size(); i++) {
@@ -137,12 +118,7 @@ public class HomeController {
 
     // Er throw new ResponseStatusException sambærilegt return response?
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> DeleteWorkstation(@PathVariable("id") long id, HttpSession session) {
-        boolean isLoggedIn = loggedIn(session);
-
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
+    public ResponseEntity<?> DeleteWorkstation(@PathVariable("id") long id) {
 
         // Virkar þetta throw?
         Workstation workstation = workstationService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));

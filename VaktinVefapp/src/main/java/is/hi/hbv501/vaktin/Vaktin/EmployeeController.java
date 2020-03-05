@@ -64,12 +64,8 @@ public class EmployeeController {
      */
 
     @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
-    public ResponseEntity<AddEmployeeResponse> addEmployee(@Valid @RequestBody Employee employee, BindingResult result, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<AddEmployeeResponse> addEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         /***
          * Ef villur í formi

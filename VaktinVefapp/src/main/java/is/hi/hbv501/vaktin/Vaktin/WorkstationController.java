@@ -12,7 +12,7 @@ import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.WorkstationActivityResponse;
 import org.apache.coyote.Response;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,12 +55,8 @@ public class WorkstationController {
     }
 
     @RequestMapping("workstations")
-    public ResponseEntity<WorkstationActivityResponse> Workstation(Model model, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<WorkstationActivityResponse> Workstation(Model model) {
 
-        if (!isLoggedIn) {
-            return new ResponseEntity<>(new WorkstationActivityResponse("Need to be logged in", null, null, null, null), HttpStatus.FORBIDDEN);
-        }
 
         WorkstationActivityResponse constrRes = new WorkstationActivityResponse(
                 workstationService.findAll(),
@@ -73,12 +69,8 @@ public class WorkstationController {
 
 
     @RequestMapping(value = "/clearworkstation/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> ClearFromWorkstation(@PathVariable("id") long id, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<?> ClearFromWorkstation(@PathVariable("id") long id) {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         Employee tempEmp = employeeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
         tempEmp.setWorkstation(null);
@@ -89,12 +81,8 @@ public class WorkstationController {
 
     // Er betra að nota isPresent() eða virkar þetta?
     @RequestMapping(value = "addtoworkstation/{eid}/{wid}", method = RequestMethod.GET)
-    public ResponseEntity<?> AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<?> AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid) {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         Employee tempEmp = employeeService.findById(eid).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
         Workstation tempWorkstation = workstationService.findById(wid).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
@@ -110,12 +98,8 @@ public class WorkstationController {
 
 
     @RequestMapping(value = "addworkstation", method = RequestMethod.POST)
-    public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, Comment comment, BindingResult result, HttpSession session) {
-        boolean isLoggedIn = homeController.loggedIn(session);
+    public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, Comment comment, BindingResult result) {
 
-        if (!isLoggedIn) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Need to be logged in");
-        }
 
         if (result.hasErrors()) {
             return new ResponseEntity<>(new AddWorkstationResponse("Invalid workstation", result.getFieldErrors(), workstation), HttpStatus.BAD_REQUEST);
