@@ -30,11 +30,16 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
     UserLocalStore mUserLocalStore;
+    TextView mComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mComment = (TextView) findViewById(R.id.comment);
+
+        String message = getIntent().getStringExtra("message_key");
+        mComment.setText(message);
 
         // Current date added
         Calendar calendar = Calendar.getInstance();
