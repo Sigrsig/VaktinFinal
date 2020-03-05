@@ -20,7 +20,7 @@ public class FooterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footer);
-        mVista_button = (Button) findViewById(R.id.tilbaka_button);
+        mVista_button = (Button) findViewById(R.id.vista_button);
 
 
         mVista_button.setOnClickListener(new View.OnClickListener() {

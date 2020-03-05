@@ -14,11 +14,8 @@
         android:gravity="center"
         android:orientation="vertical">
 
-
-
-
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/fType1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -30,7 +27,7 @@
 
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/fName1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -40,7 +37,7 @@
             android:text="@string/nafn" />
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/fPhonenr1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -52,43 +49,50 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="50dp"
+
             android:layout_marginBottom="10dp"
-            android:text="Hér þarf að hanna Footer síðuna"
             android:textAllCaps="true"/>
-        <EditText
-            android:id="@+id/comment"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="#FFFFFF" />
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/fType2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:text="@string/stada"/>
+
+
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/fName2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:text="@string/nafn" />
+
+        <EditText
+            android:id="@+id/fPhonenr2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="#FFFFFF"
+            android:text="@string/simanumer"/>
 
 
         <Button
-            android:id="@+id/tilbaka_button"
+            android:id="@+id/vista_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
             android:text="@string/vista_button" />
 
     </LinearLayout>
