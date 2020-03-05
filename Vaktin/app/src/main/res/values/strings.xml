@@ -22,4 +22,10 @@
     <string name="add_employee">Bæta við starfsmanni</string>
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
+
+    <!-- FOOTER SÍÐA -->
+    <string name="vista">Vista</string>
+    <string name="stada">Staða</string>
+    <string name="nafn">Nafn</string>
+    <string name="simanumer">Símanúmer</string>
 </resources>
