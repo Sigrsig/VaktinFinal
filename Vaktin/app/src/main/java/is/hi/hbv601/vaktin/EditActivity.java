@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class EditActivity extends AppCompatActivity{
 
     Button mTilbaka_button;
+    UserLocalStore mUserLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,10 @@ public class EditActivity extends AppCompatActivity{
                 Intent i = new Intent(EditActivity.this, MainActivity.class);
                 startActivity(i);
 
-
             }
         });
+
+        mUserLocalStore = new UserLocalStore(this);
     }
     
     @Override
@@ -52,6 +54,10 @@ public class EditActivity extends AppCompatActivity{
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
+                mUserLocalStore.clearedUserData();
+                mUserLocalStore.setUserLoggedIn(false);
+                startActivity(new Intent(this, LoginActivity.class));
+
                 return true;
             case R.id.login_Button:
                 Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();

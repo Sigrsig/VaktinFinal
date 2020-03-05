@@ -15,4 +15,6 @@
 
     <string name="comment">Birna er veik í dag</string>
     <string name="tilbaka_button">Til baka</string>
+    <string name="vista_button">Vista</string>
+    <string name="Athugasemd">Athugasemd</string>
 </resources>

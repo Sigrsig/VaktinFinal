@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity{
     EditText muName;
     EditText mPassword;
     ImageView mlogo;
+    UserLocalStore mUserLocalStore;
 
 
     @Override
@@ -28,11 +29,17 @@ public class LoginActivity extends AppCompatActivity{
         //ImageView logo = (ImageView) findViewById(R.id.logo);
         //logo.setImageResource(R.drawable.logo);
 
+        mUserLocalStore = new UserLocalStore(this);
 
         mloginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "velkomin á Vaktina", Toast.LENGTH_SHORT).show();
+                String userName = muName.getText().toString();
+                String password = mPassword.getText().toString();
+                User user = new User(userName,password);
+                mUserLocalStore.storeUserData(user);
+                mUserLocalStore.setUserLoggedIn(true);
+                Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
 
@@ -40,12 +47,23 @@ public class LoginActivity extends AppCompatActivity{
                 * Nota einhverjar if lykkjur
                 *
                 * */
-                String userName = muName.getText().toString();
-                String password = mPassword.getText().toString();
 
             }
         });
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+    }
+    private boolean authenticate(){
+        return mUserLocalStore.getUserLoggefIn();
+    }
+
+    private void displayUserDetails(){
+        User user = mUserLocalStore.getLoggedInUser();
+        muName.setText(user.uName);
+        mPassword.setText(user.password);
+    }
 }
 

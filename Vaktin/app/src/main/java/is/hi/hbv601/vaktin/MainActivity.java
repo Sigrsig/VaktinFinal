@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button mloginNavButton;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
+    UserLocalStore mUserLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         pager.setAdapter(pagerAdapter);
 
+        mUserLocalStore = new UserLocalStore(this);
+
     }
 
 
@@ -70,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
+                mUserLocalStore.clearedUserData();
+                mUserLocalStore.setUserLoggedIn(false);
+                startActivity(new Intent(this, LoginActivity.class));
+
                 return true;
             case R.id.login_Button:
                 Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
