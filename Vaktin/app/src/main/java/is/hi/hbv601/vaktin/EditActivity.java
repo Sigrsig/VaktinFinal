@@ -20,19 +20,20 @@ public class EditActivity extends AppCompatActivity{
     private Button mEmployee_button;
     private Button mComment_button;
     private Button mFooter_button;
+    private Button mWorkstation_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        mTilbaka_button = (Button) findViewById(R.id.tilbaka_button);
+        mWorkstation_button = (Button) findViewById(R.id.workstation_button);
 
 
-        mTilbaka_button.setOnClickListener(new View.OnClickListener() {
+        mWorkstation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(EditActivity.this, "velkomin á Vaktina", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(EditActivity.this, MainActivity.class);
+                Intent i = new Intent(EditActivity.this, WorkstationActivity.class);
                 startActivity(i);
 
             }
@@ -67,20 +68,20 @@ public class EditActivity extends AppCompatActivity{
 
         mUserLocalStore = new UserLocalStore(this);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.editmenu, menu);
+        inflater.inflate(R.menu.mainmenu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.main:
-                Toast.makeText(this, "Main page Selected", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainActivity.class));
+            case R.id.edit:
+                Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, EditActivity.class));
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();

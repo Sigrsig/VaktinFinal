@@ -23,9 +23,17 @@
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
 
+
     <!-- FOOTER SÍÐA -->
     <string name="vista">Vista</string>
     <string name="stada">Staða</string>
     <string name="nafn">Nafn</string>
     <string name="simanumer">Símanúmer</string>
+
+    <string name="workstation_button">Velja Vinnustöð</string>
+    <string name="eName">Starfsmaður</string>
+    <string name="eFrom">Frá</string>
+    <string name="eTo">Til</string>
+    <string name="eType">Staða</string>
+
 </resources>
