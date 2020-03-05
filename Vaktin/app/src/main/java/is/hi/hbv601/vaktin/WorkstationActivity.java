@@ -13,20 +13,20 @@ import android.widget.Toast;
 
 public class WorkstationActivity extends AppCompatActivity {
 
-    Button mTilbaka_button;
     UserLocalStore mUserLocalStore;
+    Button mSave_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workstation);
-        mTilbaka_button = (Button) findViewById(R.id.tilbaka_button);
+        mSave_button = (Button) findViewById(R.id.vista_button);
 
 
-        mTilbaka_button.setOnClickListener(new View.OnClickListener() {
+        mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WorkstationActivity.this, "Aftur á Edit síðuna", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WorkstationActivity.this, "Ný athugasemd vistuð", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(WorkstationActivity.this, EditActivity.class);
                 startActivity(i);
 
@@ -34,6 +34,35 @@ public class WorkstationActivity extends AppCompatActivity {
         });
 
         mUserLocalStore = new UserLocalStore(this);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.editmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.main:
+                Toast.makeText(this, "Main page Selected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.logout:
+                Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
+                mUserLocalStore.clearedUserData();
+                mUserLocalStore.setUserLoggedIn(false);
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.login_Button:
+                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }
