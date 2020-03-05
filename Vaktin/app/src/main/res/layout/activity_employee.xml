@@ -25,6 +25,7 @@
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
             android:text="@string/eName" />
+
         <EditText
             android:id="@+id/eType"
             android:layout_width="match_parent"
