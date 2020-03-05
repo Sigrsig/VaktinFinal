@@ -15,42 +15,31 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp"
-            android:text="Hér þarf að hanna Edit síðuna"
-            android:textAllCaps="true"/>
-
-
         <Button
-            android:id="@+id/tilbaka_button"
-            android:layout_width="wrap_content"
+            android:id="@+id/workstation_button"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/tilbaka_button" />
+            android:text="@string/workstation_button" />
 
         <Button
             android:id="@+id/employee_button"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_employee"
+            android:layout_width="200dp"
         />
 
         <Button
             android:id="@+id/comment_button"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="@string/add_comment"
             />
 
         <Button
             android:id="@+id/footer_button"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/set_footer"
-            />
+            android:text="@string/set_footer" />
 
     </LinearLayout>
 

@@ -8,15 +8,6 @@
     tools:context=".CommentActivity">
 
 
-    <Button
-        android:id="@+id/tilbaka_button"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:text="@string/tilbaka_button"
-        tools:ignore="MissingConstraints" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -24,7 +15,6 @@
         android:gravity="center"
         android:orientation="vertical"
         >
-
 
 
         <EditText
