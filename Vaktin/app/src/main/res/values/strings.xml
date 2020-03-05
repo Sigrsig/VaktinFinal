@@ -17,4 +17,9 @@
     <string name="tilbaka_button">Til baka</string>
     <string name="vista_button">Vista</string>
     <string name="Athugasemd">Athugasemd</string>
+
+    <!-- EDIT SÍÐA -->
+    <string name="add_employee">Bæta við starfsmanni</string>
+    <string name="add_comment">Bæta við athugasemd</string>
+    <string name="set_footer">Velja síðufót</string>
 </resources>

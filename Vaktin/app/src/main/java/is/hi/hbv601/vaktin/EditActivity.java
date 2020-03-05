@@ -17,6 +17,9 @@ public class EditActivity extends AppCompatActivity{
 
     Button mTilbaka_button;
     UserLocalStore mUserLocalStore;
+    private Button mEmployee_button;
+    private Button mComment_button;
+    private Button mFooter_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,33 @@ public class EditActivity extends AppCompatActivity{
                 Intent i = new Intent(EditActivity.this, MainActivity.class);
                 startActivity(i);
 
+            }
+        });
+
+        mEmployee_button = (Button) findViewById(R.id.employee_button);
+        mEmployee_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EditActivity.this, EmployeeActivity.class);
+                startActivity(i);
+            }
+        });
+
+        mComment_button = (Button)findViewById(R.id.comment_button);
+        mComment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EditActivity.this, CommentActivity.class);
+                startActivity(i);
+            }
+        });
+
+        mFooter_button = (Button)findViewById(R.id.footer_button);
+        mFooter_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EditActivity.this, FooterActivity.class);
+                startActivity(i);
             }
         });
 
