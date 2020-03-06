@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -27,6 +30,10 @@ public class LoginActivity extends AppCompatActivity{
     EditText mPassword;
     ImageView mlogo;
     UserLocalStore mUserLocalStore;
+
+    //private final String loginString = "http://localhost:8080/authenticate";
+    private final String loginString = "http://10.0.2.2:8080/authenticate";
+
 
 
     @Override
@@ -52,17 +59,39 @@ public class LoginActivity extends AppCompatActivity{
                 //mUserLocalStore.storeUserData(user);
                 //mUserLocalStore.setUserLoggedIn(true);
 
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("username", userName);
+                    json.put("password", password);
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                }
+
+
+                String result = null;
+                try {
+                    result = new Api().postAuth(loginString, json.toString());
+                }
+                catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+
+                System.out.println("hæ " + result);
+
                 Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
 
                 //forritið krassar þegar loggað er inn vegna þessa búts, má commenta út til að prófa
 
+                /*
                 try {
                     String result = authenticate(user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                */
 
             }
         });
