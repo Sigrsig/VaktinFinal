@@ -3,6 +3,8 @@ package is.hi.hbv601.vaktin;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import is.hi.hbv601.vaktin.Entities.User;
+
 public class UserLocalStore {
 
     public static final String SP_NAME = "userDetails";
