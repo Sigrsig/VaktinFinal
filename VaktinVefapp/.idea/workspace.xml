@@ -1,171 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Vaktin/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/CommentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/CommentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EmployeeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EmployeeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/FooterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/FooterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/UserLocalStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/UserLocalStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_footer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_footer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/VaktinVefapp.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-    </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectId" id="1YB6CCjAh32I3SL2Gldp645jGNH" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Vaktin" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.VaktinApplication (1)">
-    <configuration name="VaktinApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="Vaktin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="is.hi.hbv501.vaktin.Vaktin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501.vaktin.Vaktin.VaktinApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VaktinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="is.hi.hbv501.vaktin.Vaktin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501.vaktin.Vaktin" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Spring Boot.VaktinApplication" />
-      <item itemvalue="Spring Boot.VaktinApplication (1)" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.VaktinApplication (1)" />
-        <item itemvalue="Spring Boot.VaktinApplication" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
-    </option>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="" />
-      <created>1582213451478</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1582213451478</updated>
-      <workItem from="1582213683097" duration="9136000" />
-      <workItem from="1582403514853" duration="4041000" />
-      <workItem from="1582819366578" duration="8928000" />
-      <workItem from="1583442651820" duration="968000" />
-      <workItem from="1583487049723" duration="1834000" />
-      <workItem from="1583492196478" duration="1817000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
+    <component name="ChangeListManager">
+        <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
+            <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/AuthenticationController.java" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/Entities/User.java" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/target/classes/META-INF/VaktinVefapp.kotlin_module" beforeDir="false" />
+            <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/AuthenticationController.class" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/Entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/Entities/User.class" afterDir="false" />
+            <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" afterDir="false" />
+        </list>
+        <option name="SHOW_DIALOG" value="false" />
+        <option name="HIGHLIGHT_CONFLICTS" value="true" />
+        <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+        <option name="LAST_RESOLUTION" value="IGNORE" />
+    </component>
+    <component name="FileTemplateManagerImpl">
+        <option name="RECENT_TEMPLATES">
+            <list>
+                <option value="Class" />
+            </list>
+        </option>
+    </component>
+    <component name="Git.Settings">
+        <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    </component>
+    <component name="ProjectId" id="1YB6CCjAh32I3SL2Gldp645jGNH" />
+    <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+        <ConfirmationsSetting value="1" id="Add" />
+    </component>
+    <component name="ProjectViewState">
+        <option name="showExcludedFiles" value="true" />
+        <option name="showLibraryContents" value="true" />
+    </component>
+    <component name="PropertiesComponent">
+        <property name="RequestMappingsPanelOrder0" value="0" />
+        <property name="RequestMappingsPanelOrder1" value="1" />
+        <property name="RequestMappingsPanelWidth0" value="75" />
+        <property name="RequestMappingsPanelWidth1" value="75" />
+        <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+        <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+        <property name="WebServerToolWindowFactoryState" value="false" />
+        <property name="aspect.path.notification.shown" value="true" />
+        <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+        <property name="node.js.detected.package.eslint" value="true" />
+        <property name="node.js.path.for.package.eslint" value="project" />
+        <property name="node.js.path.for.package.tslint" value="project" />
+        <property name="node.js.selected.package.eslint" value="(autodetect)" />
+        <property name="node.js.selected.package.tslint" value="(autodetect)" />
+        <property name="project.structure.last.edited" value="Modules" />
+        <property name="project.structure.proportion" value="0.15" />
+        <property name="project.structure.side.proportion" value="0.0" />
+        <property name="restartRequiresConfirmation" value="false" />
+    </component>
+    <component name="RunManager">
+        <configuration name="VaktinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+            <module name="VaktinVefapp" />
+            <extension name="coverage">
+                <pattern>
+                    <option name="PATTERN" value="is.hi.hbv501.vaktin.Vaktin.*" />
+                    <option name="ENABLED" value="true" />
+                </pattern>
+            </extension>
+            <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501.vaktin.Vaktin.VaktinApplication" />
+            <method v="2">
+                <option name="Make" enabled="true" />
+            </method>
+        </configuration>
+        <recent_temporary>
+            <list>
+                <item itemvalue="Spring Boot.VaktinApplication" />
+            </list>
+        </recent_temporary>
+    </component>
+    <component name="SvnConfiguration">
+        <configuration />
+    </component>
+    <component name="TaskManager">
+        <task active="true" id="Default" summary="Default task">
+            <changelist id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="" />
+            <created>1582213451478</created>
+            <option name="number" value="Default" />
+            <option name="presentableId" value="Default" />
+            <updated>1582213451478</updated>
+            <workItem from="1582213683097" duration="9136000" />
+            <workItem from="1582403514853" duration="4041000" />
+            <workItem from="1582819366578" duration="8928000" />
+            <workItem from="1583414374170" duration="48000" />
+            <workItem from="1583414493499" duration="3232000" />
+        </task>
+        <servers />
+    </component>
+    <component name="TypeScriptGeneratedFilesManager">
+        <option name="version" value="1" />
+    </component>
+    <component name="Vcs.Log.Tabs.Properties">
+        <option name="TAB_STATES">
+            <map>
+                <entry key="MAIN">
+                    <value>
+                        <State>
+                            <option name="COLUMN_ORDER" />
+                        </State>
+                    </value>
+                </entry>
+            </map>
+        </option>
+        <option name="RECENT_FILTERS">
+            <map>
+                <entry key="Branch">
+                    <value>
+                        <list />
+                    </value>
+                </entry>
+                <entry key="User">
+                    <value>
+                        <list />
+                    </value>
+                </entry>
+            </map>
+        </option>
+    </component>
+    <component name="WindowStateProjectService">
+        <state width="1358" height="238" key="GridCell.Tab.0.bottom" timestamp="1583426903446">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583426903446" />
+        <state width="1358" height="238" key="GridCell.Tab.0.center" timestamp="1583426903445">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583426903445" />
+        <state width="1358" height="238" key="GridCell.Tab.0.left" timestamp="1583426903445">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583426903445" />
+        <state width="1358" height="238" key="GridCell.Tab.0.right" timestamp="1583426903446">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583426903446" />
+        <state width="1358" height="238" key="GridCell.Tab.1.bottom" timestamp="1583426903453">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583426903453" />
+        <state width="1358" height="238" key="GridCell.Tab.1.center" timestamp="1583426903453">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583426903453" />
+        <state width="1358" height="238" key="GridCell.Tab.1.left" timestamp="1583426903448">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583426903448" />
+        <state width="1358" height="238" key="GridCell.Tab.1.right" timestamp="1583426903453">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583426903453" />
+        <state width="1358" height="238" key="GridCell.Tab.2.bottom" timestamp="1583426903455">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.2.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583426903455" />
+        <state width="1358" height="238" key="GridCell.Tab.2.center" timestamp="1583426903454">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.2.center/0.23.1440.800@0.23.1440.800" timestamp="1583426903454" />
+        <state width="1358" height="238" key="GridCell.Tab.2.left" timestamp="1583426903454">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.2.left/0.23.1440.800@0.23.1440.800" timestamp="1583426903454" />
+        <state width="1358" height="238" key="GridCell.Tab.2.right" timestamp="1583426903455">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state width="1358" height="238" key="GridCell.Tab.2.right/0.23.1440.800@0.23.1440.800" timestamp="1583426903455" />
+        <state x="376" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1583414494410">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state x="376" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.800@0.23.1440.800" timestamp="1583414494410" />
+        <state x="334" y="110" width="673" height="472" key="find.popup" timestamp="1583416431628">
+            <screen x="0" y="23" width="1440" height="800" />
+        </state>
+        <state x="334" y="110" width="673" height="472" key="find.popup/0.23.1440.800@0.23.1440.800" timestamp="1583416431628" />
+    </component>
 </project>

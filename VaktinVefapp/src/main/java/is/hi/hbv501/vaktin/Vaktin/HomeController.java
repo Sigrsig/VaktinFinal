@@ -177,7 +177,8 @@ public class HomeController {
         User tempUser = new User("user", "123");
         userService.save(tempUser);
 
-
+        User tmpUser = userService.findByUName("user");
+        System.out.println("Leita að user " + tmpUser.uName);
 
         LocalDate now = LocalDate.now().minusDays(1);
         for (int i = 0; i < 5; i++) {

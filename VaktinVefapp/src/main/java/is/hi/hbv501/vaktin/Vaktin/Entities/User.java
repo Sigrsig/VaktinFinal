@@ -1,6 +1,8 @@
 package is.hi.hbv501.vaktin.Vaktin.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 
     public String uName;
     public String password;
