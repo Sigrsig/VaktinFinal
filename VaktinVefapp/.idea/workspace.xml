@@ -2,17 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EditActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EditActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/CommentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/CommentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EmployeeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/EmployeeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/FooterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/FooterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/UserLocalStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/UserLocalStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_footer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_footer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/FooterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/FooterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/VaktinVefapp.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +48,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Vaktin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -65,9 +71,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="VaktinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="VaktinVefapp" />
+  <component name="RunManager" selected="Spring Boot.VaktinApplication (1)">
+    <configuration name="VaktinApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="Vaktin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="is.hi.hbv501.vaktin.Vaktin.*" />
@@ -79,8 +85,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VaktinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="is.hi.hbv501.vaktin.Vaktin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501.vaktin.Vaktin" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.VaktinApplication" />
+      <item itemvalue="Spring Boot.VaktinApplication (1)" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.VaktinApplication (1)" />
         <item itemvalue="Spring Boot.VaktinApplication" />
       </list>
     </recent_temporary>
@@ -108,6 +132,9 @@
       <workItem from="1582213683097" duration="9136000" />
       <workItem from="1582403514853" duration="4041000" />
       <workItem from="1582819366578" duration="8928000" />
+      <workItem from="1583442651820" duration="968000" />
+      <workItem from="1583487049723" duration="1834000" />
+      <workItem from="1583492196478" duration="1817000" />
     </task>
     <servers />
   </component>

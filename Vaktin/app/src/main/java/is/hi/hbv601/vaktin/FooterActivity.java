@@ -9,25 +9,49 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class FooterActivity extends AppCompatActivity {
 
     Button mVista_button;
     UserLocalStore mUserLocalStore;
+    EditText mType1;
+    EditText mType2;
+    EditText mName1;
+    EditText mName2;
+    EditText mPhoneNr1;
+    EditText mPhoneNr2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footer);
         mVista_button = (Button) findViewById(R.id.vista_button);
+        mType1 = (EditText) findViewById(R.id.fType1);
+        mType2 = (EditText) findViewById(R.id.fType2);
+        mName1 = (EditText) findViewById(R.id.fName1);
+        mName2 = (EditText) findViewById(R.id.fName2);
+        mPhoneNr1 = (EditText) findViewById(R.id.fPhonenr1);
+        mPhoneNr2 = (EditText) findViewById(R.id.fPhonenr2);
 
 
         mVista_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(FooterActivity.this, "Aftur á Editsíðuna", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(FooterActivity.this, EditActivity.class);
+                Intent i = new Intent(FooterActivity.this, MainActivity.class);
+                String message1 = mType1.getText().toString();
+                String message2 = mType2.getText().toString();
+                String message3 = mName1.getText().toString();
+                String message4 = mName2.getText().toString();
+                String message5 = mPhoneNr1.getText().toString();
+                String message6 = mPhoneNr2.getText().toString();
+                String messageFooter
+                        = message1 + " - " + message3 + " - " + message5 +" - " + message2 +" - " + message4 +" - " + message6;
+                i.putExtra("message_footer", messageFooter);
                 startActivity(i);
 
             }

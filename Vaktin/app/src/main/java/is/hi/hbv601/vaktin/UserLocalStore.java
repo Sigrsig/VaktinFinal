@@ -14,7 +14,7 @@ public class UserLocalStore {
 
     public void storeUserData(User user){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putString("uName", user.uName);
+        spEditor.putString("uName", user.username);
         spEditor.putString("password", user.password);
         spEditor.commit();
     }

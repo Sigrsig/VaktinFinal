@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,21 +29,28 @@ import is.hi.hbv601.vaktin.fragments.Kvoldvakt;
 import is.hi.hbv601.vaktin.fragments.Morgunvakt;
 import is.hi.hbv601.vaktin.fragments.Naeturvakt;
 
+
+
 public class MainActivity extends AppCompatActivity {
     Button mloginNavButton;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
     UserLocalStore mUserLocalStore;
     TextView mComment;
+    TextView mFooter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mComment = (TextView) findViewById(R.id.comment);
 
-        String message = getIntent().getStringExtra("message_key");
-        mComment.setText(message);
+        mComment = (TextView) findViewById(R.id.comment);
+        String commentMessage = getIntent().getStringExtra("message_comment");
+        mComment.setText(commentMessage);
+
+        mFooter = (TextView) findViewById(R.id.footer);
+        String footerMessage = getIntent().getStringExtra("message_footer");
+        mFooter.setText(footerMessage);
 
         // Current date added
         Calendar calendar = Calendar.getInstance();
@@ -61,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -71,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.edit:
                 Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, EditActivity.class));
@@ -92,5 +102,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-}
 
+
+
+
+}

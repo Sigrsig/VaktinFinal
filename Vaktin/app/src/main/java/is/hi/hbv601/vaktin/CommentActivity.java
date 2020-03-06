@@ -30,9 +30,9 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CommentActivity.this, MainActivity.class);
-                String message = mComment.getText().toString();
                 Toast.makeText(CommentActivity.this, "Ný athugasemd birt", Toast.LENGTH_SHORT).show();
-                i.putExtra("message_key", message);
+                String messageComment = mComment.getText().toString();
+                i.putExtra("message_comment", messageComment);
                 startActivity(i);
             }
         });

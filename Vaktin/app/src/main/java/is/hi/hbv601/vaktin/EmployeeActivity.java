@@ -9,17 +9,29 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class EmployeeActivity extends AppCompatActivity {
 
     UserLocalStore mUserLocalStore;
     Button mSave_button;
+    EditText mName;
+    EditText mTo;
+    EditText mFrom;
+    EditText mType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
+        mName = (EditText) findViewById(R.id.eName);
+        mType = (EditText) findViewById(R.id.eType);
+        mTo = (EditText) findViewById(R.id.eTo);
+        mFrom = (EditText) findViewById(R.id.eFrom);
+
+
+
         mSave_button = (Button) findViewById(R.id.vista_button);
 
 

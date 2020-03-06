@@ -27,12 +27,22 @@
             android:background="#b6bfc8"
             android:textColor="#ffffff"
             />
-
+        <TextView
+            android:id="@+id/footer"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:padding="10sp"
+            android:background="#b6bfc8"
+            android:textColor="#ffffff"
+            />
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10sp" />
+
     </LinearLayout>
 
 
