@@ -2,10 +2,12 @@ package is.hi.hbv601.vaktin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.room.Database;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.fragments.Kvoldvakt;
 import is.hi.hbv601.vaktin.fragments.Morgunvakt;
 import is.hi.hbv601.vaktin.fragments.Naeturvakt;
@@ -33,13 +36,16 @@ import is.hi.hbv601.vaktin.fragments.Naeturvakt;
 
 
 public class MainActivity extends AppCompatActivity {
+
     Button mloginNavButton;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
     UserLocalStore mUserLocalStore;
     TextView mComment;
     TextView mFooter;
-    private String token;
+
+    // Instance fyrir DB
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        db = AppDatabase.getAppDatabase(this);
 
         setContentView(R.layout.activity_main);
 
@@ -108,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
 
     }
 

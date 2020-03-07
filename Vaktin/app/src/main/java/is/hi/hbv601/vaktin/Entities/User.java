@@ -1,5 +1,9 @@
 package is.hi.hbv601.vaktin.Entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 @Entity
 public class User {
 
@@ -9,10 +13,10 @@ public class User {
     @ColumnInfo(name = "username")
     public String username;
 
-    @ColumnInfo(name="password")
+    @ColumnInfo(name = "password")
     public String password;
 
-    @ColumnInfo(name="token")
+    @ColumnInfo(name = "token")
     public String token;
 
     public User(String username, String password){

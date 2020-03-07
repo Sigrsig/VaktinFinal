@@ -1,11 +1,7 @@
 package is.hi.hbv601.vaktin.Entities;
 
 
-import java.util.List;
-
-@Entity
 public class Workstation  {
-    @PrimaryKey
     public long id;
     public String workstationName;
 

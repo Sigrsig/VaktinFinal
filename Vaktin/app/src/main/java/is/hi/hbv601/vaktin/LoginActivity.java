@@ -17,6 +17,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.UserDao;
 import is.hi.hbv601.vaktin.Entities.User;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -78,7 +80,29 @@ public class LoginActivity extends AppCompatActivity{
                     System.err.println(e.getMessage());
                 }
 
-                System.out.println("hæ " + result);
+                String t = null;
+                try {
+                    JSONObject jsonBody = new JSONObject(result);
+                    t = jsonBody.getString("token");
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                }
+
+                if (result != null) {
+                    User tmpUser = new User(userName, password);
+                    tmpUser.setToken(t);
+                    AppDatabase db = AppDatabase.getInstance();
+                    System.out.println(db);
+                    UserDao ud = db.userDao();
+                    ud.insertUsers(tmpUser);
+
+                }
+
+
+
+
+                //System.out.println("hæ " + result);
 
                 Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
