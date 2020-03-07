@@ -70,7 +70,7 @@ public class HomeController {
         HomeActivityResponse constrRes = new HomeActivityResponse(
                 commentService.findAll(),
                 workstationService.findAll(),
-                employeeService.findAll(),
+                employeeService.findAllSortedTomorrow(),
                 employeeService.findAllSortedToday(),
                 footerService.findByDate(LocalDate.now()),
                 LocalDate.now()

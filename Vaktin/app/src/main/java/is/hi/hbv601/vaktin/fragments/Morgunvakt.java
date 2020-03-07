@@ -9,6 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
+
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.WorkstationDao;
+import is.hi.hbv601.vaktin.Entities.Workstation;
 import is.hi.hbv601.vaktin.R;
 
 public class Morgunvakt extends Fragment {
@@ -22,6 +27,9 @@ public class Morgunvakt extends Fragment {
                 container,
                 false);
 
+        AppDatabase db = AppDatabase.getInstance();
+        WorkstationDao wd = db.workstationDao();
+       // List<Workstation> workstations = wd.
 
         return rootView;
     }

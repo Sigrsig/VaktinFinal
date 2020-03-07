@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class Comment {
 
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    public long id;
 
     @ColumnInfo(name ="description")
     private String description;

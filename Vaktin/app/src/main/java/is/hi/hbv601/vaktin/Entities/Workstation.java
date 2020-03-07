@@ -17,6 +17,13 @@ public class Workstation  {
         this.workstationName = workstationName;
     }
 
+    public long getWorkstationId() {
+        return workstationId;
+    }
+
+    public void setWorkstationId(long workstationId) {
+        this.workstationId = workstationId;
+    }
 
     public String getWorkstationName() {
         return workstationName;

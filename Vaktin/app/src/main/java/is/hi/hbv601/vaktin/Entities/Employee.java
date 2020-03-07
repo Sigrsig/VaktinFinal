@@ -6,31 +6,49 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
 
+import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
+
 @Entity
 public class Employee {
 
     @PrimaryKey(autoGenerate = true)
-    private long employeeId;
+    public long employeeId;
 
-    private long employeeWorkstationId;
+    public long employeeWorkstationId;
 
 
     @ColumnInfo(name = "name")
-    private String name;
+    public String name;
 
     @ColumnInfo(name = "role")
-    private String role;
+    public String role;
 
     @ColumnInfo(name = "tFrom")
-    private LocalDateTime tFrom;
+    public String tFrom;
 
     @ColumnInfo(name = "tTo")
-    private LocalDateTime tTo;
+    public String tTo;
 
-    public Employee(String name, String role, LocalDateTime tFrom, LocalDateTime tTo) {
+    public Employee(String name, String role, String tFrom, String tTo) {
         this.name = name;
         this.role = role;
         this.tFrom = tFrom;
+        this.tTo = tTo;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void settFrom(String tFrom) {
+        this.tFrom = tFrom;
+    }
+
+    public void settTo(String tTo) {
         this.tTo = tTo;
     }
 
@@ -58,19 +76,13 @@ public class Employee {
         this.role = role;
     }
 
-    public LocalDateTime gettFrom() {
+    public String gettFrom() {
         return tFrom;
     }
 
-    public void settFrom(LocalDateTime tFrom) {
-        this.tFrom = tFrom;
-    }
-
-    public LocalDateTime gettTo() {
+    public String gettTo() {
         return tTo;
     }
 
-    public void settTo(LocalDateTime tTo) {
-        this.tTo = tTo;
-    }
+
 }

@@ -6,14 +6,22 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import is.hi.hbv601.vaktin.Entities.Comment;
+import is.hi.hbv601.vaktin.Entities.Employee;
+import is.hi.hbv601.vaktin.Entities.Footer;
 import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.User;
+import is.hi.hbv601.vaktin.Entities.Workstation;
 
-@Database(entities = {User.class, Token.class}, version = 3, exportSchema = false)
+@Database(entities = {User.class, Token.class, Employee.class, Comment.class, Footer.class, Workstation.class}, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract TokenDao tokenDao();
+    public abstract EmployeeDao employeeDao();
+    public abstract CommentDao commentDao();
+    public abstract FooterDao footerDao();
+    public abstract WorkstationDao workstationDao();
 
     private static AppDatabase INSTANCE; // = Room.databaseBuilder(null, AppDatabase.class, "user-database").allowMainThreadQueries().build();
 

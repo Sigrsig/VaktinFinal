@@ -36,4 +36,19 @@ public class Api {
 
         return null;
     }
+
+    public String getFrontPage(String url, String tok) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization", "Bearer " + tok)
+                .build();
+        try (Response res = client.newCall(request).execute()){
+            return res.body().string();
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
 }

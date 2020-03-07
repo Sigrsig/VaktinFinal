@@ -13,7 +13,7 @@ public class Footer {
     private long id;
 
     @ColumnInfo(name = "date")
-    private LocalDate date;
+    private String date;
 
     @ColumnInfo(name = "shift_manager")
     private String shiftManager;
@@ -27,7 +27,7 @@ public class Footer {
     @ColumnInfo(name = "head_doctor_number")
     private String headDoctorNumber;
 
-    public Footer(LocalDate date, String shiftManager, String shiftManagerNumber, String headDoctor, String headDoctorNumber) {
+    public Footer(String date, String shiftManager, String shiftManagerNumber, String headDoctor, String headDoctorNumber) {
         this.date = date;
         this.shiftManager = shiftManager;
         this.shiftManagerNumber = shiftManagerNumber;
@@ -35,11 +35,19 @@ public class Footer {
         this.headDoctorNumber = headDoctorNumber;
     }
 
-    public LocalDate getDate() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
