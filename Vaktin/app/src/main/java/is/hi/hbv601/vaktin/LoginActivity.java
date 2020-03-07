@@ -18,7 +18,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Database.UserDao;
+import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.User;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -96,7 +98,11 @@ public class LoginActivity extends AppCompatActivity{
                     System.out.println(db);
                     UserDao ud = db.userDao();
                     ud.insertUsers(tmpUser);
-
+                    TokenDao td = db.tokenDao();
+                    Token tmpToken = new Token(t);
+                    td.insertToken(tmpToken);
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(i);
                 }
 
 
@@ -104,9 +110,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 //System.out.println("hæ " + result);
 
-                Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
+                //Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
+
 
                 //forritið krassar þegar loggað er inn vegna þessa búts, má commenta út til að prófa
 

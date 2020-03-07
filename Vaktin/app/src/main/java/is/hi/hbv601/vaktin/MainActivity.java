@@ -29,6 +29,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.TokenDao;
+import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.fragments.Kvoldvakt;
 import is.hi.hbv601.vaktin.fragments.Morgunvakt;
 import is.hi.hbv601.vaktin.fragments.Naeturvakt;
@@ -84,7 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
         mUserLocalStore = new UserLocalStore(this);
 
-        startActivity(new Intent(this, LoginActivity.class));
+        TokenDao tokenDao = db.tokenDao();
+        if (tokenDao.findById(1) == null || tokenDao.findById(1).getToken() == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
 
     }
 
@@ -106,6 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
                 mUserLocalStore.clearedUserData();
                 mUserLocalStore.setUserLoggedIn(false);
+
+                // Eyða token
+                AppDatabase db = AppDatabase.getInstance();
+                TokenDao td = db.tokenDao();
+                Token tmpToken = td.findById(1);
+                tmpToken.setToken(null);
+                td.insertToken(tmpToken);
+
                 startActivity(new Intent(this, LoginActivity.class));
 
                 return true;

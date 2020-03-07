@@ -1,18 +1,22 @@
 package is.hi.hbv601.vaktin.Entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Workstation  {
-    public long id;
+
+    @PrimaryKey(autoGenerate = true)
+    public long workstationId;
+
+    @ColumnInfo(name = "workstation_name")
     public String workstationName;
 
-    public Workstation() { }
-    public long getId() {
-        return id;
+    public Workstation(String workstationName) {
+        this.workstationName = workstationName;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getWorkstationName() {
         return workstationName;
@@ -21,6 +25,9 @@ public class Workstation  {
     public void setWorkstationName(String name) {
         this.workstationName = name;
     }
+
+
+
 
     // Hér þarf að gera One-to-Many relationship
     //https://developer.android.com/training/data-storage/room/relationships
