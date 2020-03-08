@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         db = AppDatabase.getAppDatabase(this);
 
-        initFunc();
+
 
         setContentView(R.layout.activity_main);
 
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         TokenDao tokenDao = db.tokenDao();
         if (tokenDao.findById(1) == null || tokenDao.findById(1).getToken() == null) {
+            initFunc();
             startActivity(new Intent(this, LoginActivity.class));
         }
 
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         pager.setAdapter(pagerAdapter);
 
         mUserLocalStore = new UserLocalStore(this);
-
 
 
 
