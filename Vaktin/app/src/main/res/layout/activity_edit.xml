@@ -19,7 +19,7 @@
             android:id="@+id/workstation_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/workstation_button" />
+            android:text="@string/add_workstation" />
 
         <Button
             android:id="@+id/employee_button"

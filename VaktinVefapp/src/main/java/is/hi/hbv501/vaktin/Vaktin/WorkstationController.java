@@ -98,7 +98,7 @@ public class WorkstationController {
 
 
     @RequestMapping(value = "addworkstation", method = RequestMethod.POST)
-    public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, Comment comment, BindingResult result) {
+    public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, BindingResult result) {
 
 
         if (result.hasErrors()) {

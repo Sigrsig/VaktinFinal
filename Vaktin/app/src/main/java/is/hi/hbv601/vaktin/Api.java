@@ -2,6 +2,9 @@ package is.hi.hbv601.vaktin;
 
 import android.net.Uri;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,32 @@ public class Api {
 
     OkHttpClient client = new OkHttpClient();
 
+
+    /***
+     * Bæta við nýrri vinnustöð
+     * Þurfum kannski að skila einhverju öðru en null
+     */
+    public String postNewWorkstation(String url, String workstationName, String tok) throws IOException, JSONException {
+        // Búa til json object til að senda á rest controller
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("workstationName", workstationName);
+
+        RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Authorization", "Bearer " + tok)
+                .build();
+
+        try (Response res = client.newCall(request).execute()) {
+            return res.body().string();
+        }
+        catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
 
     /***
      * Til auðkenningar

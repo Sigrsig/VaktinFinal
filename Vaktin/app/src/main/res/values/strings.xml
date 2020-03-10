@@ -22,6 +22,7 @@
     <string name="add_employee">Bæta við starfsmanni</string>
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
+    <string name="add_workstation">Bæta við vinnustöð</string>
 
 
     <!-- FOOTER SÍÐA -->

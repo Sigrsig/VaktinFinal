@@ -9,24 +9,84 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.WorkstationDao;
+import is.hi.hbv601.vaktin.Entities.Workstation;
+import okhttp3.Response;
 
 public class WorkstationActivity extends AppCompatActivity {
 
     UserLocalStore mUserLocalStore;
     Button mSave_button;
+    private EditText mEditText;
+    private String url = "http://10.0.2.2:8080/addworkstation";
+
+    AppDatabase mAppDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workstation);
         mSave_button = (Button) findViewById(R.id.vista_button);
+        mEditText = findViewById(R.id.workstation_name);
 
+        /***
+         * Workstation Dao til að vista nýtt Workstation
+         */
+        mAppDatabase = AppDatabase.getAppDatabase(this);
+        final WorkstationDao wd = mAppDatabase.workstationDao();
 
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WorkstationActivity.this, "Ný athugasemd vistuð", Toast.LENGTH_SHORT).show();
+                System.out.println(mEditText);
+                String workstationName = mEditText.getText().toString();
+                //String workstationName = "draslllll";
+                // Gá hvort vinnustöð er þegar til
+                if (wd.findWorkstationWithName(workstationName) == null) {
+                    Workstation tmpWorkstation = new Workstation(mEditText.getText().toString());
+                    wd.insertWorkstation(tmpWorkstation);
+
+                    /***
+                     * Bæta workstation við ytri gagnagrunn
+                     */
+                    String result = null;
+                    try {
+                        result = new Api().postNewWorkstation(url, workstationName, mAppDatabase.tokenDao().findById(1).getToken());
+                    }
+                    catch (IOException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    catch (JSONException e) {
+                        System.err.println(e.getMessage());
+                    }
+
+                    /***
+                     * Held þetta sé óþarfa vesen
+                     * Þurfum kannski ekki að prenta neitt
+                     */
+                    /*
+                    String t = null;
+                    try {
+                        JSONObject jsonBody = new JSONObject(result);
+                        t = jsonBody.getString("workstation").toString();
+                    }
+                    catch (JSONException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    */
+
+                    Toast.makeText(WorkstationActivity.this, "Ný vinnustöð búin til", Toast.LENGTH_SHORT).show();
+                }
                 Intent i = new Intent(WorkstationActivity.this, EditActivity.class);
                 startActivity(i);
 

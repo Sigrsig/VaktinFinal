@@ -19,6 +19,9 @@ public interface WorkstationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAll(List<Workstation> workstations);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertWorkstation(Workstation workstation);
+
     @Query("SELECT * FROM Workstation")
     public List<Workstation> findAllWorkstations();
 

@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/WorkstationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/WorkstationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/WorkstationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/WorkstationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_workstation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_workstation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/WorkstationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +28,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="VaktinVefapp" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -99,7 +107,7 @@
       <workItem from="1583414493499" duration="3232000" />
       <workItem from="1583522370315" duration="954000" />
       <workItem from="1583533022938" duration="4322000" />
-      <workItem from="1583837049171" duration="2663000" />
+      <workItem from="1583837049171" duration="4066000" />
     </task>
     <servers />
   </component>
@@ -142,38 +150,38 @@
       <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state x="407" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.800@0.23.1440.800" timestamp="1583533499124" />
-    <state width="1242" height="198" key="GridCell.Tab.0.bottom" timestamp="1583837407172">
+    <state width="1398" height="541" key="GridCell.Tab.0.bottom" timestamp="1583877015546">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583837407172" />
-    <state width="1242" height="198" key="GridCell.Tab.0.center" timestamp="1583837407171">
+    <state width="1398" height="541" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583877015546" />
+    <state width="1398" height="541" key="GridCell.Tab.0.center" timestamp="1583877015545">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583837407171" />
-    <state width="1242" height="198" key="GridCell.Tab.0.left" timestamp="1583837407170">
+    <state width="1398" height="541" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583877015545" />
+    <state width="1398" height="541" key="GridCell.Tab.0.left" timestamp="1583877015544">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583837407170" />
-    <state width="1242" height="198" key="GridCell.Tab.0.right" timestamp="1583837407171">
+    <state width="1398" height="541" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583877015544" />
+    <state width="1398" height="541" key="GridCell.Tab.0.right" timestamp="1583877015546">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583837407171" />
-    <state width="1242" height="198" key="GridCell.Tab.1.bottom" timestamp="1583837407174">
+    <state width="1398" height="541" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583877015546" />
+    <state width="1398" height="541" key="GridCell.Tab.1.bottom" timestamp="1583877059566">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583837407174" />
-    <state width="1242" height="198" key="GridCell.Tab.1.center" timestamp="1583837407173">
+    <state width="1398" height="541" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583877059566" />
+    <state width="1398" height="541" key="GridCell.Tab.1.center" timestamp="1583877059565">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583837407173" />
-    <state width="1242" height="198" key="GridCell.Tab.1.left" timestamp="1583837407172">
+    <state width="1398" height="541" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583877059565" />
+    <state width="1398" height="541" key="GridCell.Tab.1.left" timestamp="1583877059565">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583837407172" />
-    <state width="1242" height="198" key="GridCell.Tab.1.right" timestamp="1583837407173">
+    <state width="1398" height="541" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583877059565" />
+    <state width="1398" height="541" key="GridCell.Tab.1.right" timestamp="1583877059566">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="198" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583837407173" />
+    <state width="1398" height="541" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583877059566" />
     <state width="1358" height="238" key="GridCell.Tab.2.bottom" timestamp="1583426903455">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
