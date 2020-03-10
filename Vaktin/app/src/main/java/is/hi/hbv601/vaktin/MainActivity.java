@@ -83,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
         mFooter = (TextView) findViewById(R.id.footer);
         String footerMessage = getIntent().getStringExtra("message_footer");
         mFooter.setText(footerMessage);
-
+/*
         TokenDao tokenDao = db.tokenDao();
         if (tokenDao.findById(1) == null || tokenDao.findById(1).getToken() == null) {
             initFunc();
             startActivity(new Intent(this, LoginActivity.class));
-        }
+        }*/
 
         // Current date added
         Calendar calendar = Calendar.getInstance();

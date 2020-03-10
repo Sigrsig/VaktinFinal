@@ -4,11 +4,11 @@
     >
 
 
-    <item android:id="@+id/logo"
-        android:icon="@drawable/ic_vaktinclip"
+    <item
+        android:id="@+id/logo"
+        android:icon="@mipmap/ic_logo"
         android:title="@string/logo"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/edit"
         android:title="@string/edit"
