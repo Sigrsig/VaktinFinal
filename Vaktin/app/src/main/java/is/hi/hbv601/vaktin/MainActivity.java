@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
         mFooter.setText(footerMessage);
 
 
-
-
         TokenDao tokenDao = db.tokenDao();
         Token tmpToken = tokenDao.findById(1);
         if (tmpToken == null || tmpToken.getToken() == null) {
