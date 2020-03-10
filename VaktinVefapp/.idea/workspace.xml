@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Vaktin/.idea/render.experimental.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/AppDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/CommentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/CommentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/EmployeeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/WorkstationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Database/WorkstationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Footer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Footer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Workstation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/Entities/Workstation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/fragments/Morgunvakt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/fragments/Morgunvakt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/morgunvakt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/res/layout/morgunvakt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501/vaktin/Vaktin/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/Services/Implementation/EmployeeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501/vaktin/Vaktin/Services/Implementation/EmployeeServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +97,8 @@
       <workItem from="1583414374170" duration="48000" />
       <workItem from="1583414493499" duration="3232000" />
       <workItem from="1583522370315" duration="954000" />
-      <workItem from="1583533022938" duration="3958000" />
+      <workItem from="1583533022938" duration="4322000" />
+      <workItem from="1583837049171" duration="1265000" />
     </task>
     <servers />
   </component>
@@ -157,38 +141,38 @@
       <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state x="407" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.800@0.23.1440.800" timestamp="1583533499124" />
-    <state width="1242" height="363" key="GridCell.Tab.0.bottom" timestamp="1583619169968">
+    <state width="1242" height="198" key="GridCell.Tab.0.bottom" timestamp="1583837407172">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583619169968" />
-    <state width="1242" height="363" key="GridCell.Tab.0.center" timestamp="1583619169966">
+    <state width="1242" height="198" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583837407172" />
+    <state width="1242" height="198" key="GridCell.Tab.0.center" timestamp="1583837407171">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583619169966" />
-    <state width="1242" height="363" key="GridCell.Tab.0.left" timestamp="1583619169966">
+    <state width="1242" height="198" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583837407171" />
+    <state width="1242" height="198" key="GridCell.Tab.0.left" timestamp="1583837407170">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583619169966" />
-    <state width="1242" height="363" key="GridCell.Tab.0.right" timestamp="1583619169967">
+    <state width="1242" height="198" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583837407170" />
+    <state width="1242" height="198" key="GridCell.Tab.0.right" timestamp="1583837407171">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583619169967" />
-    <state width="1242" height="363" key="GridCell.Tab.1.bottom" timestamp="1583619169970">
+    <state width="1242" height="198" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583837407171" />
+    <state width="1242" height="198" key="GridCell.Tab.1.bottom" timestamp="1583837407174">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583619169970" />
-    <state width="1242" height="363" key="GridCell.Tab.1.center" timestamp="1583619169969">
+    <state width="1242" height="198" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583837407174" />
+    <state width="1242" height="198" key="GridCell.Tab.1.center" timestamp="1583837407173">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583619169969" />
-    <state width="1242" height="363" key="GridCell.Tab.1.left" timestamp="1583619169969">
+    <state width="1242" height="198" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583837407173" />
+    <state width="1242" height="198" key="GridCell.Tab.1.left" timestamp="1583837407172">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583619169969" />
-    <state width="1242" height="363" key="GridCell.Tab.1.right" timestamp="1583619169969">
+    <state width="1242" height="198" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583837407172" />
+    <state width="1242" height="198" key="GridCell.Tab.1.right" timestamp="1583837407173">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state width="1242" height="363" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583619169969" />
+    <state width="1242" height="198" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583837407173" />
     <state width="1358" height="238" key="GridCell.Tab.2.bottom" timestamp="1583426903455">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
@@ -205,10 +189,10 @@
       <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state width="1358" height="238" key="GridCell.Tab.2.right/0.23.1440.800@0.23.1440.800" timestamp="1583426903455" />
-    <state x="376" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1583533023018">
+    <state x="376" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1583837049266">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state x="376" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.800@0.23.1440.800" timestamp="1583533023018" />
+    <state x="376" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.800@0.23.1440.800" timestamp="1583837049266" />
     <state x="334" y="110" width="673" height="472" key="find.popup" timestamp="1583416431628">
       <screen x="0" y="23" width="1440" height="800" />
     </state>

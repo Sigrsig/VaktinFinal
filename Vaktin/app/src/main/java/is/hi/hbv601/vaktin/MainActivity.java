@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,6 +44,8 @@ import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Footer;
 import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.Workstation;
+import is.hi.hbv601.vaktin.Utilities.LocalDateConverter;
+import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import is.hi.hbv601.vaktin.fragments.Kvoldvakt;
 import is.hi.hbv601.vaktin.fragments.Morgunvakt;
 import is.hi.hbv601.vaktin.fragments.Naeturvakt;
@@ -84,11 +87,26 @@ public class MainActivity extends AppCompatActivity {
         String footerMessage = getIntent().getStringExtra("message_footer");
         mFooter.setText(footerMessage);
 
+
+
+
         TokenDao tokenDao = db.tokenDao();
-        if (tokenDao.findById(1) == null || tokenDao.findById(1).getToken() == null) {
-            initFunc();
+        Token tmpToken = tokenDao.findById(1);
+        if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
         }
+
+        if (tmpToken != null) {
+            if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now())) {
+                System.out.println("init func er að keyra");
+                tmpToken.setAlreadyInitialized(true);
+                tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
+                tokenDao.insertToken(tmpToken);
+                initFunc();
+            }
+        }
+
+
 
         // Current date added
         Calendar calendar = Calendar.getInstance();

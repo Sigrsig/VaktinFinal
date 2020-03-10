@@ -13,7 +13,7 @@ import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.User;
 import is.hi.hbv601.vaktin.Entities.Workstation;
 
-@Database(entities = {User.class, Token.class, Employee.class, Comment.class, Footer.class, Workstation.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, Token.class, Employee.class, Comment.class, Footer.class, Workstation.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
