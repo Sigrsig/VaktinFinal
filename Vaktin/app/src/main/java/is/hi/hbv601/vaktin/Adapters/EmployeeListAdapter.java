@@ -36,7 +36,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         String tFrom = getItem(position).gettFrom();
         String tTo = getItem(position).gettTo();
 
-        Employee employee = new Employee(name, role, tFrom, tTo);
+        //Employee employee = new Employee(name, role, tFrom, tTo);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);

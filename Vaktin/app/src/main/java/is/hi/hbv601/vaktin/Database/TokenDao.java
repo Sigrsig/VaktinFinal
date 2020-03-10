@@ -10,6 +10,9 @@ import is.hi.hbv601.vaktin.Entities.Token;
 @Dao
 public interface TokenDao {
 
+    @Query("DELETE FROM Token")
+    public void nukeTable();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertToken(Token t);
 

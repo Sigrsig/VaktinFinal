@@ -12,9 +12,14 @@ import is.hi.hbv601.vaktin.Entities.User;
 @Dao
 public interface EmployeeDao {
 
+    @Query("DELETE FROM Employee")
+    public void nukeTable();
+
     @Insert
     public void insertAll(List<Employee> employees);
 
     @Query("SELECT * FROM Employee")
     public List<Employee> loadAllEmployees();
+
+
 }

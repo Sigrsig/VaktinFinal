@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/java/is/hi/hbv601/vaktin/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +99,7 @@
       <workItem from="1583414493499" duration="3232000" />
       <workItem from="1583522370315" duration="954000" />
       <workItem from="1583533022938" duration="4322000" />
-      <workItem from="1583837049171" duration="1265000" />
+      <workItem from="1583837049171" duration="2663000" />
     </task>
     <servers />
   </component>
@@ -193,9 +194,9 @@
       <screen x="0" y="23" width="1440" height="800" />
     </state>
     <state x="376" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.800@0.23.1440.800" timestamp="1583837049266" />
-    <state x="334" y="110" width="673" height="472" key="find.popup" timestamp="1583416431628">
+    <state x="334" y="110" width="673" height="472" key="find.popup" timestamp="1583873979591">
       <screen x="0" y="23" width="1440" height="800" />
     </state>
-    <state x="334" y="110" width="673" height="472" key="find.popup/0.23.1440.800@0.23.1440.800" timestamp="1583416431628" />
+    <state x="334" y="110" width="673" height="472" key="find.popup/0.23.1440.800@0.23.1440.800" timestamp="1583873979591" />
   </component>
 </project>

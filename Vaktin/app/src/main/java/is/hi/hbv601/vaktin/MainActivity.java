@@ -88,15 +88,22 @@ public class MainActivity extends AppCompatActivity {
         mFooter.setText(footerMessage);
 
 
+        /***
+         * Notandi sendur á login ef ekkert token finnst
+         * Token er eytt ef sendandi loggar út
+         */
         TokenDao tokenDao = db.tokenDao();
         Token tmpToken = tokenDao.findById(1);
         if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
         }
 
+        /***
+         * Passar að gera ekki get request á RestController ef þegar er búið að sækja gögn
+         * sama dag.
+         */
         if (tmpToken != null) {
             if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now())) {
-                System.out.println("init func er að keyra");
                 tmpToken.setAlreadyInitialized(true);
                 tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
                 tokenDao.insertToken(tmpToken);
@@ -154,6 +161,16 @@ public class MainActivity extends AppCompatActivity {
                 tmpToken.setToken(null);
                 td.insertToken(tmpToken);
 
+                /***
+                 * Eyða Room. Finnum betri lausn síðar
+                 */
+                td.nukeTable();
+                db.employeeDao().nukeTable();
+                db.workstationDao().nukeTable();
+                db.userDao().nukeTable();
+                db.commentDao().nukeTable();
+                db.footerDao().nukeTable();
+
                 startActivity(new Intent(this, LoginActivity.class));
 
                 return true;
@@ -204,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
                 // Sækja starfsmenn í vinnu í dag
                 jsonArray = jsonBody.getJSONArray("employeesToday");
                 if (jsonArray != null) {
-                    System.out.println("jsonArray length " + jsonArray.length());
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject emp = jsonArray.getJSONObject(i);
                         String name = emp.getString("name");
@@ -213,11 +229,8 @@ public class MainActivity extends AppCompatActivity {
                         String role = emp.getString("role");
                         String workstationName = emp.getString("workstation");
                         Employee tmpEmp = new Employee(name, role, tFrom, tTo);
-                        System.out.println("workstationName.equals() "+ workstationName.equals("null"));
                         if (workstationName != null && !workstationName.equals("null")) {
-                            System.out.println(workstationName);
                             Workstation tmpWorkstation = wd.findWorkstationWithName(workstationName);
-                            System.out.println("vinnustöð " + tmpWorkstation);
                             if (tmpWorkstation != null) {
                                 long id = tmpWorkstation.getWorkstationId();
                                 tmpEmp.setEmployeeWorkstationId(id);
@@ -268,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
 
                 employeeDao.insertAll(employees);
 
-                System.out.println("ok kúl mar");
 
 
             }

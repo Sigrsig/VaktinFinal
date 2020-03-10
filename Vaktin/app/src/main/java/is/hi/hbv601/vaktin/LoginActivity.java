@@ -91,11 +91,15 @@ public class LoginActivity extends AppCompatActivity{
                     System.err.println(e.getMessage());
                 }
 
+                /***
+                 * Ef /authentication virkar þá er búið til token og user í Room
+                 * User er með token breytu en kannski er óþarfi að hafa hana og betra að vera
+                 * alltaf bara með eitt token í Room
+                 */
                 if (result != null) {
                     User tmpUser = new User(userName, password);
                     tmpUser.setToken(t);
                     AppDatabase db = AppDatabase.getInstance();
-                    System.out.println(db);
                     UserDao ud = db.userDao();
                     ud.insertUsers(tmpUser);
                     TokenDao td = db.tokenDao();
@@ -108,7 +112,6 @@ public class LoginActivity extends AppCompatActivity{
 
 
 
-                //System.out.println("hæ " + result);
 
                 //Toast.makeText(LoginActivity.this, "Welcome "+userName, Toast.LENGTH_SHORT).show();
 

@@ -19,7 +19,14 @@ public class Api {
     OkHttpClient client = new OkHttpClient();
 
 
-
+    /***
+     * Til auðkenningar
+     *
+     * @param url
+     * @param json
+     * @return
+     * @throws IOException
+     */
     public String postAuth(String url, String json) throws IOException {
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
@@ -37,6 +44,13 @@ public class Api {
         return null;
     }
 
+    /***
+     * Sækir allt sem þarf fyrir MainActivity þegar app er opnað
+     * @param url
+     * @param tok
+     * @return
+     * @throws IOException
+     */
     public String getFrontPage(String url, String tok) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
