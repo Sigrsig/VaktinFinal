@@ -97,6 +97,25 @@ public class MainActivity extends AppCompatActivity {
         if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
         }
+        else {
+            // Current date added
+            Calendar calendar = Calendar.getInstance();
+            String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+            TextView twDate = findViewById(R.id.currDate);
+            twDate.setText(currentDate);
+
+            List<Fragment> list = new ArrayList<>();
+            list.add(new Morgunvakt());
+            list.add(new Kvoldvakt());
+            list.add(new Naeturvakt());
+
+            pager = findViewById(R.id.pager);
+            pagerAdapter = new com.example.frontpage3.SlidePagerAdapter(getSupportFragmentManager(), list);
+
+            pager.setAdapter(pagerAdapter);
+
+            mUserLocalStore = new UserLocalStore(this);
+        }
 
         /***
          * Passar að gera ekki get request á RestController ef þegar er búið að sækja gögn
@@ -113,23 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // Current date added
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        TextView twDate = findViewById(R.id.currDate);
-        twDate.setText(currentDate);
 
-        List<Fragment> list = new ArrayList<>();
-        list.add(new Morgunvakt());
-        list.add(new Kvoldvakt());
-        list.add(new Naeturvakt());
-
-        pager = findViewById(R.id.pager);
-        pagerAdapter = new com.example.frontpage3.SlidePagerAdapter(getSupportFragmentManager(), list);
-
-        pager.setAdapter(pagerAdapter);
-
-        mUserLocalStore = new UserLocalStore(this);
 
 
 

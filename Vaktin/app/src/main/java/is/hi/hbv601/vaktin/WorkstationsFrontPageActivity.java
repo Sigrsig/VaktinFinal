@@ -29,7 +29,7 @@ public class WorkstationsFrontPageActivity extends AppCompatActivity {
     private AppDatabase db;
     private ListView mListView;
     private WorkstationsFrontPageActivity thisActivity;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
