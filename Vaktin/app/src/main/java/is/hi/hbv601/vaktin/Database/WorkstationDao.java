@@ -28,6 +28,9 @@ public interface WorkstationDao {
     @Query("SELECT * FROM Workstation where workstation_name like :name")
     public Workstation findWorkstationWithName(String name);
 
+    @Query("SELECT * FROM Workstation where workstationId = :id")
+    public Workstation findWorkstationWithId(long id);
+
 
 
 

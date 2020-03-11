@@ -149,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Edit Selected", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, EditActivity.class));
                 return true;
+            case R.id.workstations:
+                Toast.makeText(this, "Vinnustöðvar valdar", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, WorkstationsFrontPageActivity.class));
+                return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
                 mUserLocalStore.clearedUserData();

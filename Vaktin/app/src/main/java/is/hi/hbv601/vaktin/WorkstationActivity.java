@@ -48,7 +48,6 @@ public class WorkstationActivity extends AppCompatActivity {
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(mEditText);
                 String workstationName = mEditText.getText().toString();
                 //String workstationName = "draslllll";
                 // Gá hvort vinnustöð er þegar til

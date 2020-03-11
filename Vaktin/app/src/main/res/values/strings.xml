@@ -8,10 +8,12 @@
     <string name="kvold">Kvöldvakt</string>
     <string name="naetur">Næturvakt</string>
 
+    <!-- MENU -->
     <string name="main">Main</string>
     <string name="edit">Edit</string>
     <string name="logout">Log Out</string>
     <string name="logo">Logo</string>
+    <string name="workstations">Vinnustöðvar</string>
 
     <string name="comment">Birna er veik í dag</string>
     <string name="tilbaka_button">Til baka</string>
@@ -23,6 +25,9 @@
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
     <string name="add_workstation">Bæta við vinnustöð</string>
+
+    <!-- WORKSTATION SÍÐA -->
+    <string name="workstations_header">Veldu vinnustöð til að bæta starfsmanni á</string>
 
 
     <!-- FOOTER SÍÐA -->
