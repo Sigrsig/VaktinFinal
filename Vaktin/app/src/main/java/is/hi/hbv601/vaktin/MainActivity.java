@@ -242,7 +242,9 @@ public class MainActivity extends AppCompatActivity {
                                 long id = tmpWorkstation.getWorkstationId();
                                 tmpEmp.setEmployeeWorkstationId(id);
                             }
-
+                        }
+                        else {
+                            tmpEmp.setEmployeeWorkstationId(-1);
                         }
                         employees.add(tmpEmp);
                     }

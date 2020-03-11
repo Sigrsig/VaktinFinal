@@ -25,7 +25,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/Athugasemd" />
+            android:hint="@string/Athugasemd" />
 
         <Button
             android:id="@+id/vista_button"

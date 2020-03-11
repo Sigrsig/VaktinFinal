@@ -22,7 +22,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
-            android:text="@string/workstName" />
+            android:hint="@string/workstation_hint" />
 
         <Button
             android:id="@+id/vista_button"

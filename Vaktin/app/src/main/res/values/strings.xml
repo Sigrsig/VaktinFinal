@@ -25,6 +25,11 @@
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
     <string name="add_workstation">Bæta við vinnustöð</string>
+    <string name="workstation_hint">Vinnustöð</string>
+
+    <!-- LOGIN SÍÐA -->
+    <string name="username_hint">Notandi</string>
+    <string name="password_hint">Lykilorð</string>
 
     <!-- WORKSTATION SÍÐA -->
     <string name="workstations_header">Veldu vinnustöð til að bæta starfsmanni á</string>
