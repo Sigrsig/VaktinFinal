@@ -22,7 +22,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/stada"/>
+            android:hint="@string/stada"/>
 
 
 
@@ -35,7 +35,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/nafn" />
+            android:hint="@string/nafn" />
 
         <EditText
 
@@ -46,7 +46,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/simanumer"/>
+            android:hint="@string/simanumer"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/stada"/>
+            android:hint="@string/stada"/>
 
 
 
@@ -75,7 +75,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/nafn" />
+            android:hint="@string/nafn" />
 
         <EditText
             android:id="@+id/fPhonenr2"
@@ -85,7 +85,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:text="@string/simanumer"/>
+            android:hint="@string/simanumer"/>
 
 
         <Button

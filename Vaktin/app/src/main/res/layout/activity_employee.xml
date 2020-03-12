@@ -24,7 +24,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
-            android:text="@string/eName" />
+            android:hint="@string/eName" />
 
         <EditText
             android:id="@+id/eType"
@@ -34,7 +34,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
-            android:text="@string/eType" />
+            android:hint="@string/eType" />
 
 
         <EditText
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
-            android:text="@string/eFrom" />
+            android:hint="@string/eFrom" />
 
         <EditText
             android:id="@+id/eTo"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
-            android:text="@string/eTo" />
+            android:hint="@string/eTo" />
 
 
         <Button
