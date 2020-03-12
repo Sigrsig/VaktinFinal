@@ -75,17 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         db = AppDatabase.getAppDatabase(this);
 
-
-
         setContentView(R.layout.activity_main);
 
-        mComment = (TextView) findViewById(R.id.comment);
-        String commentMessage = getIntent().getStringExtra("message_comment");
-        mComment.setText(commentMessage);
+        /*mComment = (TextView) findViewById(R.id.comment);
+        String commentM = db.commentDao()
+        Comment commentMessage = new Comment(commentM);
+        mComment.setText((CharSequence) commentMessage);
 
         mFooter = (TextView) findViewById(R.id.footer);
-        String footerMessage = getIntent().getStringExtra("message_footer");
-        mFooter.setText(footerMessage);
+        //Footer messsageF = new Footer();
+        /*String footerMessage = getIntent().getStringExtra("message_footer");
+        mFooter.setText(footerMessage);*/
 
 
         /***
@@ -282,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
                     Footer tmpFooter =
                 }
                 */
+
+
 
                 CommentDao cd = db.commentDao();
                 cd.insertAll(comments);

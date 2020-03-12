@@ -18,4 +18,10 @@ public interface CommentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAll(List<Comment> comments);
+
+    @Query("SELECT * FROM Comment where description like :description ")
+    public Comment findCommentWithDescription(String description);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertComment(Comment comments);
 }

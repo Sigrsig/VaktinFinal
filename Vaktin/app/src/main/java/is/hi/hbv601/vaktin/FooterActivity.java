@@ -12,6 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Calendar;
+
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.CommentDao;
+import is.hi.hbv601.vaktin.Database.FooterDao;
+import is.hi.hbv601.vaktin.Entities.Footer;
+
 public class FooterActivity extends AppCompatActivity {
 
     Button mVista_button;
@@ -22,6 +33,8 @@ public class FooterActivity extends AppCompatActivity {
     EditText mName2;
     EditText mPhoneNr1;
     EditText mPhoneNr2;
+    AppDatabase mAppDatabase;
+    private String url = "http://10.0.2.2:8080/setfooter";
 
 
 
@@ -37,6 +50,8 @@ public class FooterActivity extends AppCompatActivity {
         mPhoneNr1 = (EditText) findViewById(R.id.fPhonenr1);
         mPhoneNr2 = (EditText) findViewById(R.id.fPhonenr2);
 
+        mAppDatabase = AppDatabase.getAppDatabase(this);
+        final FooterDao fd = mAppDatabase.footerDao();
 
         mVista_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +66,33 @@ public class FooterActivity extends AppCompatActivity {
                 String message6 = mPhoneNr2.getText().toString();
                 String messageFooter
                         = message1 + " - " + message3 + " - " + message5 +" - " + message2 +" - " + message4 +" - " + message6;
+
+                Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+                
+                // Footer þegar til? En hvernig næ ég í Id?
+                
+
+                if (fd.findFoooter() == null) {
+                    Footer tmpFooter = new Footer(currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString());
+                    fd.insertFooter(tmpFooter);
+
+                    /*
+                     * Bæta commenti við ytri gagnagrunn
+                     */
+                    String result = null;
+                    try {
+                        result = new Api().postNewFooter(url, currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString(), mAppDatabase.tokenDao().findById(1).getToken());
+                    }
+                    catch (IOException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    catch (JSONException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    Toast.makeText(FooterActivity.this, "Nýr síðurfótur birtur", Toast.LENGTH_SHORT).show();
+                }
+
                 i.putExtra("message_footer", messageFooter);
                 startActivity(i);
 

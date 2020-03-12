@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Footer {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private long id;
 
     @ColumnInfo(name = "date")
@@ -28,6 +28,7 @@ public class Footer {
     private String headDoctorNumber;
 
     public Footer(String date, String shiftManager, String shiftManagerNumber, String headDoctor, String headDoctorNumber) {
+        this.id=1;
         this.date = date;
         this.shiftManager = shiftManager;
         this.shiftManagerNumber = shiftManagerNumber;

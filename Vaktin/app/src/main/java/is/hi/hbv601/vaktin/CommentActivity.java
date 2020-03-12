@@ -12,11 +12,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
+
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Database.CommentDao;
+import is.hi.hbv601.vaktin.Entities.Comment;
+
 public class CommentActivity extends AppCompatActivity {
 
     UserLocalStore mUserLocalStore;
     Button mSave_button;
     EditText mComment;
+    AppDatabase mAppDatabase;
+    private String url = "http://10.0.2.2:8080/addcomment";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +37,40 @@ public class CommentActivity extends AppCompatActivity {
         mSave_button = (Button) findViewById(R.id.vista_button);
         mComment = (EditText) findViewById(R.id.comment);
 
+        /***
+         * Comment Dao til að vista nýtt Comment
+         */
+        mAppDatabase = AppDatabase.getAppDatabase(this);
+        final CommentDao cd = mAppDatabase.commentDao();
 
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CommentActivity.this, MainActivity.class);
-                Toast.makeText(CommentActivity.this, "Ný athugasemd birt", Toast.LENGTH_SHORT).show();
                 String messageComment = mComment.getText().toString();
+
+                // Athugasemt þegar til?
+
+                if (cd.findCommentWithDescription(messageComment) == null) {
+                    Comment tmpComment = new Comment(mComment.getText().toString());
+                    cd.insertComment(tmpComment);
+
+                    /*
+                     * Bæta commenti við ytri gagnagrunn
+                     */
+                    String result = null;
+                    try {
+                        result = new Api().postNewComment(url, messageComment, mAppDatabase.tokenDao().findById(1).getToken());
+                    }
+                    catch (IOException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    catch (JSONException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    Toast.makeText(CommentActivity.this, "Ný athugasemd birt", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent i = new Intent(CommentActivity.this, MainActivity.class);
                 i.putExtra("message_comment", messageComment);
                 startActivity(i);
             }

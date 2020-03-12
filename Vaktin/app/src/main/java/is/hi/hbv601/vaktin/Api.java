@@ -49,6 +49,62 @@ public class Api {
     }
 
     /***
+     * Bæta við nýju commenti
+     */
+
+    public String postNewComment(String url, String description, String tok) throws IOException, JSONException {
+        // Búa til json object til að senda á rest controller
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("description", description);
+
+        RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Authorization", "Bearer " + tok)
+                .build();
+
+        try (Response res = client.newCall(request).execute()) {
+            return res.body().string();
+        }
+        catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    /***
+     * Bæta við nýjum footer
+     */
+    public String postNewFooter(String url, String date, String shiftManager, String shiftManagerNumber, String headDoctor, String headDoctorNumber, String tok) throws IOException, JSONException {
+        // Búa til json object til að senda á rest controller
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("date", date);
+        jsonObj.put("shiftManager", shiftManager);
+        jsonObj.put("shiftManagerNumber", shiftManagerNumber);
+        jsonObj.put("headDoctor", headDoctor);
+        jsonObj.put("headDoctorNumber", headDoctorNumber);
+
+
+        RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Authorization", "Bearer " + tok)
+                .build();
+
+        try (Response res = client.newCall(request).execute()) {
+            return res.body().string();
+        }
+        catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    /***
      * Til auðkenningar
      *
      * @param url
