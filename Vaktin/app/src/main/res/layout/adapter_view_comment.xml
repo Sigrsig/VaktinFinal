@@ -11,5 +11,10 @@
         android:layout_width="match_parent"
         android:id="@+id/text_view"
         android:layout_weight="0" />
+    <!--<Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eyða" /> -->
 
 </LinearLayout>

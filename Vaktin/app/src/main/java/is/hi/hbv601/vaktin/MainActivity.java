@@ -105,10 +105,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("id " + id + "\nposition " + position);
                 Comment comment =(Comment) parent.getItemAtPosition(position);
                 System.out.println("Value is "+comment.getDescription());
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                Intent i = new Intent(MainActivity.this, PopupActivity.class);
                 i.putExtra("description", comment.getDescription());
                 startActivity(i);
+
+
             }
+
+
         });
 
 
