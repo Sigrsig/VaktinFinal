@@ -80,11 +80,8 @@ public class FooterActivity extends AppCompatActivity {
                     System.err.println(e.getMessage());
                 }
                 Toast.makeText(FooterActivity.this, "Nýr síðurfótur birtur", Toast.LENGTH_SHORT).show();
-
-
                 Intent i = new Intent(FooterActivity.this, MainActivity.class);
                 startActivity(i);
-
             }
         });
 

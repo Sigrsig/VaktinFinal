@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import is.hi.hbv601.vaktin.Adapters.CommentListAdapter;
+import is.hi.hbv601.vaktin.Adapters.WorkstationListAdapter;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.CommentDao;
 import is.hi.hbv601.vaktin.Database.EmployeeDao;
@@ -61,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     UserLocalStore mUserLocalStore;
     TextView mComment;
     TextView mFooter;
+    private ListView mListView;
+
 
     private final String url = "http://10.0.2.2:8080/";
 
@@ -80,13 +86,33 @@ public class MainActivity extends AppCompatActivity {
         /*
         * Birta comment á forsíðu
         */
-        mComment = (TextView) findViewById(R.id.comment);
+       /* mComment = (TextView) findViewById(R.id.comment);
         List<Comment> commentM = db.commentDao().findAllComment();
         String tmpString = "";
         for(Comment c: commentM){
             tmpString+=c.getDescription()+"\n";
         }
-        mComment.setText(tmpString);
+        mComment.setText(tmpString);*/
+
+        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
+        ListView mListView = (ListView)findViewById(R.id.comment);
+        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
+        mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("id " + id + "\nposition " + position);
+                Comment comment =(Comment) parent.getItemAtPosition(position);
+                System.out.println("Value is "+comment.getDescription());
+                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                i.putExtra("description", comment.getDescription());
+                startActivity(i);
+            }
+        });
+
+
+
 
         //Ná í gögn úr gagnagrunni og birta á aðalsíðu
         mFooter = (TextView) findViewById(R.id.footer);

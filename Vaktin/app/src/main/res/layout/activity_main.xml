@@ -27,7 +27,8 @@
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
-            <TextView
+
+            <ListView
                 android:id="@+id/comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
