@@ -48,7 +48,8 @@
     <string name="eType">Staða</string>
 
     <string name="workstName">Vinnustöð</string>
-
+    <string name="Vaktsjóri">Vaktstjóri</string>
+    <string name="Deildarlæknir">Deildarlæknir</string>
 
 
 </resources>

@@ -5,9 +5,10 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import is.hi.hbv601.vaktin.Entities.Comment;
+import java.util.List;
+
 import is.hi.hbv601.vaktin.Entities.Footer;
-import is.hi.hbv601.vaktin.Entities.Workstation;
+
 
 @Dao
 public interface FooterDao {

@@ -37,6 +37,7 @@ import java.util.List;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.CommentDao;
 import is.hi.hbv601.vaktin.Database.EmployeeDao;
+import is.hi.hbv601.vaktin.Database.FooterDao;
 import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Database.WorkstationDao;
 import is.hi.hbv601.vaktin.Entities.Comment;
@@ -76,16 +77,24 @@ public class MainActivity extends AppCompatActivity {
         db = AppDatabase.getAppDatabase(this);
 
         setContentView(R.layout.activity_main);
+        /*
+        * Birta comment á forsíðu
+        */
+        mComment = (TextView) findViewById(R.id.comment);
+        List<Comment> commentM = db.commentDao().findAllComment();
+        String tmpString = "";
+        for(Comment c: commentM){
+            tmpString+=c.getDescription()+"\n";
+        }
+        mComment.setText(tmpString);
 
-        /*mComment = (TextView) findViewById(R.id.comment);
-        String commentM = db.commentDao()
-        Comment commentMessage = new Comment(commentM);
-        mComment.setText((CharSequence) commentMessage);
-
+        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
         mFooter = (TextView) findViewById(R.id.footer);
-        //Footer messsageF = new Footer();
-        /*String footerMessage = getIntent().getStringExtra("message_footer");
-        mFooter.setText(footerMessage);*/
+
+        Footer c = db.footerDao().findFoooter();
+        String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
+        mFooter.setText(tmpFooter);
+
 
 
         /***
@@ -96,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         Token tmpToken = tokenDao.findById(1);
         if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
+            Toast.makeText(this, "Vitlaust nafn/password", Toast.LENGTH_SHORT).show();
         }
+
         else {
             // Current date added
             Calendar calendar = Calendar.getInstance();
@@ -129,12 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 initFunc();
             }
         }
-
-
-
-
-
-
 
     }
 
@@ -276,15 +281,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                // Sækja footer SEINNA
-                /*
-                JSONObject obj = jsonBody.getString("footer");
-                if (obj != null) {
-                    String shiftManager = obj.getString("")
-                    Footer tmpFooter =
-                }
-                */
+                // Sækja footer
 
+                JSONObject item = new JSONObject();
+                String date = item.getString("date");
+                String shiftManager = item.getString("shiftManager");
+                String shiftManagerNumber = item.getString("shiftManagerNumber");
+                String headDoctor = item.getString("headDoctor");
+                String headDoctorNumber = item.getString("headDoctorNumber");
+                Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
+                FooterDao fd = db.footerDao();
+                fd.insertFooter(tmpFooter);
 
 
                 CommentDao cd = db.commentDao();

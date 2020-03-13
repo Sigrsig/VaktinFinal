@@ -98,8 +98,10 @@ public class Morgunvakt extends Fragment {
          */
         Long workstationId = workstations.get(1).getWorkstationId();
         Long workstationId2 = workstations.get(2).getWorkstationId();
-        employeesToday.get(1).setEmployeeWorkstationId(workstationId);
-        employeesToday.get(2).setEmployeeWorkstationId(workstationId2);
+
+        //þurfti að afkommenta til að geta keyrt
+        //employeesToday.get(1).setEmployeeWorkstationId(workstationId);
+        //employeesToday.get(2).setEmployeeWorkstationId(workstationId2);
         for (Workstation workstation : workstations) {
             TextView textView = new TextView(getActivity());
             textView.setText(workstation.getWorkstationName());

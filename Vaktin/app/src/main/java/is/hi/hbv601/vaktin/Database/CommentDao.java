@@ -24,4 +24,7 @@ public interface CommentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertComment(Comment comments);
+
+    @Query("SELECT * FROM Comment")
+    public List<Comment> findAllComment();
 }

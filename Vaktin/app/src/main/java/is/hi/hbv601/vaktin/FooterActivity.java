@@ -43,8 +43,7 @@ public class FooterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footer);
         mVista_button = (Button) findViewById(R.id.vista_button);
-        mType1 = (EditText) findViewById(R.id.fType1);
-        mType2 = (EditText) findViewById(R.id.fType2);
+
         mName1 = (EditText) findViewById(R.id.fName1);
         mName2 = (EditText) findViewById(R.id.fName2);
         mPhoneNr1 = (EditText) findViewById(R.id.fPhonenr1);
@@ -57,43 +56,33 @@ public class FooterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(FooterActivity.this, "Aftur á Editsíðuna", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(FooterActivity.this, MainActivity.class);
-                String message1 = mType1.getText().toString();
-                String message2 = mType2.getText().toString();
-                String message3 = mName1.getText().toString();
-                String message4 = mName2.getText().toString();
-                String message5 = mPhoneNr1.getText().toString();
-                String message6 = mPhoneNr2.getText().toString();
-                String messageFooter
-                        = message1 + " - " + message3 + " - " + message5 +" - " + message2 +" - " + message4 +" - " + message6;
 
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                 
-                // Footer þegar til? En hvernig næ ég í Id?
-                
+                /*
+                ná í nýjan fót
+                */
+                Footer tmpFooter = new Footer(currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString());
+                fd.insertFooter(tmpFooter);
 
-                if (fd.findFoooter() == null) {
-                    Footer tmpFooter = new Footer(currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString());
-                    fd.insertFooter(tmpFooter);
-
-                    /*
-                     * Bæta commenti við ytri gagnagrunn
-                     */
-                    String result = null;
-                    try {
-                        result = new Api().postNewFooter(url, currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString(), mAppDatabase.tokenDao().findById(1).getToken());
-                    }
-                    catch (IOException e) {
-                        System.err.println(e.getMessage());
-                    }
-                    catch (JSONException e) {
-                        System.err.println(e.getMessage());
-                    }
-                    Toast.makeText(FooterActivity.this, "Nýr síðurfótur birtur", Toast.LENGTH_SHORT).show();
+                /*
+                * Bæta footer við ytri gagnagrunn
+                */
+                String result = null;
+                try {
+                    result = new Api().postNewFooter(url, currentDate,mName1.getText().toString(),mPhoneNr1.getText().toString(),mName2.getText().toString(),mPhoneNr2.getText().toString(), mAppDatabase.tokenDao().findById(1).getToken());
                 }
+                catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                }
+                Toast.makeText(FooterActivity.this, "Nýr síðurfótur birtur", Toast.LENGTH_SHORT).show();
 
-                i.putExtra("message_footer", messageFooter);
+
+                Intent i = new Intent(FooterActivity.this, MainActivity.class);
                 startActivity(i);
 
             }
