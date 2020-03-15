@@ -109,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("description", comment.getDescription());
                 startActivity(i);
 
+                /*Intent rass = getIntent();
+                String Message = getIntent().getStringExtra("message");
+                if(Message == "Delete"){
+                    String description = comment.getDescription();
+                    db.commentDao().deleteComment(description);
+                }*/
 
             }
 
@@ -170,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 initFunc();
             }
         }
+
+
 
     }
 

@@ -50,6 +50,8 @@
     <string name="workstName">Vinnustöð</string>
     <string name="Vaktsjóri">Vaktstjóri</string>
     <string name="Deildarlæknir">Deildarlæknir</string>
+    <string name="delete_button">Já</string>
+    <string name="no_button">Nei</string>
 
 
 </resources>

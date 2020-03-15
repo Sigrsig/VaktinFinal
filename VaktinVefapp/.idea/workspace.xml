@@ -17,8 +17,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectId" id="1Z9sS8WhBCT1QSxXoqdxKBZK6GE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="VaktinApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -63,6 +67,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1342" height="242" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584091179589" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1584262662280">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584262662280" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/VaktinVefapp$VaktinApplication.ic" NAME="VaktinApplication Coverage Results" MODIFIED="1583931281824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
