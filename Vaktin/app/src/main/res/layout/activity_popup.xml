@@ -11,6 +11,7 @@
         android:textSize="25dp"
         android:text="Viltu eyða athugasemdinni?"
     />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

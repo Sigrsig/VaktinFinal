@@ -109,13 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("description", comment.getDescription());
                 startActivity(i);
 
-                /*Intent rass = getIntent();
-                String Message = getIntent().getStringExtra("message");
-                if(Message == "Delete"){
-                    String description = comment.getDescription();
-                    db.commentDao().deleteComment(description);
-                }*/
-
             }
 
 
@@ -224,10 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
 
                 return true;
-            case R.id.login_Button:
-                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

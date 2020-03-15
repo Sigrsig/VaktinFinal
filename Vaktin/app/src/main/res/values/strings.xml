@@ -10,7 +10,7 @@
 
     <!-- MENU -->
     <string name="main">Main</string>
-    <string name="edit">Edit</string>
+    <string name="edit">Breyta</string>
     <string name="logout">Log Out</string>
     <string name="logo">Logo</string>
     <string name="workstations">Vinnustöðvar</string>

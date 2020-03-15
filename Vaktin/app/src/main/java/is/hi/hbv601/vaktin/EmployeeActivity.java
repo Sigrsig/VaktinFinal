@@ -62,16 +62,17 @@ public class EmployeeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Main page Selected", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
+            case R.id.workstations:
+                Toast.makeText(this, "Vinnustöðvar valdar", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, WorkstationsFrontPageActivity.class));
+                return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
                 mUserLocalStore.clearedUserData();
                 mUserLocalStore.setUserLoggedIn(false);
                 startActivity(new Intent(this, LoginActivity.class));
                 return true;
-            case R.id.login_Button:
-                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
