@@ -40,6 +40,10 @@
 
     </ScrollView>
 
-
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eyða stöð"
+        android:id="@+id/Delete_ws"
+        />
 </LinearLayout>
