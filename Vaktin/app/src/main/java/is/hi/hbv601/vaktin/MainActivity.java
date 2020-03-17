@@ -121,8 +121,11 @@ public class MainActivity extends AppCompatActivity {
         mFooter = (TextView) findViewById(R.id.footer);
 
         Footer c = db.footerDao().findFoooter();
-        /*String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
-        mFooter.setText(tmpFooter);*/
+        if(c!=null){
+            String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
+            mFooter.setText(tmpFooter);
+
+        }
 
 
 

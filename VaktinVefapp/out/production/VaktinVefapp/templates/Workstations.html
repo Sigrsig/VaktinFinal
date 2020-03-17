@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+
+    <div class="header">
+        <nav class="navigation-bar">
+            <a href="/"><img src="https://res.cloudinary.com/dcjov3oxg/image/upload/v1573576115/shift-planner/image_from_iosminni_i0r6ch.jpg" alt class="logo" id="logos"></a>
+            <a>
+                <button class="button2" onclick="location.href='/logout'">Skrá út</button>
+                <button class="button2" onclick="location.href='/edit'">Breyta</button>
+                <button class="button2" onclick="location.href='/'">Upphafssíða</button>
+
+            </a>
+        </nav>
+
+    </div>
+    <div>
+        <fieldset id="edit">
+        <h2>Bæta í vinnustöð</h2>
+        <fieldset id="Morgunvakt">
+        <table>
+            <div th:each="workstation : ${workstations}">
+                <tr>
+                    <td th:class="workstation-name" th:text="${workstation.workstationName}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Nafn</td>
+                                    <td>Mætir</td>
+                                    <td>Klárar</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <div th:each="employee : ${employees}">
+                                    <tr th:if="${employee.workstation == null}">
+                                        <td th:text="${employee.name}"></td>
+                                        <td th:text="${employee.toStringTimeFromParsed}"></td>
+                                        <td th:text="${employee.toStringTimeToParsed}"></td>
+                                        <td th:text="${employee.role}"></td>
+                                        <td><a class="addButton" th:href="@{/addtoworkstation/{eid}/{wid}(wid=${workstation.id}, eid=${employee.getId()})}">Bæta við</a></td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </div>
+
+            </table>
+            </fieldset>
+        </fieldset>
+    </div>
+
+    <footer>
+        <div class="footer" th:with="footerValues=${footerValues}">
+            <p th:if="${footerValues != null}">
+                <em th:if="${footerValues != null}" th:text="${footerValues.shiftManager} + ' s: ' + ${footerValues.shiftManagerNumber}"></em>
+                <em th:if="${footerValues != null}" th:text="${footerValues.headDoctor} + ' s: ' + ${footerValues.headDoctorNumber}"></em>
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
