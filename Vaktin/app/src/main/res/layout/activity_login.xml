@@ -16,7 +16,7 @@
         android:gravity=""
         android:orientation="vertical">
 
-        <ImageView
+       <ImageView
             android:layout_width="232dp"
             android:layout_height="123dp"
             android:layout_margin="100dp"

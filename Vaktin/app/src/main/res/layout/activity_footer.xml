@@ -25,8 +25,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:hint="@string/stada"
-            android:background="@drawable/rounded_edittext" />
+            android:background="@drawable/rounded_edittext"
             android:text="@string/Vaktsjóri"/>
 
 
@@ -67,7 +66,6 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="@string/stada" />
             android:text="@string/Deildarlæknir"/>
 
 
