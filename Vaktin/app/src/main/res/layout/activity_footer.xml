@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/vaktinColor"
-    tools:context=".FooterActivity">
+    tools:context=".FooterActivity"
+    android:paddingLeft="40dp"
+    >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,9 +25,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/stada"/>
-
+            android:hint="@string/stada"
+            android:background="@drawable/rounded_edittext" />
 
 
         <EditText
@@ -34,8 +37,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/nafn" />
+            android:hint="@string/nafn"
+            android:background="@drawable/rounded_edittext" />
 
         <EditText
 
@@ -45,15 +48,15 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/simanumer"/>
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/simanumer" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:layout_marginBottom="10dp"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
         <EditText
             android:id="@+id/fType2"
@@ -62,9 +65,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/stada"/>
-
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/stada" />
 
 
         <EditText
@@ -74,7 +76,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/rounded_edittext"
             android:hint="@string/nafn" />
 
         <EditText
@@ -84,8 +86,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/simanumer"/>
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/simanumer" />
 
 
         <Button
@@ -95,7 +97,8 @@
             android:layout_gravity="right"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
-            android:text="@string/vista_button" />
+            android:text="@string/vista_button"
+            android:background="@drawable/rounded_button" />
 
     </LinearLayout>
 
