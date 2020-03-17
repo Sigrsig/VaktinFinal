@@ -14,26 +14,28 @@
         android:layout_weight="66.6" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="33.3">
+        android:layout_weight="33.3"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:gravity="center"
-            android:text="test2"
+            android:id="@+id/text_view_2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/text_view_2"/>
+            android:gravity="center"
+            android:text="test2" />
 
         <TextView
-            android:gravity="center"
-            android:text="test2"
+            android:id="@+id/text_view_3"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/text_view_3"/>
+            android:gravity="center"
+            android:text="test2" />
 
     </LinearLayout>
+
+
 
 </LinearLayout>

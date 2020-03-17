@@ -10,15 +10,15 @@
         android:icon="@mipmap/ic_logo"
         android:title="@string/logo"
         app:showAsAction="ifRoom"
-
         />
+
     <item
         android:id="@+id/main"
         android:title="@string/main"
         app:showAsAction="never" />
 
-    <item android:id="@+id/login_Button"
-        android:title="@string/login_button"
+    <item android:id="@+id/workstations"
+        android:title="@string/workstations"
         app:showAsAction="never"/>
 
     <item android:id="@+id/logout"

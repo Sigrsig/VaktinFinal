@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Vaktin/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Vaktin/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vaktin/app/src/main/AndroidManifest.xml" afterDir="false" />
@@ -11,65 +12,31 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+=======
+    <list default="true" id="92a8e064-71cf-42bf-a88c-55cbddd34740" name="Default Changelist" comment="" />
+>>>>>>> ff592ff8494c73d1b83c2c3539c1a8d5ace36359
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="VaktinVefapp" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1YB6CCjAh32I3SL2Gldp645jGNH" />
+  <component name="ProjectId" id="1Z9sS8WhBCT1QSxXoqdxKBZK6GE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -84,7 +51,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="VaktinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="VaktinApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="is.hi.hbv501.vaktin.Vaktin.VaktinApplication" />
       <module name="VaktinVefapp" />
       <extension name="coverage">
         <pattern>
@@ -92,127 +60,57 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="is.hi.hbv501.vaktin.Vaktin.VaktinApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.VaktinApplication" />
+      </list>
+    </recent_temporary>
+>>>>>>> ff592ff8494c73d1b83c2c3539c1a8d5ace36359
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0dbf6430-5565-47c0-95e1-706816588d2b" name="Default Changelist" comment="" />
-      <created>1582213451478</created>
+      <changelist id="92a8e064-71cf-42bf-a88c-55cbddd34740" name="Default Changelist" comment="" />
+      <created>1584262642286</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1582213451478</updated>
-      <workItem from="1582213683097" duration="9136000" />
-      <workItem from="1582403514853" duration="4041000" />
-      <workItem from="1582819366578" duration="8928000" />
-      <workItem from="1583414374170" duration="48000" />
-      <workItem from="1583414493499" duration="3232000" />
-      <workItem from="1583522370315" duration="954000" />
-      <workItem from="1583533022938" duration="4322000" />
-      <workItem from="1583837049171" duration="6157000" />
+      <updated>1584262642286</updated>
     </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="407" y="90" key="#SQL_Dialects" timestamp="1583533496283">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state width="1342" height="242" key="GridCell.Tab.0.bottom" timestamp="1584091179589">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="407" y="90" key="#SQL_Dialects/0.23.1440.800@0.23.1440.800" timestamp="1583533496283" />
-    <state x="407" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583533499124">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state width="1342" height="242" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584091179589" />
+    <state width="1342" height="242" key="GridCell.Tab.0.center" timestamp="1584091179589">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="407" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.800@0.23.1440.800" timestamp="1583533499124" />
-    <state width="1398" height="164" key="GridCell.Tab.0.bottom" timestamp="1583930064630">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state width="1342" height="242" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584091179589" />
+    <state width="1342" height="242" key="GridCell.Tab.0.left" timestamp="1584091179588">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583930064630" />
-    <state width="1398" height="164" key="GridCell.Tab.0.center" timestamp="1583930064629">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state width="1342" height="242" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584091179588" />
+    <state width="1342" height="242" key="GridCell.Tab.0.right" timestamp="1584091179589">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1583930064629" />
-    <state width="1398" height="164" key="GridCell.Tab.0.left" timestamp="1583930064629">
-      <screen x="0" y="23" width="1440" height="800" />
+    <state width="1342" height="242" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584091179589" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1584262662280">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1583930064629" />
-    <state width="1398" height="164" key="GridCell.Tab.0.right" timestamp="1583930064629">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1398" height="164" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1583930064629" />
-    <state width="1398" height="164" key="GridCell.Tab.1.bottom" timestamp="1583930064631">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1398" height="164" key="GridCell.Tab.1.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583930064631" />
-    <state width="1398" height="164" key="GridCell.Tab.1.center" timestamp="1583930064631">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1398" height="164" key="GridCell.Tab.1.center/0.23.1440.800@0.23.1440.800" timestamp="1583930064631" />
-    <state width="1398" height="164" key="GridCell.Tab.1.left" timestamp="1583930064630">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1398" height="164" key="GridCell.Tab.1.left/0.23.1440.800@0.23.1440.800" timestamp="1583930064630" />
-    <state width="1398" height="164" key="GridCell.Tab.1.right" timestamp="1583930064631">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1398" height="164" key="GridCell.Tab.1.right/0.23.1440.800@0.23.1440.800" timestamp="1583930064631" />
-    <state width="1358" height="238" key="GridCell.Tab.2.bottom" timestamp="1583426903455">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1358" height="238" key="GridCell.Tab.2.bottom/0.23.1440.800@0.23.1440.800" timestamp="1583426903455" />
-    <state width="1358" height="238" key="GridCell.Tab.2.center" timestamp="1583426903454">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1358" height="238" key="GridCell.Tab.2.center/0.23.1440.800@0.23.1440.800" timestamp="1583426903454" />
-    <state width="1358" height="238" key="GridCell.Tab.2.left" timestamp="1583426903454">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1358" height="238" key="GridCell.Tab.2.left/0.23.1440.800@0.23.1440.800" timestamp="1583426903454" />
-    <state width="1358" height="238" key="GridCell.Tab.2.right" timestamp="1583426903455">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state width="1358" height="238" key="GridCell.Tab.2.right/0.23.1440.800@0.23.1440.800" timestamp="1583426903455" />
-    <state x="376" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1583837049266">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state x="376" y="257" key="com.intellij.ide.util.TipDialog/0.23.1440.800@0.23.1440.800" timestamp="1583837049266" />
-    <state x="334" y="110" width="673" height="472" key="find.popup" timestamp="1583925147546">
-      <screen x="0" y="23" width="1440" height="800" />
-    </state>
-    <state x="334" y="110" width="673" height="472" key="find.popup/0.23.1440.800@0.23.1440.800" timestamp="1583925147546" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584262662280" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/VaktinVefapp$VaktinApplication.ic" NAME="VaktinApplication Coverage Results" MODIFIED="1583931281824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>is.hi.hbv501.vaktin.Vaktin.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -31,6 +31,9 @@ public interface WorkstationDao {
     @Query("SELECT * FROM Workstation where workstationId = :id")
     public Workstation findWorkstationWithId(long id);
 
+    @Query("DELETE FROM Workstation where workstationId like :id")
+    public void deleteWorkstationWithName(Long id);
+
 
 
 

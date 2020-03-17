@@ -36,7 +36,7 @@ public class WorkstationListActivity extends AppCompatActivity {
     private LinearLayout mLinearLayout;
     private String buttonString = "Bæta við";
     private UserLocalStore mUserLocalStore;
-
+    private Button mDeleteWs;
 
     private ArrayList<Employee> findAllSorted() {
         ArrayList<Employee> resultList = new ArrayList<>();
@@ -64,6 +64,7 @@ public class WorkstationListActivity extends AppCompatActivity {
 
         mTextView = (TextView)findViewById(R.id.textView);
         mLinearLayout = (LinearLayout)findViewById(R.id.linear_layout);
+        mDeleteWs = (Button)findViewById(R.id.Delete_ws);
 
         // Sækja rétt id
         // Þarf að grípa ef -1?
@@ -78,6 +79,18 @@ public class WorkstationListActivity extends AppCompatActivity {
 
 
         mTextView.setText(workstation.getWorkstationName());
+
+        mDeleteWs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = getIntent();
+                id = i.getLongExtra("workstationId", -1);
+                AppDatabase db = AppDatabase.getInstance();
+                db.workstationDao().deleteWorkstationWithName(id);
+                Intent k = new Intent(WorkstationListActivity.this, MainActivity.class);
+                startActivity(k);
+            }
+        });
 
         /***
          *  Get ekki skipt layout 50/50

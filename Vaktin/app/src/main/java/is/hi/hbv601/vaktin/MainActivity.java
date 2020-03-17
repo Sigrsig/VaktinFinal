@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +36,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import is.hi.hbv601.vaktin.Adapters.CommentListAdapter;
+import is.hi.hbv601.vaktin.Adapters.WorkstationListAdapter;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.CommentDao;
 import is.hi.hbv601.vaktin.Database.EmployeeDao;
+import is.hi.hbv601.vaktin.Database.FooterDao;
 import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Database.WorkstationDao;
 import is.hi.hbv601.vaktin.Entities.Comment;
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     UserLocalStore mUserLocalStore;
     TextView mComment;
     TextView mFooter;
+    private ListView mListView;
+
 
     private final String url = "http://10.0.2.2:8080/";
 
@@ -75,17 +82,48 @@ public class MainActivity extends AppCompatActivity {
 
         db = AppDatabase.getAppDatabase(this);
 
-
-
         setContentView(R.layout.activity_main);
+        /*
+        * Birta comment á forsíðu
+        */
+       /* mComment = (TextView) findViewById(R.id.comment);
+        List<Comment> commentM = db.commentDao().findAllComment();
+        String tmpString = "";
+        for(Comment c: commentM){
+            tmpString+=c.getDescription()+"\n";
+        }
+        mComment.setText(tmpString);*/
 
-        mComment = (TextView) findViewById(R.id.comment);
-        String commentMessage = getIntent().getStringExtra("message_comment");
-        mComment.setText(commentMessage);
+        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
+        ListView mListView = (ListView)findViewById(R.id.comment);
+        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
+        mListView.setAdapter(adapter);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("id " + id + "\nposition " + position);
+                Comment comment =(Comment) parent.getItemAtPosition(position);
+                System.out.println("Value is "+comment.getDescription());
+                Intent i = new Intent(MainActivity.this, PopupActivity.class);
+                i.putExtra("description", comment.getDescription());
+                startActivity(i);
+
+            }
+
+
+        });
+
+
+
+
+        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
         mFooter = (TextView) findViewById(R.id.footer);
-        String footerMessage = getIntent().getStringExtra("message_footer");
-        mFooter.setText(footerMessage);
+
+        Footer c = db.footerDao().findFoooter();
+        String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
+        mFooter.setText(tmpFooter);
+
 
 
         /***
@@ -96,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
         Token tmpToken = tokenDao.findById(1);
         if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
+            Toast.makeText(this, "Vitlaust nafn/password", Toast.LENGTH_SHORT).show();
         }
+
         else {
             // Current date added
             Calendar calendar = Calendar.getInstance();
@@ -129,10 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 initFunc();
             }
         }
-
-
-
-
 
 
 
@@ -181,10 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
 
                 return true;
-            case R.id.login_Button:
-                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -276,14 +309,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                // Sækja footer SEINNA
-                /*
-                JSONObject obj = jsonBody.getString("footer");
-                if (obj != null) {
-                    String shiftManager = obj.getString("")
-                    Footer tmpFooter =
-                }
-                */
+                // Sækja footer
+
+                JSONObject item = new JSONObject();
+                String date = item.getString("date");
+                String shiftManager = item.getString("shiftManager");
+                String shiftManagerNumber = item.getString("shiftManagerNumber");
+                String headDoctor = item.getString("headDoctor");
+                String headDoctorNumber = item.getString("headDoctorNumber");
+                Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
+                FooterDao fd = db.footerDao();
+                fd.insertFooter(tmpFooter);
+
 
                 CommentDao cd = db.commentDao();
                 cd.insertAll(comments);

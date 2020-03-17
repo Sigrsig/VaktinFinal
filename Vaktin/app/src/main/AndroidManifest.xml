@@ -22,6 +22,10 @@
         <activity android:name=".WorkstationActivity" />
         <activity android:name=".EditActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".PopupActivity"
+            android:theme="@style/AppTheme.CustomTheme"
+            > </activity>
+
         <activity android:name=".WorkstationsFrontPageActivity" />
         <activity android:name=".WorkstationListActivity" />
 

@@ -94,7 +94,7 @@ public class WorkstationsFrontPageActivity extends AppCompatActivity {
                 tmpToken.setToken(null);
                 td.insertToken(tmpToken);
 
-                /***
+                /**
                  * Eyða Room. Finnum betri lausn síðar
                  */
                 td.nukeTable();

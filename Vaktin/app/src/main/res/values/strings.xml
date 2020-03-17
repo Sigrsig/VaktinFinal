@@ -10,7 +10,7 @@
 
     <!-- MENU -->
     <string name="main">Main</string>
-    <string name="edit">Edit</string>
+    <string name="edit">Breyta</string>
     <string name="logout">Log Out</string>
     <string name="logo">Logo</string>
     <string name="workstations">Vinnustöðvar</string>
@@ -48,7 +48,10 @@
     <string name="eType">Staða</string>
 
     <string name="workstName">Vinnustöð</string>
-
+    <string name="Vaktsjóri">Vaktstjóri</string>
+    <string name="Deildarlæknir">Deildarlæknir</string>
+    <string name="delete_button">Já</string>
+    <string name="no_button">Nei</string>
 
 
 </resources>
