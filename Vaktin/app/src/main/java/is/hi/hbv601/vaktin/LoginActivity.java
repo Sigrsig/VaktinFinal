@@ -84,8 +84,11 @@ public class LoginActivity extends AppCompatActivity{
 
                 String t = null;
                 try {
-                    JSONObject jsonBody = new JSONObject(result);
-                    t = jsonBody.getString("token");
+                    if (result != null) {
+                        JSONObject jsonBody = new JSONObject(result);
+                        t = jsonBody.getString("token");
+                    }
+
                 }
                 catch (JSONException e) {
                     System.err.println(e.getMessage());
