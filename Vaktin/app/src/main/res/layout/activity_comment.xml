@@ -25,16 +25,20 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:background="#FFFFFF"
-            android:hint="@string/Athugasemd" />
+            android:hint="@string/Athugasemd"
+            android:inputType="text"
+            android:gravity="top|start"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
 
         <Button
             android:id="@+id/vista_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:text="@string/vista_button" />
+            android:text="@string/vista_button"
+            android:background="@drawable/rounded_button"/>
 
 
     </LinearLayout>

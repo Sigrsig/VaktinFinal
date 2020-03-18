@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/vaktinColor"
     tools:context=".FooterActivity"
-
+    android:paddingStart="40dp"
     >
 
 
@@ -22,8 +22,8 @@
             android:id="@+id/fType1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:text="@string/Vaktsjóri"
             android:textStyle="bold"
@@ -36,8 +36,8 @@
             android:id="@+id/fName1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/nafn"
@@ -50,8 +50,8 @@
             android:id="@+id/fPhonenr1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/simanumer"
@@ -72,21 +72,20 @@
             android:id="@+id/fType2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:text="@string/Deildarlæknir"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold"/>
 
 
         <EditText
             android:id="@+id/fName2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/nafn"
@@ -98,8 +97,8 @@
             android:id="@+id/fPhonenr2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/simanumer"
@@ -113,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="100dp"
             android:background="@drawable/rounded_button"
             android:text="@string/vista_button" />
 

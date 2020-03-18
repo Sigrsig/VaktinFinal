@@ -53,5 +53,10 @@
     <string name="delete_button">Já</string>
     <string name="no_button">Nei</string>
 
+    <!-- WORKSTATION LISTI -->
+    <string name="del_station">Eyða stöð</string>
+
+    <!-- POPUP SÍÐA -->
+    <string name="eyda_sp">Viltu eyða athugasemdinni?</string>
 
 </resources>

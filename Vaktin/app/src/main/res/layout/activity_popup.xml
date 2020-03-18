@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border"
+    >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:textColor="@color/vaktinColor"
-        android:textSize="25dp"
-        android:text="Viltu eyða athugasemdinni?"
-    />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorLight">
 
-        <Button
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/delete_button"
-            android:text="@string/delete_button"
+            android:gravity="center_horizontal"
+            android:text="@string/eyda_sp"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:padding="20dp"
             />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/no_button"
-            android:text="@string/no_button"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_button"
+                android:background="@drawable/rounded_button"
+                android:layout_marginRight="30dp"/>
+
+            <Button
+                android:id="@+id/no_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_button"
+                android:background="@drawable/rounded_button"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
