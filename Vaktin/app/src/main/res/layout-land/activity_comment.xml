@@ -5,37 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/vaktinColor"
-    tools:context=".WorkstationActivity">
+    tools:context=".CommentActivity">
+
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
         <EditText
-            android:id="@+id/workstation_name"
+            android:id="@+id/comment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="@string/workstation_hint"
+            android:layout_height="130dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="10dp"
+            android:background="#FFFFFF"
+            android:hint="@string/Athugasemd"
             android:inputType="text"
+            android:gravity="top|start"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            />
 
         <Button
             android:id="@+id/vista_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="100dp"
             android:text="@string/vista_button"
             android:background="@drawable/rounded_button"/>
+
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

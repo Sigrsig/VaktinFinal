@@ -14,7 +14,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#b6bfc8"
+        android:background="@color/colorLight"
         android:padding="10sp"
         android:textColor="#ffffff"
         android:textSize="20sp" />
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10sp"
             android:paddingRight="10sp"
-            android:textAlignment="center"
+
             android:textColor="#ffffff"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -43,7 +43,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eyða stöð"
+        android:text="@string/del_station"
         android:id="@+id/Delete_ws"
+        android:background="@color/colorLight"
+
         />
 </LinearLayout>

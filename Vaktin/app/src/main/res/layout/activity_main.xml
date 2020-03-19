@@ -32,7 +32,7 @@
                 android:id="@+id/comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#b6bfc8"
+                android:background="@color/colorLight"
                 android:padding="10sp"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
@@ -60,7 +60,9 @@
                 android:background="#b6bfc8"
                 android:textColor="#ffffff"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="10dp"
+                android:gravity="center"/>
         </RelativeLayout>
     </LinearLayout>
 
