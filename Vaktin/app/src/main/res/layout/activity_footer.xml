@@ -25,7 +25,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/Vaktsjóri"/>
+            android:text="@string/Vaktsjóri"
+            android:textAlignment="center"
+            android:textSize="20dp"/>
 
 
         <EditText
@@ -64,7 +66,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/Deildarlæknir"/>
+            android:text="@string/Deildarlæknir"
+            android:textAlignment="center"
+            android:textSize="20dp"/>
 
 
 
