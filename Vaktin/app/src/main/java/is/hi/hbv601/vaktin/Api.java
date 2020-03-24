@@ -22,6 +22,29 @@ public class Api {
     OkHttpClient client = new OkHttpClient();
 
 
+    public String deleteWorkstation(String url, String name, String tok) throws IOException, JSONException {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("workstationName", name);
+        System.out.println("name " + name);
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                return res.body().string();
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return null;
+
+    }
+
     /***
      * Bæta við nýrri vinnustöð
      * Þurfum kannski að skila einhverju öðru en null

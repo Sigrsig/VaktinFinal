@@ -3,12 +3,10 @@
 package is.hi.hbv501.vaktin.Vaktin;
 
 import com.fasterxml.jackson.databind.deser.DataFormatReaders;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Footer;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
+import is.hi.hbv501.vaktin.Vaktin.Entities.*;
 import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
+import is.hi.hbv501.vaktin.Vaktin.Services.LastModifiedService;
 import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddEmployeeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +41,15 @@ public class EmployeeController {
     private CommentService commentService;
     private WorkstationService workstationService;
     private HomeController homeController;
+    private LastModifiedService lastModifiedService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService, CommentService commentService, WorkstationService workstationService, HomeController homeController) {
+    public EmployeeController(EmployeeService employeeService, CommentService commentService, WorkstationService workstationService, HomeController homeController, LastModifiedService lastModifiedService) {
         this.employeeService = employeeService;
         this.commentService = commentService;
         this.workstationService = workstationService;
         this.homeController = homeController;
+        this.lastModifiedService = lastModifiedService;
     }
 
     /***
@@ -66,6 +66,8 @@ public class EmployeeController {
     @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
     public ResponseEntity<AddEmployeeResponse> addEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         /***
          * Ef villur í formi

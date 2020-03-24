@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,8 @@ public class WorkstationListActivity extends AppCompatActivity {
     private LinearLayout mLinearLayout;
     private String buttonString = "Bæta við";
     private Button mDeleteWs;
+
+    private final String url = "http://10.0.2.2:8080/delete";
 
     private ArrayList<Employee> findAllSorted() {
         ArrayList<Employee> resultList = new ArrayList<>();
@@ -88,12 +93,29 @@ public class WorkstationListActivity extends AppCompatActivity {
                 Intent i = getIntent();
                 id = i.getLongExtra("workstationId", -1);
                 AppDatabase db = AppDatabase.getInstance();
+
+                // Delete from REST
+                try {
+                    Workstation tmpWorkstation = db.workstationDao().findWorkstationWithId(id);
+                    new Api().deleteWorkstation(url, tmpWorkstation.getWorkstationName(), db.tokenDao().findById(1).getToken());
+                }
+                catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+
                 WorkstationWithEmployees workstationWithEmployees = db.mWorkstationWithEmployeesDao().findWorkstationWithEmployeesById(id);
                 for (Employee e : workstationWithEmployees.getStaff()) {
                     e.setEmployeeWorkstationId(-1);
                     db.employeeDao().insertEmployee(e);
                 }
                 db.workstationDao().deleteWorkstationWithName(id);
+
+
                 Intent k = new Intent(WorkstationListActivity.this, MainActivity.class);
                 startActivity(k);
             }
