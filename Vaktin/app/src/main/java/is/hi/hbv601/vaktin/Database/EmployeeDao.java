@@ -28,5 +28,8 @@ public interface EmployeeDao {
     @Query("SELECT * FROM Employee WHERE employeeWorkstationId = -1")
     public List<Employee> loadAllEmployeesWithNoWorkstation();
 
+    @Query("SELECT * FROM Employee WHERE name = :name")
+    public Employee findByName(String name);
+
 
 }

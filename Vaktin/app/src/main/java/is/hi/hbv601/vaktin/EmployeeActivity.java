@@ -38,11 +38,7 @@ public class EmployeeActivity extends AppCompatActivity {
     private void saveEmployee(Employee employee) {
         db.employeeDao().insertEmployee(employee);
 
-
-            new Api().addEmployee(url, employee, db.tokenDao().findById(1).getToken());
-
-
-
+        new Api().addEmployee(url, employee, db.tokenDao().findById(1).getToken());
     }
 
     public void createEmployee(String name, String role, String timeFrom, String timeTo) {

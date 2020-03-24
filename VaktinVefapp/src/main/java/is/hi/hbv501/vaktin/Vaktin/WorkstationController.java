@@ -5,6 +5,7 @@ import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
 import is.hi.hbv501.vaktin.Vaktin.Entities.LastModified;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
 import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Request.AddToWorkstationRequest;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddWorkstationResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
@@ -81,15 +82,31 @@ public class WorkstationController {
         return ResponseEntity.noContent().build();
     }
 
-    // Er betra að nota isPresent() eða virkar þetta?
-    @RequestMapping(value = "addtoworkstation/{eid}/{wid}", method = RequestMethod.GET)
-    public ResponseEntity<?> AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid) {
+    @RequestMapping(value = "/removeemployee", method = RequestMethod.POST)
+    public ResponseEntity<?> ClearFromWorkstation(@RequestBody Employee employee) {
 
         LastModified tmpLastModified = lastModifiedService.findById(1);
         tmpLastModified.setDate(LocalDateTime.now());
 
-        Employee tempEmp = employeeService.findById(eid).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
-        Workstation tempWorkstation = workstationService.findById(wid).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+        Employee tempEmp = employeeService.findByName(employee.getName());
+        tempEmp.setWorkstation(null);
+        employeeService.save(tempEmp);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    // Er betra að nota isPresent() eða virkar þetta?
+    @RequestMapping(value = "addtoworkstation", method = RequestMethod.POST)
+    public ResponseEntity<?> AddToWorkstation(@RequestBody AddToWorkstationRequest addToWorkstationRequest) {
+
+        System.out.println("hæ sæti " +addToWorkstationRequest.getWorkstationName());
+        System.out.println("hæ sæti " +addToWorkstationRequest.getEmployeeName());
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
+        System.out.println("hú!");
+        Employee tempEmp = employeeService.findByName(addToWorkstationRequest.getEmployeeName());
+        System.out.println(tempEmp.getName());
+        Workstation tempWorkstation = workstationService.findByName(addToWorkstationRequest.getWorkstationName());
         tempEmp.setWorkstation(tempWorkstation);
         employeeService.save(tempEmp);
 

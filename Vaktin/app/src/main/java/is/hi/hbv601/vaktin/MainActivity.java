@@ -143,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
             if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now()) || needToFetch) {
                 tmpToken.setAlreadyInitialized(true);
                 tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
+                tmpToken.setLastFetched(LocalDateTimeConverter.toDateString(LocalDateTime.now()));
                 tokenDao.insertToken(tmpToken);
+
                 initFunc();
             }
         }
@@ -286,22 +288,25 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject emp = jsonArray.getJSONObject(i);
                         String name = emp.getString("name");
-                        String tFrom = emp.getString("tFrom");
-                        String tTo = emp.getString("tTo");
-                        String role = emp.getString("role");
-                        String workstationName = emp.getString("workstation");
-                        Employee tmpEmp = new Employee(name, role, tFrom, tTo);
-                        if (workstationName != null && !workstationName.equals("null")) {
-                            Workstation tmpWorkstation = wd.findWorkstationWithName(workstationName);
-                            if (tmpWorkstation != null) {
-                                long id = tmpWorkstation.getWorkstationId();
-                                tmpEmp.setEmployeeWorkstationId(id);
+                        if (db.employeeDao().findByName(name) == null) {
+                            String tFrom = emp.getString("tFrom");
+                            String tTo = emp.getString("tTo");
+                            String role = emp.getString("role");
+                            Employee tmpEmp = new Employee(name, role, tFrom, tTo);
+                            String stringWorkstation = emp.getString("workstation");
+                            if (stringWorkstation != null && !stringWorkstation.equals("null")) {
+                                JSONObject jsonWorkstation = emp.getJSONObject("workstation");
+                                Workstation tmpWorkstation = wd.findWorkstationWithName(jsonWorkstation.getString("workstationName"));
+                                if (tmpWorkstation != null) {
+                                    long id = tmpWorkstation.getWorkstationId();
+                                    tmpEmp.setEmployeeWorkstationId(id);
+                                }
                             }
+                            else {
+                                tmpEmp.setEmployeeWorkstationId(-1);
+                            }
+                            employees.add(tmpEmp);
                         }
-                        else {
-                            tmpEmp.setEmployeeWorkstationId(-1);
-                        }
-                        employees.add(tmpEmp);
                     }
                 }
 
@@ -313,22 +318,25 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String name = obj.getString("name");
-                        String tFrom = obj.getString("tFrom");
-                        String tTo = obj.getString("tTo");
-                        String role = obj.getString("role");
-                        String workstationName = obj.getString("workstation");
-                        Employee tmpEmp = new Employee(name, role, tFrom, tTo);
-                        if (workstationName != null && !workstationName.equals("null")) {
-                            Workstation tmpWorkstation = wd.findWorkstationWithName(workstationName);
-                            if (tmpWorkstation != null) {
-                                long id = tmpWorkstation.getWorkstationId();
-                                tmpEmp.setEmployeeWorkstationId(id);
+                        if (db.employeeDao().findByName(name) == null) {
+                            String tFrom = obj.getString("tFrom");
+                            String tTo = obj.getString("tTo");
+                            String role = obj.getString("role");
+                            Employee tmpEmp = new Employee(name, role, tFrom, tTo);
+                            String stringWorkstation = obj.getString("workstation");
+                            if (stringWorkstation != null && !stringWorkstation.equals("null")) {
+                                JSONObject jsonWorkstation = obj.getJSONObject("workstation");
+                                Workstation tmpWorkstation = wd.findWorkstationWithName(jsonWorkstation.getString("workstationName"));
+                                if (tmpWorkstation != null) {
+                                    long id = tmpWorkstation.getWorkstationId();
+                                    tmpEmp.setEmployeeWorkstationId(id);
+                                }
                             }
+                            else {
+                                tmpEmp.setEmployeeWorkstationId(-1);
+                            }
+                            employees.add(tmpEmp);
                         }
-                        else {
-                            tmpEmp.setEmployeeWorkstationId(-1);
-                        }
-                        employees.add(tmpEmp);
                     }
                 }
 

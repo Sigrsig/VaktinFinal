@@ -42,7 +42,7 @@ public class WorkstationListActivity extends AppCompatActivity {
     private String buttonString = "Bæta við";
     private Button mDeleteWs;
 
-    private final String url = "http://10.0.2.2:8080/delete";
+    private final String url = "http://10.0.2.2:8080/";
 
     private ArrayList<Employee> findAllSorted() {
         ArrayList<Employee> resultList = new ArrayList<>();
@@ -97,7 +97,7 @@ public class WorkstationListActivity extends AppCompatActivity {
                 // Delete from REST
                 try {
                     Workstation tmpWorkstation = db.workstationDao().findWorkstationWithId(id);
-                    new Api().deleteWorkstation(url, tmpWorkstation.getWorkstationName(), db.tokenDao().findById(1).getToken());
+                    new Api().deleteWorkstation(url + "delete", tmpWorkstation.getWorkstationName(), db.tokenDao().findById(1).getToken());
                 }
                 catch (IOException e) {
                     System.err.println(e.getMessage());
@@ -141,6 +141,10 @@ public class WorkstationListActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Vista breytingar í REST
+                    Workstation workstation = db.workstationDao().findWorkstationWithId(id);
+                    new Api().addEmployeeToWorkstation(url + "addtoworkstation", e, workstation, db.tokenDao().findById(1).getToken());
+
                     e.setEmployeeWorkstationId(id);
                     db.employeeDao().insertEmployee(e);
                     Intent i = new Intent(WorkstationListActivity.this, WorkstationListActivity.class);

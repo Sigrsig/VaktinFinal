@@ -12,6 +12,7 @@ import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Entities.Employee;
+import is.hi.hbv601.vaktin.Entities.Workstation;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -26,6 +27,60 @@ public class Api {
     AppDatabase db;
 
     OkHttpClient client = new OkHttpClient();
+
+    public void addEmployeeToWorkstation(String url, Employee employee, Workstation workstation, String tok) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("workstationName", workstation.getWorkstationName());
+            jsonObject.put("employeeName", employee.getName());
+        }
+        catch (JSONException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getStackTrace()[0].getLineNumber());
+        }
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                // Nothing
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    public void removeEmployeeFromWorkstation(String url, Employee employee, String tok) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", employee.getName());
+            jsonObject.put("role", employee.getRole());
+            jsonObject.put("tFrom", employee.gettFrom());
+            jsonObject.put("tTo", employee.gettTo());
+        }
+        catch (JSONException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getStackTrace()[0].getLineNumber());
+        }
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                // Nothing
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
 
     public void addEmployee(String url, Employee employee, String tok) {
         JSONObject jsonObject = new JSONObject();
