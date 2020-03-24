@@ -22,6 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CommentDao commentDao();
     public abstract FooterDao footerDao();
     public abstract WorkstationDao workstationDao();
+    public abstract WorkstationWithEmployeesDao mWorkstationWithEmployeesDao();
 
     private static AppDatabase INSTANCE; // = Room.databaseBuilder(null, AppDatabase.class, "user-database").allowMainThreadQueries().build();
 

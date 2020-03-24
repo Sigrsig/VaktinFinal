@@ -20,6 +20,19 @@ public class WorkstationWithEmployees {
     public WorkstationWithEmployees() {
     }
 
+    public Workstation getWorkstation() {
+        return workstation;
+    }
 
+    public void setWorkstation(Workstation workstation) {
+        this.workstation = workstation;
+    }
 
+    public List<Employee> getStaff() {
+        return staff;
+    }
+
+    public void setStaff(List<Employee> staff) {
+        this.staff = staff;
+    }
 }

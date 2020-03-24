@@ -59,7 +59,7 @@ public class FooterActivity extends AppCompatActivity {
 
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                
+
                 /*
                 ná í nýjan fót
                 */

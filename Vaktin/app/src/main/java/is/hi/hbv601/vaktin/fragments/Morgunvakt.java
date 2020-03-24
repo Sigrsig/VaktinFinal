@@ -60,16 +60,14 @@ public class Morgunvakt extends Fragment {
         }
     }
 
-    /***
-     * Laga current min stillingu á api
-     *
-     */
+
     private ArrayList<Employee> findAllSortedToday() {
         LocalDate date = LocalDate.now();
         ArrayList<Employee> resultList = new ArrayList<>();
         for (Employee emp : employees) {
-            LocalDate empDate = (LocalDateTimeConverter.toDate(emp.gettFrom())).toLocalDate();
-            if (empDate.equals(date)) {
+            //LocalDate empDate = (LocalDateTimeConverter.toDate(emp.gettFrom())).toLocalDate();
+            LocalDateTime empDateTime = LocalDateTimeConverter.toDate(emp.gettFrom());
+            if (empDateTime.toLocalDate().equals(date) && empDateTime.getHour() < 16) {
                 resultList.add(emp);
             }
         }
@@ -92,26 +90,12 @@ public class Morgunvakt extends Fragment {
         ArrayList<Workstation> workstations = (ArrayList)db.workstationDao().findAllWorkstations(); // Finnur öll nöfn á workstation
         employees = (ArrayList)db.employeeDao().loadAllEmployees(); // Sækir alla starfsmenn í Room
         ArrayList<Employee> employeesToday = findAllSortedToday(); // Starfsmenn dagsins flokkaðir í tímaröð
-        /***
-         * Set nokkra starfsmenn á vinnustöð til að prófa.
-         * Eyða síðar
-         */
-        Long workstationId = workstations.get(1).getWorkstationId();
-        Long workstationId2 = workstations.get(2).getWorkstationId();
 
-        //þurfti að afkommenta til að geta keyrt
-        //employeesToday.get(1).setEmployeeWorkstationId(workstationId);
-        //employeesToday.get(2).setEmployeeWorkstationId(workstationId2);
         for (Workstation workstation : workstations) {
             TextView textView = new TextView(getActivity());
             textView.setText(workstation.getWorkstationName());
             mLinearLayout.addView(textView);
-            /*
-            ListView listView = new ListView(getActivity());
-            EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(getActivity(), R.layout.adapter_view_layout, test);
-            listView.setAdapter(employeeListAdapter);
-            mLinearLayout.addView(listView);
-            */
+
             for (Employee e : employeesToday) {
                 if (e.getEmployeeWorkstationId() == workstation.getWorkstationId()) {
                     TextView textViewName= new TextView(getActivity());
@@ -127,8 +111,7 @@ public class Morgunvakt extends Fragment {
 
             }
         }
-        //EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(getActivity(), R.layout.adapter_view_layout, test);
-        //mListView.setAdapter(employeeListAdapter);
+
     }
 
 

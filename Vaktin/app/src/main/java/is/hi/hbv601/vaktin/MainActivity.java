@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
          */
         if (tmpToken != null) {
             if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now())) {
+                System.out.println("ég keyri");
                 tmpToken.setAlreadyInitialized(true);
                 tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
                 tokenDao.insertToken(tmpToken);
@@ -286,6 +287,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+
+
                 // Sækja starfsmenn í vinnu næstu nótt
                 jsonArray = jsonBody.getJSONArray("employeesTomorrow");
                 if (jsonArray != null) {
@@ -295,7 +298,18 @@ public class MainActivity extends AppCompatActivity {
                         String tFrom = obj.getString("tFrom");
                         String tTo = obj.getString("tTo");
                         String role = obj.getString("role");
+                        String workstationName = obj.getString("workstation");
                         Employee tmpEmp = new Employee(name, role, tFrom, tTo);
+                        if (workstationName != null && !workstationName.equals("null")) {
+                            Workstation tmpWorkstation = wd.findWorkstationWithName(workstationName);
+                            if (tmpWorkstation != null) {
+                                long id = tmpWorkstation.getWorkstationId();
+                                tmpEmp.setEmployeeWorkstationId(id);
+                            }
+                        }
+                        else {
+                            tmpEmp.setEmployeeWorkstationId(-1);
+                        }
                         employees.add(tmpEmp);
                     }
                 }
@@ -312,23 +326,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                // Sækja footer
+                try {
+                    JSONObject item = jsonBody.getJSONObject("footer");
+                    String date = item.getString("date");
+                    String shiftManager = item.getString("shiftManager");
+                    String shiftManagerNumber = item.getString("shiftManagerNumber");
+                    String headDoctor = item.getString("headDoctor");
+                    String headDoctorNumber = item.getString("headDoctorNumber");
+                    Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
+                    FooterDao fd = db.footerDao();
+                    fd.insertFooter(tmpFooter);
 
-                JSONObject item = new JSONObject();
-                String date = item.getString("date");
-                String shiftManager = item.getString("shiftManager");
-                String shiftManagerNumber = item.getString("shiftManagerNumber");
-                String headDoctor = item.getString("headDoctor");
-                String headDoctorNumber = item.getString("headDoctorNumber");
-                Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
-                FooterDao fd = db.footerDao();
-                fd.insertFooter(tmpFooter);
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                }
 
 
                 CommentDao cd = db.commentDao();
                 cd.insertAll(comments);
 
                 employeeDao.insertAll(employees);
+
 
 
 

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.EmployeeDao;
@@ -24,6 +25,7 @@ import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.Workstation;
+import is.hi.hbv601.vaktin.Entities.WorkstationWithEmployees;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 
@@ -35,7 +37,6 @@ public class WorkstationListActivity extends AppCompatActivity {
     private ArrayList<Employee> employees;
     private LinearLayout mLinearLayout;
     private String buttonString = "Bæta við";
-    private UserLocalStore mUserLocalStore;
     private Button mDeleteWs;
 
     private ArrayList<Employee> findAllSorted() {
@@ -43,6 +44,7 @@ public class WorkstationListActivity extends AppCompatActivity {
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
         for (Employee emp : employees) {
+
             LocalDate empDate = LocalDateTimeConverter.toDate(emp.gettFrom()).toLocalDate();
             if (empDate.equals(today)) {
                 resultList.add(emp);
@@ -86,6 +88,11 @@ public class WorkstationListActivity extends AppCompatActivity {
                 Intent i = getIntent();
                 id = i.getLongExtra("workstationId", -1);
                 AppDatabase db = AppDatabase.getInstance();
+                WorkstationWithEmployees workstationWithEmployees = db.mWorkstationWithEmployeesDao().findWorkstationWithEmployeesById(id);
+                for (Employee e : workstationWithEmployees.getStaff()) {
+                    e.setEmployeeWorkstationId(-1);
+                    db.employeeDao().insertEmployee(e);
+                }
                 db.workstationDao().deleteWorkstationWithName(id);
                 Intent k = new Intent(WorkstationListActivity.this, MainActivity.class);
                 startActivity(k);
@@ -96,6 +103,8 @@ public class WorkstationListActivity extends AppCompatActivity {
          *  Get ekki skipt layout 50/50
          */
         ArrayList<Employee> unassignedEmployees = findAllSorted();
+        System.out.println(unassignedEmployees.size());
+        System.out.println(employees.size());
         for (final Employee e : unassignedEmployees) {
             TextView textViewName = new TextView(this);
             textViewName.setText(e.getName());
@@ -148,8 +157,7 @@ public class WorkstationListActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
-                mUserLocalStore.clearedUserData();
-                mUserLocalStore.setUserLoggedIn(false);
+
 
                 // Eyða token
                 AppDatabase db = AppDatabase.getInstance();
