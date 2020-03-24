@@ -105,11 +105,10 @@ public class EmployeeController {
             return new ResponseEntity<>(new AddEmployeeResponse("Invalid fields", errors, employee), HttpStatus.BAD_REQUEST);
         }
 
-        /***
-         * Breytir inntaki notanda úr streng í LocalDateTime
-         */
+        if (employeeService.findByName(employee.getName()) == null) {
+            employeeService.save(employee);
+        }
 
-        employeeService.save(employee);
 
         return new ResponseEntity<>(new AddEmployeeResponse(employee), HttpStatus.OK);
 
