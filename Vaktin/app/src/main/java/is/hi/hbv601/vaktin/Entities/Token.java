@@ -25,10 +25,14 @@ public class Token {
     @ColumnInfo(name = "today")
     public String today;
 
+    @ColumnInfo(name = "last_fetched")
+    public String lastFetched;
+
     public Token(String token) {
         this.token = token;
         this.alreadyInitialized = false;
         this.today = LocalDateConverter.toDateString(LocalDate.now());
+        this.lastFetched = LocalDateTimeConverter.toDateString(LocalDateTime.now());
     }
 
     public String getToken() {
@@ -61,5 +65,13 @@ public class Token {
 
     public void setToday(String today) {
         this.today = today;
+    }
+
+    public String getLastFetched() {
+        return lastFetched;
+    }
+
+    public void setLastFetched(String lastFetched) {
+        this.lastFetched = lastFetched;
     }
 }

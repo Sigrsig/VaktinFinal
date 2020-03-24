@@ -27,6 +27,8 @@ public class PopupActivity extends AppCompatActivity {
     Button mNoButton;
     ListView mCommment;
 
+    private final String url = "http://10.0.2.2:8080/removecomment";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,20 @@ public class PopupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AppDatabase db = AppDatabase.getInstance();
+
+                // Delete from REST
+                try {
+                    new Api().removeComment(url, getIntent().getStringExtra("description"), db.tokenDao().findById(1).getToken());
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+                catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+
                 db.commentDao().deleteComment(getIntent().getStringExtra("description"));
                 Intent i = new Intent(PopupActivity.this, MainActivity.class);
                 startActivity(i);

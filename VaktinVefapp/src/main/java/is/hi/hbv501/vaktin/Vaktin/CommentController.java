@@ -4,6 +4,7 @@ import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
 import is.hi.hbv501.vaktin.Vaktin.Entities.LastModified;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
 import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Request.RemoveCommentRequest;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddCommentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,9 +49,9 @@ public class CommentController {
     }
 
     // Aftur, virkar þetta throw í REST
-    @RequestMapping(value = "removecomment/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> removeComment(@PathVariable("id") long id, Model model) {
-        Comment comment = commentService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid comment ID"));
+    @RequestMapping(value = "removecomment", method = RequestMethod.POST)
+    public ResponseEntity<?> removeComment(@RequestBody RemoveCommentRequest removeCommentRequest) {
+        Comment comment = commentService.findByString(removeCommentRequest.getComment());
 
         LastModified tmpLastModified = lastModifiedService.findById(1);
         tmpLastModified.setDate(LocalDateTime.now());

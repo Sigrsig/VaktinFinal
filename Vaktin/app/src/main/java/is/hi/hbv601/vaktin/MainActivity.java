@@ -83,38 +83,6 @@ public class MainActivity extends AppCompatActivity {
         db = AppDatabase.getAppDatabase(this);
 
         setContentView(R.layout.activity_main);
-        /*
-        * Birta comment á forsíðu
-        */
-       /* mComment = (TextView) findViewById(R.id.comment);
-        List<Comment> commentM = db.commentDao().findAllComment();
-        String tmpString = "";
-        for(Comment c: commentM){
-            tmpString+=c.getDescription()+"\n";
-        }
-        mComment.setText(tmpString);*/
-
-        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
-        ListView mListView = (ListView)findViewById(R.id.comment);
-        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
-        mListView.setAdapter(adapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("id " + id + "\nposition " + position);
-                Comment comment =(Comment) parent.getItemAtPosition(position);
-                System.out.println("Value is "+comment.getDescription());
-                Intent i = new Intent(MainActivity.this, PopupActivity.class);
-                i.putExtra("description", comment.getDescription());
-                startActivity(i);
-
-            }
-
-
-        });
-
-
 
 
         //Ná í gögn úr gagnagrunni og birta á aðalsíðu
@@ -164,15 +132,61 @@ public class MainActivity extends AppCompatActivity {
          * Passar að gera ekki get request á RestController ef þegar er búið að sækja gögn
          * sama dag.
          */
+
+
+
         if (tmpToken != null) {
-            if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now())) {
-                System.out.println("ég keyri");
+            boolean needToFetch = false;
+
+            try {
+                needToFetch = new Api().getLastModified(url + "lastmodified", db.tokenDao().findById(1).getToken());
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+            catch (JSONException e) {
+                System.err.println(e.getMessage());
+            }
+
+
+            if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now()) || needToFetch) {
                 tmpToken.setAlreadyInitialized(true);
                 tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
                 tokenDao.insertToken(tmpToken);
                 initFunc();
             }
         }
+
+        /*
+         * Birta comment á forsíðu
+         */
+       /* mComment = (TextView) findViewById(R.id.comment);
+        List<Comment> commentM = db.commentDao().findAllComment();
+        String tmpString = "";
+        for(Comment c: commentM){
+            tmpString+=c.getDescription()+"\n";
+        }
+        mComment.setText(tmpString);*/
+
+        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
+        ListView mListView = (ListView)findViewById(R.id.comment);
+        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
+        mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("id " + id + "\nposition " + position);
+                Comment comment =(Comment) parent.getItemAtPosition(position);
+                System.out.println("Value is "+comment.getDescription());
+                Intent i = new Intent(MainActivity.this, PopupActivity.class);
+                i.putExtra("description", comment.getDescription());
+                startActivity(i);
+
+            }
+
+
+        });
 
 
 
@@ -256,7 +270,9 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String name = obj.getString("workstationName");
                         Workstation tmpWorkstation = new Workstation(name);
-                        workstations.add(tmpWorkstation);
+                        if (db.workstationDao().findWorkstationWithName(name) == null) {
+                            workstations.add(tmpWorkstation);
+                        }
                     }
                 }
 

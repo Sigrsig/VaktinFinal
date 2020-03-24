@@ -1,8 +1,14 @@
 package is.hi.hbv501.vaktin.Vaktin.Wrappers.Request;
 
-public class DeleteWorkstationRequest {
+import java.io.Serializable;
+
+public class DeleteWorkstationRequest implements Serializable {
+
+    private static final long serialVersionUID = 5926468583005150707L;
 
     String workstationName;
+
+    public DeleteWorkstationRequest() { }
 
     public DeleteWorkstationRequest(String workstationName) {
         this.workstationName = workstationName;

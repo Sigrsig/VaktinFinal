@@ -6,9 +6,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,13 +22,70 @@ public class Api {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
+    AppDatabase db;
+
     OkHttpClient client = new OkHttpClient();
 
+
+    public boolean getLastModified(String url, String tok) throws IOException, JSONException {
+        db = AppDatabase.getInstance();
+        if (tok != null) {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                String result = null;
+                LocalDateTime tmpDate = null;
+                LocalDateTime lastFetched = null;
+                Boolean needToFetch = false;
+
+                result = res.body().string();
+                JSONObject jsonObject = new JSONObject(result);
+                lastFetched = LocalDateTimeConverter.toDate(db.tokenDao().findById(1).getLastFetched());
+                tmpDate = LocalDateTimeConverter.toDate(jsonObject.getString("date"));
+
+                if (tmpDate.compareTo(lastFetched) > 0) {
+                    needToFetch = true;
+                }
+
+                return needToFetch;
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+                System.err.println(e.getStackTrace()[0].getLineNumber());
+            }
+
+        }
+
+        return false;
+    }
+
+    public String removeComment(String url, String comment, String tok) throws IOException, JSONException {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("comment", comment);
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                return res.body().string();
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return null;
+
+    }
 
     public String deleteWorkstation(String url, String name, String tok) throws IOException, JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("workstationName", name);
-        System.out.println("name " + name);
         if (tok != null) {
             RequestBody body = RequestBody.create(jsonObj.toString(), JSON);
             Request request = new Request.Builder()

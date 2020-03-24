@@ -125,8 +125,6 @@ public class WorkstationListActivity extends AppCompatActivity {
          *  Get ekki skipt layout 50/50
          */
         ArrayList<Employee> unassignedEmployees = findAllSorted();
-        System.out.println(unassignedEmployees.size());
-        System.out.println(employees.size());
         for (final Employee e : unassignedEmployees) {
             TextView textViewName = new TextView(this);
             textViewName.setText(e.getName());

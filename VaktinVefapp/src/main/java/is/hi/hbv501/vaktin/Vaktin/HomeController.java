@@ -121,12 +121,12 @@ public class HomeController {
 
     // Er throw new ResponseStatusException sambærilegt return response?
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public ResponseEntity<?> DeleteWorkstation(@RequestBody DeleteWorkstationRequest deleteWorkstationRequest) {
-        System.out.println("keyri");
+    public ResponseEntity<?> DeleteWorkstation(@RequestBody DeleteWorkstationRequest deleteWorkstationRequest) throws Exception {
+
         // Virkar þetta throw?
         //Workstation workstation = workstationService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
 
-        System.out.println("halló " +deleteWorkstationRequest.getWorkstationName());
+        //System.out.println("halló " +deleteWorkstationRequest.getWorkstationName());
         Workstation workstation = workstationService.findByName(deleteWorkstationRequest.getWorkstationName());
 
         // Gá hvort id fannst
