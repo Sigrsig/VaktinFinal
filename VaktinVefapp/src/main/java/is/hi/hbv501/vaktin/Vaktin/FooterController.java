@@ -41,6 +41,7 @@ public class FooterController {
     @RequestMapping(value = "/setfooter", method = RequestMethod.POST)
     public ResponseEntity<SetFooterResponse> setFooter(@Valid @RequestBody Footer footer, BindingResult result) {
 
+        System.out.println(footer);
         LastModified tmpLastModified = lastModifiedService.findById(1);
         tmpLastModified.setDate(LocalDateTime.now());
 

@@ -63,7 +63,7 @@ public class EmployeeController {
      * @return Edit.html
      */
 
-    @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
+    @RequestMapping(value = "/addemployee", method = RequestMethod.POST)
     public ResponseEntity<AddEmployeeResponse> addEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
 
         LastModified tmpLastModified = lastModifiedService.findById(1);
@@ -81,10 +81,10 @@ public class EmployeeController {
          * Kannar hvort að tímar séu á réttu formi og birtir villu
          */
 
-        boolean correctDate = employeeService.validateDate(employee.getDateString());
-        boolean boolTimeFrom = employeeService.validateTimeFrom(employee.gettFromString());
-        boolean boolTimeTo = employeeService.validateTimeTo(employee.gettToString());
-        boolean boolName = employeeService.validateName(employee.getName());
+        boolean correctDate = true;
+        boolean boolTimeFrom = true;
+        boolean boolTimeTo = true;
+        boolean boolName = true;
         //System.out.println("gildið á boolName " + boolName);
         ArrayList<String> errors = new ArrayList<>();
         if (!boolTimeFrom) {
@@ -109,7 +109,7 @@ public class EmployeeController {
          * Breytir inntaki notanda úr streng í LocalDateTime
          */
 
-        employeeService.parseToLocalDateTimeWithDate(employee);
+        employeeService.save(employee);
 
         return new ResponseEntity<>(new AddEmployeeResponse(employee), HttpStatus.OK);
 

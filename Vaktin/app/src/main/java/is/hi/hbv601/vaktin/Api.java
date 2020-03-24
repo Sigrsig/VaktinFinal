@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
+import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -25,6 +26,34 @@ public class Api {
     AppDatabase db;
 
     OkHttpClient client = new OkHttpClient();
+
+    public void addEmployee(String url, Employee employee, String tok) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", employee.getName());
+            jsonObject.put("role", employee.getRole());
+            jsonObject.put("tFrom", employee.gettFrom());
+            jsonObject.put("tTo", employee.gettTo());
+        }
+        catch (JSONException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getStackTrace()[0].getLineNumber());
+        }
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                // Nothing
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
 
 
     public boolean getLastModified(String url, String tok) throws IOException, JSONException {
@@ -60,6 +89,10 @@ public class Api {
 
         return false;
     }
+
+    //public String setFooter(String url, JS)
+
+
 
     public String removeComment(String url, String comment, String tok) throws IOException, JSONException {
         JSONObject jsonObj = new JSONObject();
@@ -163,6 +196,7 @@ public class Api {
     public String postNewFooter(String url, String date, String shiftManager, String shiftManagerNumber, String headDoctor, String headDoctorNumber, String tok) throws IOException, JSONException {
         // Búa til json object til að senda á rest controller
         JSONObject jsonObj = new JSONObject();
+        System.out.println(date);
         jsonObj.put("date", date);
         jsonObj.put("shiftManager", shiftManager);
         jsonObj.put("shiftManagerNumber", shiftManagerNumber);

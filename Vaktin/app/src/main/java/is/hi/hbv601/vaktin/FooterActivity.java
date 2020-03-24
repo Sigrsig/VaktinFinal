@@ -16,12 +16,15 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.CommentDao;
 import is.hi.hbv601.vaktin.Database.FooterDao;
 import is.hi.hbv601.vaktin.Entities.Footer;
+import is.hi.hbv601.vaktin.Utilities.LocalDateConverter;
 
 public class FooterActivity extends AppCompatActivity {
 
@@ -57,8 +60,11 @@ public class FooterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(FooterActivity.this, "Aftur á Editsíðuna", Toast.LENGTH_SHORT).show();
 
-                Calendar calendar = Calendar.getInstance();
-                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+                // Virkar ekki. Vistast ekki í REST
+                //Calendar calendar = Calendar.getInstance();
+                //String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+                String currentDate = LocalDateConverter.toDateString(LocalDate.now());
 
                 /*
                 ná í nýjan fót

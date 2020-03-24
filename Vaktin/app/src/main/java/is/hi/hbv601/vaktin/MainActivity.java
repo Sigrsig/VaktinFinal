@@ -85,15 +85,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
-        mFooter = (TextView) findViewById(R.id.footer);
-
-        Footer c = db.footerDao().findFoooter();
-        if(c!=null){
-            String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
-            mFooter.setText(tmpFooter);
-
-        }
 
 
 
@@ -187,6 +178,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+
+        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
+        mFooter = (TextView) findViewById(R.id.footer);
+
+        Footer c = db.footerDao().findFoooter();
+        if(c!=null){
+            String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
+            mFooter.setText(tmpFooter);
+
+        }
 
 
 
