@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/vaktinColor"
+    android:background="@color/colorLight"
     tools:context=".CommentActivity">
 
 
@@ -24,12 +24,13 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/rounded_edittext"
             android:hint="@string/Athugasemd"
             android:inputType="text"
             android:gravity="top|start"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            />
 
         <Button
             android:id="@+id/vista_button"
