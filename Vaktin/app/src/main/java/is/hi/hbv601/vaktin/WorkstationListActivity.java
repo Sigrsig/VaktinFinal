@@ -15,8 +15,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.EmployeeDao;
@@ -24,6 +28,7 @@ import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.Workstation;
+import is.hi.hbv601.vaktin.Entities.WorkstationWithEmployees;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 
@@ -35,14 +40,16 @@ public class WorkstationListActivity extends AppCompatActivity {
     private ArrayList<Employee> employees;
     private LinearLayout mLinearLayout;
     private String buttonString = "Bæta við";
-    private UserLocalStore mUserLocalStore;
     private Button mDeleteWs;
+
+    private final String url = "http://10.0.2.2:8080/";
 
     private ArrayList<Employee> findAllSorted() {
         ArrayList<Employee> resultList = new ArrayList<>();
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
         for (Employee emp : employees) {
+
             LocalDate empDate = LocalDateTimeConverter.toDate(emp.gettFrom()).toLocalDate();
             if (empDate.equals(today)) {
                 resultList.add(emp);
@@ -86,7 +93,29 @@ public class WorkstationListActivity extends AppCompatActivity {
                 Intent i = getIntent();
                 id = i.getLongExtra("workstationId", -1);
                 AppDatabase db = AppDatabase.getInstance();
+
+                // Delete from REST
+                try {
+                    Workstation tmpWorkstation = db.workstationDao().findWorkstationWithId(id);
+                    new Api().deleteWorkstation(url + "delete", tmpWorkstation.getWorkstationName(), db.tokenDao().findById(1).getToken());
+                }
+                catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                    System.err.println(e.getStackTrace()[0].getLineNumber());
+                }
+
+                WorkstationWithEmployees workstationWithEmployees = db.mWorkstationWithEmployeesDao().findWorkstationWithEmployeesById(id);
+                for (Employee e : workstationWithEmployees.getStaff()) {
+                    e.setEmployeeWorkstationId(-1);
+                    db.employeeDao().insertEmployee(e);
+                }
                 db.workstationDao().deleteWorkstationWithName(id);
+
+
                 Intent k = new Intent(WorkstationListActivity.this, MainActivity.class);
                 startActivity(k);
             }
@@ -112,6 +141,10 @@ public class WorkstationListActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Vista breytingar í REST
+                    Workstation workstation = db.workstationDao().findWorkstationWithId(id);
+                    new Api().addEmployeeToWorkstation(url + "addtoworkstation", e, workstation, db.tokenDao().findById(1).getToken());
+
                     e.setEmployeeWorkstationId(id);
                     db.employeeDao().insertEmployee(e);
                     Intent i = new Intent(WorkstationListActivity.this, WorkstationListActivity.class);
@@ -148,8 +181,7 @@ public class WorkstationListActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
-                mUserLocalStore.clearedUserData();
-                mUserLocalStore.setUserLoggedIn(false);
+
 
                 // Eyða token
                 AppDatabase db = AppDatabase.getInstance();

@@ -2,11 +2,10 @@ package is.hi.hbv501.vaktin.Vaktin;
 
 import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
+import is.hi.hbv501.vaktin.Vaktin.Entities.LastModified;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
-import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
-import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
-import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
-import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
+import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Request.AddToWorkstationRequest;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddWorkstationResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
@@ -43,15 +42,17 @@ public class WorkstationController {
     private EmployeeService employeeService;
     private FooterService footerService;
     private HomeController homeController;
+    private LastModifiedService lastModifiedService;
 
 
     @Autowired
-    public WorkstationController(WorkstationService workstationService, CommentService commentService, EmployeeService employeeService, FooterService footerService, HomeController homeController) {
+    public WorkstationController(WorkstationService workstationService, CommentService commentService, EmployeeService employeeService, FooterService footerService, HomeController homeController, LastModifiedService lastModifiedService) {
         this.workstationService = workstationService;
         this.commentService = commentService;
         this.employeeService = employeeService;
         this.footerService = footerService;
         this.homeController = homeController;
+        this.lastModifiedService = lastModifiedService;
     }
 
     @RequestMapping("workstations")
@@ -71,6 +72,8 @@ public class WorkstationController {
     @RequestMapping(value = "/clearworkstation/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> ClearFromWorkstation(@PathVariable("id") long id) {
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         Employee tempEmp = employeeService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
         tempEmp.setWorkstation(null);
@@ -79,13 +82,31 @@ public class WorkstationController {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "/removeemployee", method = RequestMethod.POST)
+    public ResponseEntity<?> ClearFromWorkstation(@RequestBody Employee employee) {
+
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
+
+        Employee tempEmp = employeeService.findByName(employee.getName());
+        tempEmp.setWorkstation(null);
+        employeeService.save(tempEmp);
+
+        return ResponseEntity.noContent().build();
+    }
+
     // Er betra að nota isPresent() eða virkar þetta?
-    @RequestMapping(value = "addtoworkstation/{eid}/{wid}", method = RequestMethod.GET)
-    public ResponseEntity<?> AddToWorkstation(@PathVariable("eid") long eid, @PathVariable("wid") long wid) {
+    @RequestMapping(value = "addtoworkstation", method = RequestMethod.POST)
+    public ResponseEntity<?> AddToWorkstation(@RequestBody AddToWorkstationRequest addToWorkstationRequest) {
 
-
-        Employee tempEmp = employeeService.findById(eid).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
-        Workstation tempWorkstation = workstationService.findById(wid).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+        System.out.println("hæ sæti " +addToWorkstationRequest.getWorkstationName());
+        System.out.println("hæ sæti " +addToWorkstationRequest.getEmployeeName());
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
+        System.out.println("hú!");
+        Employee tempEmp = employeeService.findByName(addToWorkstationRequest.getEmployeeName());
+        System.out.println(tempEmp.getName());
+        Workstation tempWorkstation = workstationService.findByName(addToWorkstationRequest.getWorkstationName());
         tempEmp.setWorkstation(tempWorkstation);
         employeeService.save(tempEmp);
 
@@ -100,6 +121,8 @@ public class WorkstationController {
     @RequestMapping(value = "addworkstation", method = RequestMethod.POST)
     public ResponseEntity<AddWorkstationResponse> AddWorkstation(@Valid @RequestBody Workstation workstation, BindingResult result) {
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         if (result.hasErrors()) {
             return new ResponseEntity<>(new AddWorkstationResponse("Invalid workstation", result.getFieldErrors(), workstation), HttpStatus.BAD_REQUEST);

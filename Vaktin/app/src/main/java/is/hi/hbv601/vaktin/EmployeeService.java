@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.SystemClock;
 
+/***
+ * Þessi klasi er ekki í notkun
+ */
 public class EmployeeService extends IntentService {
 
     // Veit ekki af hverju þetta er til

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Workstation  {
 
+
     @PrimaryKey(autoGenerate = true)
     public long workstationId;
 

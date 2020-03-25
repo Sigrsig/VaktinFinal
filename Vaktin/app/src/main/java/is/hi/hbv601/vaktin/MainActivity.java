@@ -83,49 +83,8 @@ public class MainActivity extends AppCompatActivity {
         db = AppDatabase.getAppDatabase(this);
 
         setContentView(R.layout.activity_main);
-        /*
-        * Birta comment á forsíðu
-        */
-       /* mComment = (TextView) findViewById(R.id.comment);
-        List<Comment> commentM = db.commentDao().findAllComment();
-        String tmpString = "";
-        for(Comment c: commentM){
-            tmpString+=c.getDescription()+"\n";
-        }
-        mComment.setText(tmpString);*/
-
-        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
-        ListView mListView = (ListView)findViewById(R.id.comment);
-        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
-        mListView.setAdapter(adapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("id " + id + "\nposition " + position);
-                Comment comment =(Comment) parent.getItemAtPosition(position);
-                System.out.println("Value is "+comment.getDescription());
-                Intent i = new Intent(MainActivity.this, PopupActivity.class);
-                i.putExtra("description", comment.getDescription());
-                startActivity(i);
-
-            }
 
 
-        });
-
-
-
-
-        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
-        mFooter = (TextView) findViewById(R.id.footer);
-
-        Footer c = db.footerDao().findFoooter();
-        if(c!=null){
-            String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
-            mFooter.setText(tmpFooter);
-
-        }
 
 
 
@@ -164,13 +123,73 @@ public class MainActivity extends AppCompatActivity {
          * Passar að gera ekki get request á RestController ef þegar er búið að sækja gögn
          * sama dag.
          */
+
+
+
         if (tmpToken != null) {
-            if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now())) {
+            boolean needToFetch = false;
+
+            try {
+                needToFetch = new Api().getLastModified(url + "lastmodified", db.tokenDao().findById(1).getToken());
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+            catch (JSONException e) {
+                System.err.println(e.getMessage());
+            }
+
+
+            if (tmpToken.isAlreadyInitialized() == false || tmpToken.getToday() == LocalDateConverter.toDateString(LocalDate.now()) || needToFetch) {
                 tmpToken.setAlreadyInitialized(true);
                 tmpToken.setToday(LocalDateConverter.toDateString(LocalDate.now()));
+                tmpToken.setLastFetched(LocalDateTimeConverter.toDateString(LocalDateTime.now()));
                 tokenDao.insertToken(tmpToken);
+
                 initFunc();
             }
+        }
+
+        /*
+         * Birta comment á forsíðu
+         */
+       /* mComment = (TextView) findViewById(R.id.comment);
+        List<Comment> commentM = db.commentDao().findAllComment();
+        String tmpString = "";
+        for(Comment c: commentM){
+            tmpString+=c.getDescription()+"\n";
+        }
+        mComment.setText(tmpString);*/
+
+        ArrayList<Comment> comments = (ArrayList)db.commentDao().findAllComment();
+        ListView mListView = (ListView)findViewById(R.id.comment);
+        CommentListAdapter adapter = new CommentListAdapter(this, R.layout.adapter_view_comment, comments);
+        mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("id " + id + "\nposition " + position);
+                Comment comment =(Comment) parent.getItemAtPosition(position);
+                System.out.println("Value is "+comment.getDescription());
+                Intent i = new Intent(MainActivity.this, PopupActivity.class);
+                i.putExtra("description", comment.getDescription());
+                startActivity(i);
+
+            }
+
+
+        });
+
+
+        //Ná í gögn úr gagnagrunni og birta á aðalsíðu
+        mFooter = (TextView) findViewById(R.id.footer);
+
+        Footer c = db.footerDao().findFoooter();
+        if(c!=null){
+            String tmpFooter ="Vaktstjóri - " + c.getShiftManager()+ " - "+c.getShiftManagerNumber() + " - Deildarstjóri - " + c.getHeadDoctor() + " - " + c.getHeadDoctorNumber();
+            mFooter.setText(tmpFooter);
+
         }
 
 
@@ -255,7 +274,9 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String name = obj.getString("workstationName");
                         Workstation tmpWorkstation = new Workstation(name);
-                        workstations.add(tmpWorkstation);
+                        if (db.workstationDao().findWorkstationWithName(name) == null) {
+                            workstations.add(tmpWorkstation);
+                        }
                     }
                 }
 
@@ -267,24 +288,29 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject emp = jsonArray.getJSONObject(i);
                         String name = emp.getString("name");
-                        String tFrom = emp.getString("tFrom");
-                        String tTo = emp.getString("tTo");
-                        String role = emp.getString("role");
-                        String workstationName = emp.getString("workstation");
-                        Employee tmpEmp = new Employee(name, role, tFrom, tTo);
-                        if (workstationName != null && !workstationName.equals("null")) {
-                            Workstation tmpWorkstation = wd.findWorkstationWithName(workstationName);
-                            if (tmpWorkstation != null) {
-                                long id = tmpWorkstation.getWorkstationId();
-                                tmpEmp.setEmployeeWorkstationId(id);
+                        if (db.employeeDao().findByName(name) == null) {
+                            String tFrom = emp.getString("tFrom");
+                            String tTo = emp.getString("tTo");
+                            String role = emp.getString("role");
+                            Employee tmpEmp = new Employee(name, role, tFrom, tTo);
+                            String stringWorkstation = emp.getString("workstation");
+                            if (stringWorkstation != null && !stringWorkstation.equals("null")) {
+                                JSONObject jsonWorkstation = emp.getJSONObject("workstation");
+                                Workstation tmpWorkstation = wd.findWorkstationWithName(jsonWorkstation.getString("workstationName"));
+                                if (tmpWorkstation != null) {
+                                    long id = tmpWorkstation.getWorkstationId();
+                                    tmpEmp.setEmployeeWorkstationId(id);
+                                }
                             }
+                            else {
+                                tmpEmp.setEmployeeWorkstationId(-1);
+                            }
+                            employees.add(tmpEmp);
                         }
-                        else {
-                            tmpEmp.setEmployeeWorkstationId(-1);
-                        }
-                        employees.add(tmpEmp);
                     }
                 }
+
+
 
                 // Sækja starfsmenn í vinnu næstu nótt
                 jsonArray = jsonBody.getJSONArray("employeesTomorrow");
@@ -292,11 +318,25 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String name = obj.getString("name");
-                        String tFrom = obj.getString("tFrom");
-                        String tTo = obj.getString("tTo");
-                        String role = obj.getString("role");
-                        Employee tmpEmp = new Employee(name, role, tFrom, tTo);
-                        employees.add(tmpEmp);
+                        if (db.employeeDao().findByName(name) == null) {
+                            String tFrom = obj.getString("tFrom");
+                            String tTo = obj.getString("tTo");
+                            String role = obj.getString("role");
+                            Employee tmpEmp = new Employee(name, role, tFrom, tTo);
+                            String stringWorkstation = obj.getString("workstation");
+                            if (stringWorkstation != null && !stringWorkstation.equals("null")) {
+                                JSONObject jsonWorkstation = obj.getJSONObject("workstation");
+                                Workstation tmpWorkstation = wd.findWorkstationWithName(jsonWorkstation.getString("workstationName"));
+                                if (tmpWorkstation != null) {
+                                    long id = tmpWorkstation.getWorkstationId();
+                                    tmpEmp.setEmployeeWorkstationId(id);
+                                }
+                            }
+                            else {
+                                tmpEmp.setEmployeeWorkstationId(-1);
+                            }
+                            employees.add(tmpEmp);
+                        }
                     }
                 }
 
@@ -312,23 +352,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                // Sækja footer
+                try {
+                    JSONObject item = jsonBody.getJSONObject("footer");
+                    String date = item.getString("date");
+                    String shiftManager = item.getString("shiftManager");
+                    String shiftManagerNumber = item.getString("shiftManagerNumber");
+                    String headDoctor = item.getString("headDoctor");
+                    String headDoctorNumber = item.getString("headDoctorNumber");
+                    Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
+                    FooterDao fd = db.footerDao();
+                    fd.insertFooter(tmpFooter);
 
-                JSONObject item = new JSONObject();
-                String date = item.getString("date");
-                String shiftManager = item.getString("shiftManager");
-                String shiftManagerNumber = item.getString("shiftManagerNumber");
-                String headDoctor = item.getString("headDoctor");
-                String headDoctorNumber = item.getString("headDoctorNumber");
-                Footer tmpFooter = new Footer(date, shiftManager, shiftManagerNumber, headDoctor, headDoctorNumber);
-                FooterDao fd = db.footerDao();
-                fd.insertFooter(tmpFooter);
+                }
+                catch (JSONException e) {
+                    System.err.println(e.getMessage());
+                }
 
 
                 CommentDao cd = db.commentDao();
                 cd.insertAll(comments);
 
                 employeeDao.insertAll(employees);
+
 
 
 

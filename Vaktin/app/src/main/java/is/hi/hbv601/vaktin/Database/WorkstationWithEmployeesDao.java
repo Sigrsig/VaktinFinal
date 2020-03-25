@@ -12,6 +12,6 @@ import is.hi.hbv601.vaktin.Entities.WorkstationWithEmployees;
 public interface WorkstationWithEmployeesDao {
 
     @Transaction
-    @Query("SELECT * FROM Workstation")
-    public List<WorkstationWithEmployees> getWorkstationWithEmployees();
+    @Query("SELECT * FROM Workstation WHERE workstationId = :id")
+    public WorkstationWithEmployees findWorkstationWithEmployeesById(long id);
 }

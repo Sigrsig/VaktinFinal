@@ -3,12 +3,10 @@
 package is.hi.hbv501.vaktin.Vaktin;
 
 import com.fasterxml.jackson.databind.deser.DataFormatReaders;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Footer;
-import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
+import is.hi.hbv501.vaktin.Vaktin.Entities.*;
 import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
+import is.hi.hbv501.vaktin.Vaktin.Services.LastModifiedService;
 import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddEmployeeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +41,15 @@ public class EmployeeController {
     private CommentService commentService;
     private WorkstationService workstationService;
     private HomeController homeController;
+    private LastModifiedService lastModifiedService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService, CommentService commentService, WorkstationService workstationService, HomeController homeController) {
+    public EmployeeController(EmployeeService employeeService, CommentService commentService, WorkstationService workstationService, HomeController homeController, LastModifiedService lastModifiedService) {
         this.employeeService = employeeService;
         this.commentService = commentService;
         this.workstationService = workstationService;
         this.homeController = homeController;
+        this.lastModifiedService = lastModifiedService;
     }
 
     /***
@@ -63,9 +63,11 @@ public class EmployeeController {
      * @return Edit.html
      */
 
-    @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
+    @RequestMapping(value = "/addemployee", method = RequestMethod.POST)
     public ResponseEntity<AddEmployeeResponse> addEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         /***
          * Ef villur í formi
@@ -79,10 +81,10 @@ public class EmployeeController {
          * Kannar hvort að tímar séu á réttu formi og birtir villu
          */
 
-        boolean correctDate = employeeService.validateDate(employee.getDateString());
-        boolean boolTimeFrom = employeeService.validateTimeFrom(employee.gettFromString());
-        boolean boolTimeTo = employeeService.validateTimeTo(employee.gettToString());
-        boolean boolName = employeeService.validateName(employee.getName());
+        boolean correctDate = true;
+        boolean boolTimeFrom = true;
+        boolean boolTimeTo = true;
+        boolean boolName = true;
         //System.out.println("gildið á boolName " + boolName);
         ArrayList<String> errors = new ArrayList<>();
         if (!boolTimeFrom) {
@@ -103,11 +105,10 @@ public class EmployeeController {
             return new ResponseEntity<>(new AddEmployeeResponse("Invalid fields", errors, employee), HttpStatus.BAD_REQUEST);
         }
 
-        /***
-         * Breytir inntaki notanda úr streng í LocalDateTime
-         */
+        if (employeeService.findByName(employee.getName()) == null) {
+            employeeService.save(employee);
+        }
 
-        employeeService.parseToLocalDateTimeWithDate(employee);
 
         return new ResponseEntity<>(new AddEmployeeResponse(employee), HttpStatus.OK);
 

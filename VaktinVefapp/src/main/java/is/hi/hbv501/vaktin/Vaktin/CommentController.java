@@ -1,11 +1,10 @@
 package is.hi.hbv501.vaktin.Vaktin;
 
 import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
+import is.hi.hbv501.vaktin.Vaktin.Entities.LastModified;
 import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
-import is.hi.hbv501.vaktin.Vaktin.Services.CommentService;
-import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
-import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
-import is.hi.hbv501.vaktin.Vaktin.Services.WorkstationService;
+import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Request.RemoveCommentRequest;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.AddCommentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /***
  * Controller for Comment routes
@@ -35,21 +35,26 @@ public class CommentController {
     private EmployeeService employeeService;
     private FooterService footerService;
     private HomeController homeController;
+    private LastModifiedService lastModifiedService;
 
 
     @Autowired
-    public CommentController(CommentService commentService, WorkstationService workstationService, EmployeeService employeeService, FooterService footerService, HomeController homeController) {
+    public CommentController(CommentService commentService, WorkstationService workstationService, EmployeeService employeeService, FooterService footerService, HomeController homeController, LastModifiedService lastModifiedService) {
         this.commentService = commentService;
         this.workstationService = workstationService;
         this.employeeService = employeeService;
         this.footerService = footerService;
         this.homeController = homeController;
+        this.lastModifiedService = lastModifiedService;
     }
 
     // Aftur, virkar þetta throw í REST
-    @RequestMapping(value = "removecomment/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> removeComment(@PathVariable("id") long id, Model model) {
-        Comment comment = commentService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid comment ID"));
+    @RequestMapping(value = "removecomment", method = RequestMethod.POST)
+    public ResponseEntity<?> removeComment(@RequestBody RemoveCommentRequest removeCommentRequest) {
+        Comment comment = commentService.findByString(removeCommentRequest.getComment());
+
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         if (comment == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Comment not found");
@@ -72,6 +77,8 @@ public class CommentController {
     @RequestMapping(value = "addcomment", method = RequestMethod.POST)
     public ResponseEntity<AddCommentResponse> addComment(@Valid @RequestBody Comment comment, BindingResult result) {
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         if (result.hasErrors()) {
             return new ResponseEntity<>(new AddCommentResponse("Invalid comment", result.getFieldErrors(), comment), HttpStatus.BAD_REQUEST);

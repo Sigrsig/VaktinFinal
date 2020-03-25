@@ -19,6 +19,15 @@
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/del_station"
+        android:id="@+id/Delete_ws"
+        android:background="@color/colorLight"
+
+        />
+
     <ScrollView
         android:id="@+id/SCROLLER_ID"
         android:layout_width="fill_parent"
@@ -40,12 +49,5 @@
 
     </ScrollView>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/del_station"
-        android:id="@+id/Delete_ws"
-        android:background="@color/colorLight"
 
-        />
 </LinearLayout>
