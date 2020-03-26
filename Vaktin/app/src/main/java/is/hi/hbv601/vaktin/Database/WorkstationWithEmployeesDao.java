@@ -4,10 +4,12 @@ import androidx.room.Dao;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import java.util.List;
-
 import is.hi.hbv601.vaktin.Entities.WorkstationWithEmployees;
 
+/***
+ * One-to-many relationship between Workstation and Employee
+ * Service for querying employees of workstation
+ */
 @Dao
 public interface WorkstationWithEmployeesDao {
 

@@ -15,6 +15,9 @@ import java.util.List;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.R;
 
+/***
+ *  NOT USED. DELETE BEFORE TURNING IN
+ */
 public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
     private static final String TAG = "EmployeeListAdapter";

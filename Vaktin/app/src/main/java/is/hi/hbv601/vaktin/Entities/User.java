@@ -4,11 +4,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/***
+ * Entity for User
+ * Primary key is id
+ */
 @Entity
 public class User {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
 
     @ColumnInfo(name = "username")
     public String username;

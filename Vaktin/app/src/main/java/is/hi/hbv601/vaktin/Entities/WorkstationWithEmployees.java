@@ -6,6 +6,10 @@ import androidx.room.Relation;
 
 import java.util.List;
 
+/***
+ * Entity for WorkstationWithEmployee
+ * Relation on workstationId and employeeWorkstationId
+ */
 public class WorkstationWithEmployees {
 
     @Embedded public Workstation workstation;

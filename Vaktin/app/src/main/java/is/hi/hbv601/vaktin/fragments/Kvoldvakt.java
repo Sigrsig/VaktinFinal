@@ -1,9 +1,11 @@
 package is.hi.hbv601.vaktin.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -17,18 +19,25 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import is.hi.hbv601.vaktin.Api;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.WorkstationDao;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Workstation;
+import is.hi.hbv601.vaktin.MainActivity;
 import is.hi.hbv601.vaktin.R;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 
+/***
+ * Fragment for Kvöldvakt in MainActivity
+ */
 public class Kvoldvakt extends Fragment {
 
     private LinearLayout mLinearLayout;
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees; // Fetches all employees in Room database
+    private final String buttonString = "Fjarlægja";
+    private final String url = "http://10.0.2.2:8080/removeemployee"; // POST request to remove employee from workstation
 
     @Nullable
     @Override
@@ -39,11 +48,14 @@ public class Kvoldvakt extends Fragment {
                 container,
                 false);
 
-
         return rootView;
     }
 
 
+    /***
+     * Filters and sorts all employees working on night shift
+     * @return List of employees working on night shift
+     */
     private ArrayList<Employee> findAllSortedToday() {
         LocalDate date = LocalDate.now();
         ArrayList<Employee> resultList = new ArrayList<>();
@@ -64,38 +76,58 @@ public class Kvoldvakt extends Fragment {
         /***
          * Sækja gögn til að birta við morgunvakt
          * Af hverju getur maður ekki bætt við nýju ListView fyrir hverja starfsstöð?
+         *
+         * Role is missing
          */
-        AppDatabase db = AppDatabase.getInstance();
-        WorkstationDao wd = db.workstationDao();
+        final AppDatabase db = AppDatabase.getInstance();
         ArrayList<Workstation> workstations = (ArrayList)db.workstationDao().findAllWorkstations(); // Finnur öll nöfn á workstation
         employees = (ArrayList)db.employeeDao().loadAllEmployees(); // Sækir alla starfsmenn í Room
         ArrayList<Employee> employeesToday = findAllSortedToday(); // Starfsmenn dagsins flokkaðir í tímaröð
 
         for (Workstation workstation : workstations) {
-            TextView textView = new TextView(getActivity());
+
+            TextView textView = new TextView(getActivity()); // Name of workstation
             textView.setTextAppearance(getActivity(), R.style.workst_style);
+
             textView.setText(workstation.getWorkstationName());
             mLinearLayout.addView(textView);
 
-            for (Employee e : employeesToday) {
+            for (final Employee e : employeesToday) {
                 if (e.getEmployeeWorkstationId() == workstation.getWorkstationId()) {
-                    TextView textViewName= new TextView(getActivity());
+                    TextView textViewName= new TextView(getActivity()); // Name of employee
                     textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewName.setText(e.getName());
                     mLinearLayout.addView(textViewName);
-                    TextView textViewTimeFrom = new TextView(getActivity());
+                    TextView textViewTimeFrom = new TextView(getActivity()); // Start of shift
                     textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewTimeFrom.setText(e.gettFrom());
                     mLinearLayout.addView(textViewTimeFrom);
-                    TextView textViewTimeTo = new TextView(getActivity());
+                    TextView textViewTimeTo = new TextView(getActivity()); // End of shift
                     textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewTimeTo.setText(e.gettTo());
                     mLinearLayout.addView(textViewTimeTo);
+
+                    Button button = new Button(getActivity()); // Button to remove from workstation
+                    button.setText(buttonString);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            e.setEmployeeWorkstationId(-1);
+                            db.employeeDao().insertEmployee(e);
+
+                            // Vista breytingar í REST
+                            new Api().removeEmployeeFromWorkstation(url, e, db.tokenDao().findById(1).getToken());
+
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+
+                        }
+                    });
+                    mLinearLayout.addView(button);
                 }
 
             }
         }
-        //EmployeeListAdapter employeeListAdapter = new EmployeeListAdapter(getActivity(), R.layout.adapter_view_layout, test);
-        //mListView.setAdapter(employeeListAdapter);
+
     }
 }

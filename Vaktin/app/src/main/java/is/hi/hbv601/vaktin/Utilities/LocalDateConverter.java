@@ -4,6 +4,10 @@ import androidx.room.TypeConverter;
 
 import java.time.LocalDate;
 
+/***
+ * Parses LocalDate to String and String to LocalDate
+ * Needed for Room database
+ */
 public class LocalDateConverter {
 
     @TypeConverter

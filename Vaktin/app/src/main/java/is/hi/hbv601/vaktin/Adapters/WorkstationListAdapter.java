@@ -15,9 +15,10 @@ import java.util.List;
 import is.hi.hbv601.vaktin.Entities.Workstation;
 import is.hi.hbv601.vaktin.R;
 
+/***
+ *  List adapter for workstations in WorkstationFrontPageActivity
+ */
 public class WorkstationListAdapter extends ArrayAdapter<Workstation> {
-
-    public static final String TAG = "WorkstationListAdapter";
 
     private Context mContext;
     private int mResource;
@@ -31,7 +32,7 @@ public class WorkstationListAdapter extends ArrayAdapter<Workstation> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String name = getItem(position).getWorkstationName();
+        String name = getItem(position).getWorkstationName(); // Name of Workstation
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -39,7 +40,6 @@ public class WorkstationListAdapter extends ArrayAdapter<Workstation> {
         final TextView tvName = (TextView)convertView.findViewById(R.id.text_view);
 
         tvName.setText(name);
-        View row = null;
 
         return convertView;
     }

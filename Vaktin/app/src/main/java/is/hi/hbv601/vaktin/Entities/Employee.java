@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDateTime;
-
-import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
-
+/***
+ * Entity for Employee
+ * Primary key is employeeId
+ */
 @Entity
 public class Employee {
 

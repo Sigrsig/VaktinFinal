@@ -10,6 +10,9 @@ import java.util.List;
 
 import is.hi.hbv601.vaktin.Entities.Comment;
 
+/***
+ * Service for Comment entity
+ */
 @Dao
 public interface CommentDao {
 

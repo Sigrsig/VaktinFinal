@@ -20,14 +20,25 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/***
+ * Handles all HTTP requests to H-2 database
+ */
 public class Api {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-    AppDatabase db;
+    AppDatabase db; // Room database
 
-    OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = new OkHttpClient(); // Client that handles HTTP requests for app
 
+
+    /***
+     * Adds employee to workstation
+     * @param url
+     * @param employee
+     * @param workstation
+     * @param tok
+     */
     public void addEmployeeToWorkstation(String url, Employee employee, Workstation workstation, String tok) {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -54,6 +65,13 @@ public class Api {
         }
     }
 
+
+    /***
+     * Removes employee from workstation
+     * @param url
+     * @param employee
+     * @param tok
+     */
     public void removeEmployeeFromWorkstation(String url, Employee employee, String tok) {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -82,6 +100,13 @@ public class Api {
         }
     }
 
+
+    /***
+     * Creates new employee
+     * @param url
+     * @param employee
+     * @param tok
+     */
     public void addEmployee(String url, Employee employee, String tok) {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -111,6 +136,14 @@ public class Api {
     }
 
 
+    /***
+     * Checks if data has been modified since last fetch
+     * @param url
+     * @param tok
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public boolean getLastModified(String url, String tok) throws IOException, JSONException {
         db = AppDatabase.getInstance();
         if (tok != null) {
@@ -122,7 +155,6 @@ public class Api {
                 String result = null;
                 LocalDateTime tmpDate = null;
                 LocalDateTime lastFetched = null;
-                Boolean needToFetch = false;
 
                 result = res.body().string();
                 JSONObject jsonObject = new JSONObject(result);
@@ -130,10 +162,8 @@ public class Api {
                 tmpDate = LocalDateTimeConverter.toDate(jsonObject.getString("date"));
 
                 if (tmpDate.compareTo(lastFetched) > 0) {
-                    needToFetch = true;
+                    return true;
                 }
-
-                return needToFetch;
             }
             catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -145,10 +175,16 @@ public class Api {
         return false;
     }
 
-    //public String setFooter(String url, JS)
 
-
-
+    /***
+     * Removes comment
+     * @param url
+     * @param comment
+     * @param tok
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public String removeComment(String url, String comment, String tok) throws IOException, JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("comment", comment);
@@ -171,6 +207,16 @@ public class Api {
 
     }
 
+
+    /***
+     * Removes Workstation
+     * @param url
+     * @param name
+     * @param tok
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public String deleteWorkstation(String url, String name, String tok) throws IOException, JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("workstationName", name);
@@ -193,7 +239,9 @@ public class Api {
 
     }
 
+
     /***
+     *
      * Bæta við nýrri vinnustöð
      * Þurfum kannski að skila einhverju öðru en null
      */

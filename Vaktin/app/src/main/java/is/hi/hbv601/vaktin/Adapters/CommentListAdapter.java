@@ -21,6 +21,9 @@ import is.hi.hbv601.vaktin.Entities.Workstation;
 import is.hi.hbv601.vaktin.MainActivity;
 import is.hi.hbv601.vaktin.R;
 
+/***
+ * Adapter for comments on front page (MainActivity)
+ */
 public class CommentListAdapter extends ArrayAdapter<Comment> {
 
     public static final String TAG = "CommentListAdapter";
