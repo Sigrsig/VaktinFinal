@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/vaktinColor"
+    android:background="@color/colorLight"
     tools:context=".EditActivity">
 
 
@@ -18,41 +18,46 @@
             android:id="@+id/simpleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="40dp"
+            android:paddingBottom="30dp"
             android:text="@string/commentSite"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/workstation_button"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_button"
-            android:text="@string/add_workstation" />
+            android:text="@string/add_workstation"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/employee_button"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_button"
-            android:text="@string/add_employee" />
+            android:text="@string/add_employee"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/comment_button"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_button"
-            android:text="@string/add_comment" />
+            android:text="@string/add_comment"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/footer_button"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_button"
-            android:text="@string/set_footer" />
+            android:text="@string/set_footer"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 

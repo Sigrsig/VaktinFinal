@@ -100,21 +100,26 @@ public class Morgunvakt extends Fragment {
 
         for (Workstation workstation : workstations) {
             TextView textView = new TextView(getActivity());
+            textView.setTextAppearance(getActivity(), R.style.workst_style);
             textView.setText(workstation.getWorkstationName());
             mLinearLayout.addView(textView);
 
             for (final Employee e : employeesToday) {
                 if (e.getEmployeeWorkstationId() == workstation.getWorkstationId()) {
                     TextView textViewName= new TextView(getActivity());
+                    textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewName.setText(e.getName());
                     mLinearLayout.addView(textViewName);
                     TextView textViewTimeFrom = new TextView(getActivity());
+                    textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewTimeFrom.setText(e.gettFrom());
                     mLinearLayout.addView(textViewTimeFrom);
                     TextView textViewTimeTo = new TextView(getActivity());
+                    textViewName.setTextAppearance(getActivity(), R.style.title_style);
                     textViewTimeTo.setText(e.gettTo());
                     mLinearLayout.addView(textViewTimeTo);
                     Button button = new Button(getActivity());
+                    button.setTextAppearance(getActivity(), R.style.butt);
                     button.setText(buttonString);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override

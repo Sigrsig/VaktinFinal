@@ -30,6 +30,7 @@
             android:gravity="top|start"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
+            android:textSize="20sp"
             />
 
         <Button
@@ -39,7 +40,8 @@
             android:layout_gravity="end"
             android:layout_marginEnd="30dp"
             android:text="@string/vista_button"
-            android:background="@drawable/rounded_button"/>
+            android:background="@drawable/rounded_button"
+            android:textSize="15sp"/>
 
 
     </LinearLayout>

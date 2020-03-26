@@ -3,15 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100"
-    android:orientation="horizontal">
-
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/text_view"
-        android:layout_width="366dp"
+        android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_weight="0"
         android:gravity="center"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"
+
+
+        />
 
 </LinearLayout>

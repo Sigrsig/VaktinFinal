@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/vaktinColor"
+    android:background="@color/colorLight"
     tools:context=".EmployeeActivity">
 
     <LinearLayout
@@ -13,79 +13,86 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="-129dp">
+
         <TextView
             android:id="@+id/simpleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="150dp"
             android:paddingBottom="40dp"
             android:text="@string/eTextOnSite"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
 
         <EditText
             android:id="@+id/eName"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="100dp"
             android:layout_marginBottom="20dp"
-            android:hint="@string/eName"
             android:background="@drawable/rounded_edittext"
+            android:hint="@string/eName"
             android:inputType="text"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/eType"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="100dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/eType"
             android:inputType="text"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            android:textSize="20dp" />
 
 
         <EditText
             android:id="@+id/eFrom"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="100dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/eFrom"
-            android:layout_gravity="start"
-            android:layout_marginStart="100dp"
             android:inputType="time"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/eTo"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="100dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_edittext"
             android:hint="@string/eTo"
-            android:layout_gravity="start"
-            android:layout_marginStart="100dp"
             android:inputType="time"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            android:textSize="20dp" />
 
 
         <Button
             android:id="@+id/vista_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:layout_marginEnd="100dp"
-            android:text="@string/vista_button"
             android:background="@drawable/rounded_button"
-            />
+            android:text="@string/vista_button" />
 
 
     </LinearLayout>

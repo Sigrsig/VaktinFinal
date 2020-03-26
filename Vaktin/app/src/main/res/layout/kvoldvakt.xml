@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
@@ -14,9 +15,11 @@
         android:paddingRight="10sp"
         android:text="@string/kvold"
         android:textAlignment="center"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
 
     <ScrollView
         android:id="@+id/SCROLLER_ID"
@@ -32,12 +35,14 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10sp"
             android:paddingRight="10sp"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
+            android:textColor="#ff3333"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+          />
 
     </ScrollView>
+
+
 
     <ListView
         android:id="@+id/front_page_list"
