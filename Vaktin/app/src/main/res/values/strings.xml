@@ -9,9 +9,9 @@
     <string name="naetur">Næturvakt</string>
 
     <!-- MENU -->
-    <string name="main">Main</string>
+    <string name="main">Forsíða</string>
     <string name="edit">Breyta</string>
-    <string name="logout">Log Out</string>
+    <string name="logout">Skrá út</string>
     <string name="logo">Logo</string>
     <string name="workstations">Vinnustöðvar</string>
 
@@ -21,6 +21,7 @@
     <string name="Athugasemd">Athugasemd</string>
 
     <!-- EDIT SÍÐA -->
+    <string name="commentSite">Veldu aðgerð</string>
     <string name="add_employee">Bæta við starfsmanni</string>
     <string name="add_comment">Bæta við athugasemd</string>
     <string name="set_footer">Velja síðufót</string>
@@ -41,12 +42,15 @@
     <string name="nafn">Nafn</string>
     <string name="simanumer">Símanúmer</string>
 
+    <!-- BÆTA VIÐ STARFSMANNI SÍÐA -->
     <string name="workstation_button">Velja Vinnustöð</string>
     <string name="eName">Starfsmaður</string>
     <string name="eFrom">8:00</string>
     <string name="eTo">16:00</string>
     <string name="eType">Staða</string>
+    <string name="eTextOnSite">Sláið inn starfsmann</string>
 
+    <string name="w_text">Bættu við vinnustöð</string>
     <string name="workstName">Vinnustöð</string>
     <string name="Vaktsjóri">Vaktstjóri</string>
     <string name="Deildarlæknir">Deildarlæknir</string>

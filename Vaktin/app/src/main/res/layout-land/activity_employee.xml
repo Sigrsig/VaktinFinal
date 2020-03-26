@@ -14,6 +14,13 @@
         android:gravity="center"
         android:orientation="vertical"
         >
+        <TextView
+            android:id="@+id/simpleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp"
+            android:text="@string/eTextOnSite"
+            android:textSize="20sp" />
 
 
         <EditText
