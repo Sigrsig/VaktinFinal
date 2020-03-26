@@ -7,6 +7,9 @@ import androidx.room.Query;
 
 import is.hi.hbv601.vaktin.Entities.Token;
 
+/***
+ * Service for Token entity
+ */
 @Dao
 public interface TokenDao {
 

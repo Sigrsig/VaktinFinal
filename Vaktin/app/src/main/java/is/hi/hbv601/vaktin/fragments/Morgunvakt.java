@@ -30,18 +30,19 @@ import is.hi.hbv601.vaktin.MainActivity;
 import is.hi.hbv601.vaktin.R;
 import is.hi.hbv601.vaktin.Utilities.LocalDateConverter;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
+import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 import is.hi.hbv601.vaktin.WorkstationListActivity;
 
+/***
+ * Fragment for Morgunvakt in MainActivity
+ */
 public class Morgunvakt extends Fragment {
 
-    private ListView mListView;
-    private TextView mTextView;
     private LinearLayout mLinearLayout;
-    private ScrollView mScrollView;
     private final String buttonString = "Fjarlægja";
-    private final String url = "http://10.0.2.2:8080/removeemployee";
+    private final String url = "http://10.0.2.2:8080/removeemployee"; // POST request to remove employee from workstation
 
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees; // Loads all employees from Room
 
     @Nullable
     @Override
@@ -56,23 +57,15 @@ public class Morgunvakt extends Fragment {
         return rootView;
     }
 
+
     /***
-     * TimeSorter class for sorting employees by hour arrived
+     * Filters and sorts all employees working morning shift
+     * @return ArrayList of employees working morning shift
      */
-    private class TimeSorter implements Comparator<Employee> {
-
-        @Override
-        public int compare(Employee a, Employee b) {
-            return a.gettFrom().compareTo(b.gettFrom());
-        }
-    }
-
-
     private ArrayList<Employee> findAllSortedToday() {
         LocalDate date = LocalDate.now();
         ArrayList<Employee> resultList = new ArrayList<>();
         for (Employee emp : employees) {
-            //LocalDate empDate = (LocalDateTimeConverter.toDate(emp.gettFrom())).toLocalDate();
             LocalDateTime empDateTime = LocalDateTimeConverter.toDate(emp.gettFrom());
             if (empDateTime.toLocalDate().equals(date) && empDateTime.getHour() < 16) {
                 resultList.add(emp);
@@ -84,37 +77,37 @@ public class Morgunvakt extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //mListView = (ListView)getView().findViewById(R.id.front_page_list);
         mLinearLayout = (LinearLayout)getView().findViewById(R.id.test);
 
 
         /***
          * Sækja gögn til að birta við morgunvakt
          * Af hverju getur maður ekki bætt við nýju ListView fyrir hverja starfsstöð?
+         *
+         * Role is missing
          */
         final AppDatabase db = AppDatabase.getInstance();
-        WorkstationDao wd = db.workstationDao();
         ArrayList<Workstation> workstations = (ArrayList)db.workstationDao().findAllWorkstations(); // Finnur öll nöfn á workstation
         employees = (ArrayList)db.employeeDao().loadAllEmployees(); // Sækir alla starfsmenn í Room
         ArrayList<Employee> employeesToday = findAllSortedToday(); // Starfsmenn dagsins flokkaðir í tímaröð
 
         for (Workstation workstation : workstations) {
-            TextView textView = new TextView(getActivity());
+            TextView textView = new TextView(getActivity()); // Name of workstation
             textView.setText(workstation.getWorkstationName());
             mLinearLayout.addView(textView);
 
             for (final Employee e : employeesToday) {
                 if (e.getEmployeeWorkstationId() == workstation.getWorkstationId()) {
-                    TextView textViewName= new TextView(getActivity());
+                    TextView textViewName= new TextView(getActivity()); // Name of employee
                     textViewName.setText(e.getName());
                     mLinearLayout.addView(textViewName);
-                    TextView textViewTimeFrom = new TextView(getActivity());
+                    TextView textViewTimeFrom = new TextView(getActivity()); // Shift starts
                     textViewTimeFrom.setText(e.gettFrom());
                     mLinearLayout.addView(textViewTimeFrom);
-                    TextView textViewTimeTo = new TextView(getActivity());
+                    TextView textViewTimeTo = new TextView(getActivity()); // Shift ends
                     textViewTimeTo.setText(e.gettTo());
                     mLinearLayout.addView(textViewTimeTo);
-                    Button button = new Button(getActivity());
+                    Button button = new Button(getActivity()); // Button to remove from workstation
                     button.setText(buttonString);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override

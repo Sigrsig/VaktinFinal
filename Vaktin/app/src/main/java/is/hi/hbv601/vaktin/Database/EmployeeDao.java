@@ -10,6 +10,9 @@ import java.util.List;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.User;
 
+/***
+ *  Service for Employee entity
+ */
 @Dao
 public interface EmployeeDao {
 

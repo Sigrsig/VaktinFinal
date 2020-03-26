@@ -6,6 +6,10 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 
+/***
+ * Entity for Footer
+ * Primary key is id
+ */
 @Entity
 public class Footer {
 

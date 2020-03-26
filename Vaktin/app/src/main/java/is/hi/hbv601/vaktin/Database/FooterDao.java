@@ -9,7 +9,9 @@ import java.util.List;
 
 import is.hi.hbv601.vaktin.Entities.Footer;
 
-
+/***
+ * Service for Footer entity
+ */
 @Dao
 public interface FooterDao {
 

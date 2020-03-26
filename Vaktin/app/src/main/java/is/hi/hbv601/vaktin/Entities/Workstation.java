@@ -4,6 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/***
+ * Entity for Workstation
+ * Primary key is workstationId
+ * One-to-many relationship between Workstation and Entity implemented in
+ * WorkstationWithEmployee entity
+ */
 @Entity
 public class Workstation  {
 
@@ -33,20 +39,6 @@ public class Workstation  {
     public void setWorkstationName(String name) {
         this.workstationName = name;
     }
-
-
-
-
-    // Hér þarf að gera One-to-Many relationship
-    //https://developer.android.com/training/data-storage/room/relationships
-
-    /*public List<Employee> getStaff() {
-        return staff;
-    }
-
-    public void setStaff(List<Employee> staff) {
-        this.staff = staff;
-    }*/
 
 
 }

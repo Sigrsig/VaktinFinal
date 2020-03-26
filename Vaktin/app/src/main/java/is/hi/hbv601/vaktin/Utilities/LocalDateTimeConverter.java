@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 
+/***
+ * TypeConverter for Room database
+ * Parses LocalDateTime to String and vice versa
+ */
 public class LocalDateTimeConverter {
 
     @TypeConverter

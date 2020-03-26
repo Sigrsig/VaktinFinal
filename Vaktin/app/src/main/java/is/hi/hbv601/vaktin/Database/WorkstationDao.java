@@ -10,6 +10,9 @@ import java.util.List;
 
 import is.hi.hbv601.vaktin.Entities.Workstation;
 
+/***
+ * Service for Workstation entity
+ */
 @Dao
 public interface WorkstationDao {
 

@@ -1,9 +1,11 @@
 package is.hi.hbv601.vaktin.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -17,18 +19,25 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import is.hi.hbv601.vaktin.Api;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.WorkstationDao;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Workstation;
+import is.hi.hbv601.vaktin.MainActivity;
 import is.hi.hbv601.vaktin.R;
 import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
 import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 
+/***
+ * Fragment for Næturvakt in MainActivity
+ */
 public class Naeturvakt extends Fragment {
 
     private LinearLayout mLinearLayout;
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees; // All employees in Room
+    private final String buttonString = "Fjarlægja";
+    private final String url = "http://10.0.2.2:8080/removeemployee"; // POST request to remove employee from workstation
 
     @Nullable
     @Override
@@ -44,6 +53,10 @@ public class Naeturvakt extends Fragment {
     }
 
 
+    /***
+     * Filters and sorts all employees working night shift next calendar date
+     * @return ArrayList of employees working night shift
+     */
     private ArrayList<Employee> findAllSortedTomorrow() {
         LocalDate date = LocalDate.now().plusDays(1);
         ArrayList<Employee> resultList = new ArrayList<>();
@@ -57,6 +70,7 @@ public class Naeturvakt extends Fragment {
         return resultList;
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mLinearLayout = (LinearLayout)getView().findViewById(R.id.test);
@@ -65,28 +79,45 @@ public class Naeturvakt extends Fragment {
          * Sækja gögn til að birta við morgunvakt
          * Af hverju getur maður ekki bætt við nýju ListView fyrir hverja starfsstöð?
          */
-        AppDatabase db = AppDatabase.getInstance();
-        WorkstationDao wd = db.workstationDao();
+        final AppDatabase db = AppDatabase.getInstance();
         ArrayList<Workstation> workstations = (ArrayList)db.workstationDao().findAllWorkstations(); // Finnur öll nöfn á workstation
         employees = (ArrayList)db.employeeDao().loadAllEmployees(); // Sækir alla starfsmenn í Room
         ArrayList<Employee> employeesToday = findAllSortedTomorrow(); // Starfsmenn dagsins flokkaðir í tímaröð
 
         for (Workstation workstation : workstations) {
-            TextView textView = new TextView(getActivity());
+            TextView textView = new TextView(getActivity()); // Name of Workstation
             textView.setText(workstation.getWorkstationName());
             mLinearLayout.addView(textView);
 
-            for (Employee e : employeesToday) {
+            for (final Employee e : employeesToday) {
                 if (e.getEmployeeWorkstationId() == workstation.getWorkstationId()) {
-                    TextView textViewName= new TextView(getActivity());
+                    TextView textViewName= new TextView(getActivity()); // Name of EMployee
                     textViewName.setText(e.getName());
                     mLinearLayout.addView(textViewName);
-                    TextView textViewTimeFrom = new TextView(getActivity());
+                    TextView textViewTimeFrom = new TextView(getActivity()); // Start shift
                     textViewTimeFrom.setText(e.gettFrom());
                     mLinearLayout.addView(textViewTimeFrom);
-                    TextView textViewTimeTo = new TextView(getActivity());
+                    TextView textViewTimeTo = new TextView(getActivity()); // End shift
                     textViewTimeTo.setText(e.gettTo());
                     mLinearLayout.addView(textViewTimeTo);
+                    Button button = new Button(getActivity()); // Button to remove from workstation
+                    button.setText(buttonString);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            e.setEmployeeWorkstationId(-1);
+                            db.employeeDao().insertEmployee(e);
+
+                            // Vista breytingar í REST
+                            new Api().removeEmployeeFromWorkstation(url, e, db.tokenDao().findById(1).getToken());
+
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+
+                        }
+                    });
+
+                    mLinearLayout.addView(button);
                 }
 
             }

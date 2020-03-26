@@ -8,6 +8,9 @@ import androidx.room.Update;
 
 import is.hi.hbv601.vaktin.Entities.User;
 
+/***
+ * Service for User entity
+ */
 @Dao
 public interface UserDao {
 
