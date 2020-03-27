@@ -1,5 +1,6 @@
 package is.hi.hbv601.vaktin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -90,34 +91,10 @@ public class WorkstationListActivity extends AppCompatActivity {
         mDeleteWs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = getIntent();
-                id = i.getLongExtra("workstationId", -1);
-                AppDatabase db = AppDatabase.getInstance();
+                Intent i = new Intent(WorkstationListActivity.this, PopupWsActivity.class);
+                i.putExtra("workstationId", id);
+                startActivity(i);
 
-                // Delete from REST
-                try {
-                    Workstation tmpWorkstation = db.workstationDao().findWorkstationWithId(id);
-                    new Api().deleteWorkstation(url + "delete", tmpWorkstation.getWorkstationName(), db.tokenDao().findById(1).getToken());
-                }
-                catch (IOException e) {
-                    System.err.println(e.getMessage());
-                    System.err.println(e.getStackTrace()[0].getLineNumber());
-                }
-                catch (JSONException e) {
-                    System.err.println(e.getMessage());
-                    System.err.println(e.getStackTrace()[0].getLineNumber());
-                }
-
-                WorkstationWithEmployees workstationWithEmployees = db.mWorkstationWithEmployeesDao().findWorkstationWithEmployeesById(id);
-                for (Employee e : workstationWithEmployees.getStaff()) {
-                    e.setEmployeeWorkstationId(-1);
-                    db.employeeDao().insertEmployee(e);
-                }
-                db.workstationDao().deleteWorkstationWithName(id);
-
-
-                Intent k = new Intent(WorkstationListActivity.this, MainActivity.class);
-                startActivity(k);
             }
         });
 

@@ -1,9 +1,11 @@
 package is.hi.hbv501.vaktin.Vaktin;
 
-import is.hi.hbv501.vaktin.Vaktin.Entities.*;
+import is.hi.hbv501.vaktin.Vaktin.Entities.Comment;
+import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
+import is.hi.hbv501.vaktin.Vaktin.Entities.Footer;
+import is.hi.hbv501.vaktin.Vaktin.Entities.Workstation;
 import is.hi.hbv501.vaktin.Vaktin.Services.EmployeeService;
 import is.hi.hbv501.vaktin.Vaktin.Services.FooterService;
-import is.hi.hbv501.vaktin.Vaktin.Services.LastModifiedService;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.SetFooterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -28,22 +29,16 @@ public class FooterController {
     FooterService footerService;
     HomeController homeController;
     EmployeeService employeeService;
-    LastModifiedService lastModifiedService;
 
     @Autowired
-    public FooterController(FooterService footerService, HomeController homeController, EmployeeService employeeService, LastModifiedService lastModifiedService) {
+    public FooterController(FooterService footerService, HomeController homeController, EmployeeService employeeService) {
         this.footerService = footerService;
         this.homeController = homeController;
         this.employeeService = employeeService;
-        this.lastModifiedService = lastModifiedService;
     }
 
     @RequestMapping(value = "/setfooter", method = RequestMethod.POST)
     public ResponseEntity<SetFooterResponse> setFooter(@Valid @RequestBody Footer footer, BindingResult result) {
-
-        System.out.println(footer);
-        LastModified tmpLastModified = lastModifiedService.findById(1);
-        tmpLastModified.setDate(LocalDateTime.now());
 
         /*
         if (result.hasErrors()) {

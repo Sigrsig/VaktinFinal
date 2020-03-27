@@ -20,6 +20,9 @@
         <activity android:name=".PopupActivity"
             android:theme="@style/AppTheme.CustomTheme"
             > </activity>
+        <activity android:name=".PopupWsActivity"
+            android:theme="@style/AppTheme.CustomTheme"
+            > </activity>
 
         <activity android:name=".WorkstationsFrontPageActivity" />
         <activity android:name=".WorkstationListActivity" />

@@ -44,9 +44,4 @@ public class CommentServiceImpl implements CommentService {
     public Optional<Comment> findById(Long id) {
         return repository.findById(id);
     }
-
-    @Override
-    public Comment findByString(String description) {
-        return repository.findByDescription(description);
-    }
 }

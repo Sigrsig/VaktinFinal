@@ -62,5 +62,6 @@
 
     <!-- POPUP SÍÐA -->
     <string name="eyda_sp">Viltu eyða athugasemdinni?</string>
+    <string name="eyda_sp_ws">Viltu eyða vinnustöð?</string>
 
 </resources>
