@@ -19,9 +19,10 @@
 
         <ImageView
             android:layout_width="339dp"
-            android:layout_height="236dp"
+            android:layout_height="200dp"
             android:layout_margin="60dp"
             android:contentDescription="@string/logo_img"
+            android:layout_gravity="center"
             android:src="@drawable/logo" />
 
         <EditText
