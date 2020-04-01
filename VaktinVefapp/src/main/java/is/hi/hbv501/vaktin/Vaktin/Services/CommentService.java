@@ -14,6 +14,7 @@ public interface CommentService {
     void delete(Comment comment);
     List<Comment> findAll();
     Optional<Comment> findById(Long id);
+    Comment findByString(String comment);
 
 
 }

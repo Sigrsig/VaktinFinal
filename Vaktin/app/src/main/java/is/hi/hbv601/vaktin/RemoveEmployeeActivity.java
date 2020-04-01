@@ -9,112 +9,39 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import is.hi.hbv601.vaktin.Database.AppDatabase;
-import is.hi.hbv601.vaktin.Database.EmployeeDao;
 import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Entities.Employee;
 import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Entities.Workstation;
-import is.hi.hbv601.vaktin.Entities.WorkstationWithEmployees;
-import is.hi.hbv601.vaktin.Utilities.LocalDateTimeConverter;
-import is.hi.hbv601.vaktin.Utilities.TimeSorter;
 
-public class WorkstationListActivity extends AppCompatActivity {
+public class RemoveEmployeeActivity extends AppCompatActivity {
 
-    private TextView mTextView;
-    private AppDatabase db;
-    private long id;
-    private ArrayList<Employee> employees;
-    private LinearLayout mLinearLayout;
-    private String buttonString = "Bæta við";
-    private Button mDeleteWs;
-
+    private List<Employee> mEmployee;
     private Context mContext;
-
-    private final String url = "http://10.0.2.2:8080/";
-
-    private ArrayList<Employee> findAllSorted() {
-        ArrayList<Employee> resultList = new ArrayList<>();
-        LocalDate today = LocalDate.now();
-        LocalDate tomorrow = today.plusDays(1);
-        for (Employee emp : employees) {
-
-            LocalDate empDate = LocalDateTimeConverter.toDate(emp.gettFrom()).toLocalDate();
-            if (empDate.equals(today)) {
-                resultList.add(emp);
-            }
-            else if (empDate.equals(tomorrow) && LocalDateTimeConverter.toDate(emp.gettFrom()).getHour() <= 3) {
-                resultList.add(emp);
-            }
-        }
-        resultList.sort(new TimeSorter());
-        return resultList;
-    }
-
-
-    /***
-     * So onClickListener can find context of this activity
-     * @return
-     */
-    public Context getThisContext() {
-        return this.mContext;
-    }
-
+    private AppDatabase db;
+    private LinearLayout mLinearLayout;
+    private final String buttonString = "Eyða";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workstationlist);
+        setContentView(R.layout.activity_remove_employee);
 
-        mContext = this;
-
-        mTextView = (TextView)findViewById(R.id.textView);
-        mLinearLayout = (LinearLayout)findViewById(R.id.linear_layout);
-        mDeleteWs = (Button)findViewById(R.id.Delete_ws);
-
-        // Sækja rétt id
-        // Þarf að grípa ef -1?
-        Intent i = getIntent();
-        id = i.getLongExtra("workstationId", -1);
-
-        // Tenging við Room og finna rétta vinnustöð, sækja starfsmenn sem
-        // ekki er búið að setja á vinnustöð
         db = AppDatabase.getAppDatabase(this);
-        final Workstation workstation = db.workstationDao().findWorkstationWithId(id);
-        employees = (ArrayList)db.employeeDao().loadAllEmployeesWithNoWorkstation();
+        mContext = this;
+        mEmployee = db.employeeDao().loadAllEmployees();
 
+        mLinearLayout = (LinearLayout)findViewById(R.id.linear_layout);
 
-        mTextView.setText(workstation.getWorkstationName());
-
-        mDeleteWs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(WorkstationListActivity.this, PopupWsActivity.class);
-                i.putExtra("workstationId", id);
-                startActivity(i);
-
-            }
-        });
-
-        /***
-         *  Get ekki skipt layout 50/50
-         */
-        ArrayList<Employee> unassignedEmployees = findAllSorted();
-        for (final Employee e : unassignedEmployees) {
+        for (final Employee e : mEmployee) {
             final TextView textViewName = new TextView(this);
             textViewName.setText(e.getName());
             mLinearLayout.addView(textViewName);
@@ -131,11 +58,10 @@ public class WorkstationListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // Vista breytingar í REST
-                    Workstation workstation = db.workstationDao().findWorkstationWithId(id);
-                    new Api().addEmployeeToWorkstation(url + "addtoworkstation", e, workstation, db.tokenDao().findById(1).getToken());
+                    new Api().removeEmployee();
 
-                    e.setEmployeeWorkstationId(id);
-                    db.employeeDao().insertEmployee(e);
+
+                    db.employeeDao().removeEmployee(e);
 
                     /***
                      * It is better to remove view rather than refreshing page
@@ -160,9 +86,15 @@ public class WorkstationListActivity extends AppCompatActivity {
             mLinearLayout.addView(button);
 
         }
-
     }
 
+    /***
+     * So onClickListener can find context of this activity
+     * @return
+     */
+    public Context getThisContext() {
+        return this.mContext;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -182,9 +114,9 @@ public class WorkstationListActivity extends AppCompatActivity {
                 Toast.makeText(this, "Upphafssíða valin", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
-            case R.id.remove_employee_activity:
-                Toast.makeText(this, "Eyða starfsmönnum valið", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, RemoveEmployeeActivity.class));
+            case R.id.workstations:
+                Toast.makeText(this, "Vinnustöðvar valdar", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, WorkstationsFrontPageActivity.class));
                 return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
@@ -216,6 +148,4 @@ public class WorkstationListActivity extends AppCompatActivity {
 
 
     }
-
-
 }

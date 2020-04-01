@@ -32,6 +32,12 @@ public class Api {
     OkHttpClient client = new OkHttpClient(); // Client that handles HTTP requests for app
 
 
+    public void removeEmployee(String url, Employee employee, String tok) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("")
+        }
+    }
     /***
      * Adds employee to workstation
      * @param url

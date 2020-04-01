@@ -1,6 +1,7 @@
 package is.hi.hbv601.vaktin.Database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -18,6 +19,9 @@ public interface EmployeeDao {
 
     @Query("DELETE FROM Employee")
     public void nukeTable();
+
+    @Delete
+    public void removeEmployee(Employee employee);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAll(List<Employee> employees);

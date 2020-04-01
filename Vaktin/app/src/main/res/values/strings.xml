@@ -60,6 +60,9 @@
     <!-- WORKSTATION LISTI -->
     <string name="del_station">Eyða stöð</string>
 
+    <!-- REMOVE EMPLOYEE ACTIVITY -->
+    <string name="remove_employee_activity_header">Veldu starfsmann til að eyða</string>
+
     <!-- POPUP SÍÐA -->
     <string name="eyda_sp">Viltu eyða athugasemdinni?</string>
     <string name="eyda_sp_ws">Viltu eyða vinnustöð?</string>

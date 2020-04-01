@@ -3,6 +3,7 @@ package is.hi.hbv501.vaktin.Vaktin;
 
 import is.hi.hbv501.vaktin.Vaktin.Entities.*;
 import is.hi.hbv501.vaktin.Vaktin.Services.*;
+import is.hi.hbv501.vaktin.Vaktin.Wrappers.Request.DeleteWorkstationRequest;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.GenericResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.HomeActivityResponse;
 import is.hi.hbv501.vaktin.Vaktin.Wrappers.Responses.LoginResponse;
@@ -46,15 +47,17 @@ public class HomeController {
     private EmployeeService employeeService;
     private UserService userService;
     private FooterService footerService;
+    private LastModifiedService lastModifiedService;
 
     @Autowired
     public HomeController(CommentService commentService, WorkstationService workstationService,
-                          EmployeeService employeeService, UserService userService, FooterService footerService) {
+                          EmployeeService employeeService, UserService userService, FooterService footerService, LastModifiedService lastModifiedService) {
         this.commentService = commentService;
         this.workstationService = workstationService;
         this.employeeService = employeeService;
         this.userService = userService;
         this.footerService = footerService;
+        this.lastModifiedService = lastModifiedService;
     }
 
 
@@ -117,15 +120,18 @@ public class HomeController {
 
 
     // Er throw new ResponseStatusException sambærilegt return response?
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> DeleteWorkstation(@PathVariable("id") long id) {
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public ResponseEntity<?> DeleteWorkstation(@RequestBody DeleteWorkstationRequest deleteWorkstationRequest) throws Exception {
 
         // Virkar þetta throw?
-        Workstation workstation = workstationService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+        //Workstation workstation = workstationService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid workstation ID"));
+
+        //System.out.println("halló " +deleteWorkstationRequest.getWorkstationName());
+        Workstation workstation = workstationService.findByName(deleteWorkstationRequest.getWorkstationName());
 
         // Gá hvort id fannst
         if (workstation == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid workstation name");
         }
 
         List<Employee> tempEmp = employeeService.findAll();
@@ -137,11 +143,16 @@ public class HomeController {
         }
         workstationService.delete(workstation);
 
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
+
         return ResponseEntity.noContent().build();
     }
 
     private Workstation makeWorkstation(String name) {
         Workstation findWorkstation = workstationService.findByName(name);
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
         if (findWorkstation == null) {
             Workstation tempWorkstation = new Workstation(name);
             workstationService.save(tempWorkstation);
@@ -155,6 +166,9 @@ public class HomeController {
 
     private Employee makeEmployee(String name, LocalDateTime tFrom, LocalDateTime tTo, String role) {
         Employee findEmployee = employeeService.findByName(name);
+
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         if (findEmployee != null) {
             return findEmployee;
@@ -179,6 +193,9 @@ public class HomeController {
 
         User tmpUser = userService.findByUName("user");
         System.out.println("Leita að user " + tmpUser.uName);
+
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
 
         LocalDate now = LocalDate.now().minusDays(1);
         for (int i = 0; i < 5; i++) {

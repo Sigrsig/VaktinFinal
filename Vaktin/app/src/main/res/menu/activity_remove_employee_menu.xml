@@ -19,10 +19,9 @@
         android:title="@string/edit"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/remove_employee_activity"
-        android:title="Starfsmenn"
-        app:showAsAction="never" />
+    <item android:id="@+id/workstations"
+        android:title="@string/workstations"
+        app:showAsAction="never"/>
 
     <item android:id="@+id/logout"
         android:title="@string/logout"

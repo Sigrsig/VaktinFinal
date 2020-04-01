@@ -96,6 +96,10 @@ public class CommentActivity extends AppCompatActivity {
                 Toast.makeText(this, "Vinnustöðvar valdar", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, WorkstationsFrontPageActivity.class));
                 return true;
+            case R.id.remove_employee_activity:
+                Toast.makeText(this, "Eyða starfsmönnum valið", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, RemoveEmployeeActivity.class));
+                return true;
             case R.id.logout:
                 Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
                 mUserLocalStore.clearedUserData();

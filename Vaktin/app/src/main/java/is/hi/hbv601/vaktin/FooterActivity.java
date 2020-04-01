@@ -23,7 +23,9 @@ import java.util.Calendar;
 import is.hi.hbv601.vaktin.Database.AppDatabase;
 import is.hi.hbv601.vaktin.Database.CommentDao;
 import is.hi.hbv601.vaktin.Database.FooterDao;
+import is.hi.hbv601.vaktin.Database.TokenDao;
 import is.hi.hbv601.vaktin.Entities.Footer;
+import is.hi.hbv601.vaktin.Entities.Token;
 import is.hi.hbv601.vaktin.Utilities.LocalDateConverter;
 
 public class FooterActivity extends AppCompatActivity {
@@ -108,14 +110,38 @@ public class FooterActivity extends AppCompatActivity {
                 Toast.makeText(this, "Main page Selected", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
-
-            case R.id.login_Button:
-                Toast.makeText(this, "Log In Selected", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
+            case R.id.remove_employee_activity:
+                Toast.makeText(this, "Eyða starfsmönnum valið", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, RemoveEmployeeActivity.class));
                 return true;
             case R.id.workstations:
                 Toast.makeText(this, "Vinnustöðvar valdar", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, WorkstationsFrontPageActivity.class));
+                return true;
+            case R.id.logout:
+                Toast.makeText(this, "Log Out Selected", Toast.LENGTH_SHORT).show();
+                mUserLocalStore.clearedUserData();
+                mUserLocalStore.setUserLoggedIn(false);
+
+                // Eyða token
+                AppDatabase db = AppDatabase.getInstance();
+                TokenDao td = db.tokenDao();
+                Token tmpToken = td.findById(1);
+                tmpToken.setToken(null);
+                td.insertToken(tmpToken);
+
+                /**
+                 * Eyða Room. Finnum betri lausn síðar
+                 */
+                td.nukeTable();
+                db.employeeDao().nukeTable();
+                db.workstationDao().nukeTable();
+                db.userDao().nukeTable();
+                db.commentDao().nukeTable();
+                db.footerDao().nukeTable();
+
+                startActivity(new Intent(this, LoginActivity.class));
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
