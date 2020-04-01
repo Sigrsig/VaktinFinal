@@ -21,7 +21,7 @@ public interface EmployeeDao {
     public void nukeTable();
 
     @Delete
-    public void removeEmployee(Employee employee);
+    public void deleteEmployee(Employee employee);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAll(List<Employee> employees);
@@ -37,6 +37,9 @@ public interface EmployeeDao {
 
     @Query("SELECT * FROM Employee WHERE name = :name")
     public Employee findByName(String name);
+
+    @Query("SELECT * FROM Employee WHERE employeeId = :id")
+    public Employee findById(long id);
 
 
 }

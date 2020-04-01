@@ -2,6 +2,7 @@ package is.hi.hbv501.vaktin.Vaktin.Services;
 
 import is.hi.hbv501.vaktin.Vaktin.Entities.Employee;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +13,11 @@ import java.util.Optional;
 public interface EmployeeService {
 
     Employee save(Employee employee);
-    void delete(Employee employee);
+    void deleteById(long id);
     List<Employee> findAll();
     Optional<Employee> findById(Long id);
     Employee findByName(String name);
+    Employee findByNameAndTFromAndTTo(String name, LocalDateTime tFrom, LocalDateTime tTo);
 
     boolean validateTimeFrom(String tFrom);
     boolean validateTimeTo(String tTo);

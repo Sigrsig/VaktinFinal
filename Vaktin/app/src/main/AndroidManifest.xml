@@ -18,6 +18,9 @@
         <activity android:name=".EditActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RemoveEmployeeActivity"/>
+        <activity android:name=".PopUpRemoveEmployeeActivity"
+            android:theme="@style/AppTheme.CustomTheme"
+            > </activity>
         <activity android:name=".PopupActivity"
             android:theme="@style/AppTheme.CustomTheme"
             > </activity>

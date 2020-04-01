@@ -62,6 +62,7 @@
 
     <!-- REMOVE EMPLOYEE ACTIVITY -->
     <string name="remove_employee_activity_header">Veldu starfsmann til að eyða</string>
+    <string name="remove_employee_button">Ertu viss um að þú viljir eyða starfsmanni?</string>
 
     <!-- POPUP SÍÐA -->
     <string name="eyda_sp">Viltu eyða athugasemdinni?</string>

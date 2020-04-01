@@ -52,6 +52,19 @@ public class EmployeeController {
         this.lastModifiedService = lastModifiedService;
     }
 
+
+    @RequestMapping(value = "/deleteemployee", method = RequestMethod.POST)
+    public ResponseEntity<?> deleteEmployee(@Valid @RequestBody Employee employee) {
+        LastModified tmpLastModified = lastModifiedService.findById(1);
+        tmpLastModified.setDate(LocalDateTime.now());
+        LocalDateTime date = employee.gettFrom();
+
+
+        Employee emp = employeeService.findByNameAndTFromAndTTo(employee.getName(), employee.gettFrom(), employee.gettTo());
+        employeeService.deleteById(emp.getId());
+
+        return ResponseEntity.noContent().build();
+    }
     /***
      * Runs with the path /addemployee
      * Adds an Employee entity and renders Edit.html

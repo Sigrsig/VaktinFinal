@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity{
                  * User er með token breytu en kannski er óþarfi að hafa hana og betra að vera
                  * alltaf bara með eitt token í Room
                  */
-                if (result != null) {
+                if (result != null && t != null) {
                     User tmpUser = new User(userName, password);
                     tmpUser.setToken(t);
                     AppDatabase db = AppDatabase.getInstance();
@@ -110,6 +110,10 @@ public class LoginActivity extends AppCompatActivity{
                     td.insertToken(tmpToken);
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "Vitlaust nafn/lykilorð", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                 }
 
 

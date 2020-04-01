@@ -26,16 +26,17 @@ public class RemoveEmployeeActivity extends AppCompatActivity {
 
     private List<Employee> mEmployee;
     private Context mContext;
-    private AppDatabase db;
+
     private LinearLayout mLinearLayout;
     private final String buttonString = "Eyða";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_employee);
 
-        db = AppDatabase.getAppDatabase(this);
+        final AppDatabase db = AppDatabase.getAppDatabase(this);
         mContext = this;
         mEmployee = db.employeeDao().loadAllEmployees();
 
@@ -57,27 +58,11 @@ public class RemoveEmployeeActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Vista breytingar í REST
-                    new Api().removeEmployee();
-
-
-                    db.employeeDao().removeEmployee(e);
-
-                    /***
-                     * It is better to remove view rather than refreshing page
-                     */
-                    mLinearLayout.removeView(textViewName);
-                    mLinearLayout.removeView(textViewTimeFrom);
-                    mLinearLayout.removeView(textViewTimeTo);
-                    mLinearLayout.removeView(button);
-
-                    Toast.makeText(getThisContext(), "Starfsmanni bætt við vinnustöð", Toast.LENGTH_SHORT).show();
-
-                    /*
-                    Intent i = new Intent(WorkstationListActivity.this, WorkstationListActivity.class);
-                    i.putExtra("workstationId", id);
+                    Intent i = new Intent(getThisContext(), PopUpRemoveEmployeeActivity.class);
+                    i.putExtra("employeeId", e.getEmployeeId());
                     startActivity(i);
-                     */
+                    // Vista breytingar í REST
+
 
 
                 }
@@ -99,7 +84,7 @@ public class RemoveEmployeeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.workstationsmenu, menu);
+        inflater.inflate(R.menu.activity_remove_employee_menu, menu);
         return true;
     }
 

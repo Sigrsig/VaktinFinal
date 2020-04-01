@@ -35,8 +35,32 @@ public class Api {
     public void removeEmployee(String url, Employee employee, String tok) {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("")
+            jsonObject.put("name", employee.getName());
+            jsonObject.put("tFrom", employee.gettFrom());
+            jsonObject.put("tTo", employee.gettTo());
+            jsonObject.put("role", employee.getRole());
         }
+        catch (JSONException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getStackTrace()[0].getLineNumber());
+        }
+
+        if (tok != null) {
+            RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer " + tok)
+                    .build();
+            try (Response res = client.newCall(request).execute()) {
+                // Nothing
+            }
+            catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+
     }
     /***
      * Adds employee to workstation

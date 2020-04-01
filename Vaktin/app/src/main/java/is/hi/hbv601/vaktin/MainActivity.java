@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         Token tmpToken = tokenDao.findById(1);
         if (tmpToken == null || tmpToken.getToken() == null) {
             startActivity(new Intent(this, LoginActivity.class));
-            Toast.makeText(this, "Vitlaust nafn/password", Toast.LENGTH_SHORT).show();
         }
 
         else {

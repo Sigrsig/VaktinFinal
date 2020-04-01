@@ -37,8 +37,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void delete(Employee employee) {
-        employeeRepository.delete(employee);
+    public void deleteById(long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Employee findByNameAndTFromAndTTo(String name, LocalDateTime tFrom, LocalDateTime tTo) {
+        return employeeRepository.findByNameAndTFromAndTTo(name, tFrom, tTo);
     }
 
     /***
