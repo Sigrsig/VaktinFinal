@@ -115,6 +115,7 @@ public class EmployeeActivity extends AppCompatActivity {
         }
 
         Employee employee = new Employee(name,role, LocalDateTimeConverter.toDateString(timeFromLocalDate),LocalDateTimeConverter.toDateString(timeToLocalDate));
+        employee.setEmployeeWorkstationId(-1);
         saveEmployee(employee);
 
     }
