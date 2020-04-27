@@ -4,6 +4,8 @@ Final group project for year 3 of Computer Science. I worked mostly on layout an
 
 Vaktin is a staff scheduling app designed for the A&E department in Iceland's national hospital.
 
+
+
 To run Vaktin:
 
   Open VaktinVefapp in Intellij
